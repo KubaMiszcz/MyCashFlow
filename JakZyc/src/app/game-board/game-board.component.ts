@@ -1,4 +1,5 @@
-import { IEvent } from './../models/event.model';
+import { GameService } from './../services/game.service';
+import { IEvent, Event } from './../models/event.model';
 import { EventType, EVENT_TYPES } from './../models/event-type.enum';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,11 +11,16 @@ import { Component, OnInit } from '@angular/core';
 export class GameBoardComponent implements OnInit {
   eventTypes: string[] = [];
 
-  constructor() {
+  currentEvent = new Event;
+
+  constructor(
+    private gameService: GameService,
+  ) {
     this.eventTypes = EVENT_TYPES;
   }
 
   ngOnInit(): void {
+    this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
   }
 
 }

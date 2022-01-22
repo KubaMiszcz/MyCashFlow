@@ -1,10 +1,17 @@
 import { IIncome } from './income.model';
 import { EventType } from './event-type.enum';
+
 export interface IEvent {
   name: string;
-  type: EventType
+  type?: EventType
   value: number;
   rejectable?: boolean
+}
+
+
+export class Event implements IEvent {
+  name = '';
+  value = 0;
 }
 
 export const EVENTS: IEvent[] = [

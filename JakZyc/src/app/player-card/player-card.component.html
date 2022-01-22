@@ -12,56 +12,78 @@
       </div>
 
       <div class="col-7">
-        <div class="input-group mb-3">
-          <span class="input-group-text col-4" id="basic-addon3">Name</span>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.name " disabled>
-        </div>
+        <div class="row">
 
-        <div class="input-group mb-3">
-            <span class="input-group-text col-4" id="basic-addon3">Age</span>
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.age" disabled>
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon3">Name</span>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.name " disabled>
+            </div>
           </div>
 
-        <div class="input-group mb-3">
-          <span class="input-group-text col-4" id="basic-addon3">Job</span>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.jobName" disabled>
-        </div>
-
-        <div class="input-group mb-3">
-          <span class="input-group-text col-4" id="basic-addon3">Salary</span>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.salary" disabled>
-        </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text col-4" id="basic-addon3">Total Cash</span>
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.totalCash" disabled>
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon3">Age</span>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.age" disabled>
+            </div>
           </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text col-4" id="basic-addon3">Job</span>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.job.name" disabled>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="row">
+
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text col-4" id="basic-addon3">Salary</span>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.job.salary" disabled>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text col-4" id="basic-addon3">Total Cash</span>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.totalCash" disabled>
+            </div>
+
+          </div>
+        </div>
 
       </div>
+    </div>
 
+  </div>
+
+
+  <div class="row ">
+    <div class="card col m-1">
+      <div class="card-body">
+        <h5 class="card-title">Total Incomes: {{totalIncomes}}</h5>
+        <div *ngFor="let item of player.incomes">
+          {{item.name}}: {{item.value}}
+        </div>
+      </div>
     </div>
 
 
-    <div class="row ">
-      <div class="card col m-1">
-        <div class="card-body">
-          <h5 class="card-title">Incomes:</h5>
-          <div *ngFor="let item of player.incomes">
-            {{item.name}}: {{item.value}}
-          </div>
-          <div>Total: {{totalIncomes}}</div>
-        </div>
-      </div>
-
-
-      <div class="card col m-1">
-        <div class="card-body">
-          <h5 class="card-title">Expenses:</h5>
-          <div *ngFor="let item of player.expenses">
-            {{item.name}}: {{item.value}}
-          </div>
-          <div>Total: {{totalExpenses}}</div>
+    <div class="card col m-1">
+      <div class="card-body">
+        <h5 class="card-title">Total Expenses: {{totalExpenses}}</h5>
+        <div *ngFor="let item of player.expenses">
+          {{item.name}}: {{item.value}}
         </div>
       </div>
     </div>
   </div>
+</div>

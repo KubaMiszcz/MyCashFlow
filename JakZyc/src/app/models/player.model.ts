@@ -1,8 +1,8 @@
 import { IIncome } from './income.model';
+import { IJob } from './job.model';
 export interface IPlayer {
   name: string;
-  jobName: string;
-  salary: number;
+  job: IJob;
   totalCash: number;
   age: number;
   incomes: IIncome[];
@@ -12,7 +12,7 @@ export interface IPlayer {
 
 export class Player implements IPlayer {
   name = '';
-  jobName = '';
+  job = { name: '', salary: 0 };
   salary = 0;
   totalCash = 0;
   age = 0;
@@ -23,23 +23,9 @@ export class Player implements IPlayer {
 
 export const PLAYER: IPlayer = {
   name: 'JohnDoe',
-  jobName: 'Janitor',
-  salary: 1000,
+  job: { name: '', salary: 0, },
   totalCash: 0,
   age: 20.0,
-  incomes: [{
-    name: 'aa',
-    value: 100,
-  },
-  {
-    name: 'bb',
-    value: 100,
-  },
-  ],
-  expenses: [
-    {
-      name: 'cc',
-      value: -100,
-    },
-  ],
+  incomes: [],
+  expenses: [],
 }

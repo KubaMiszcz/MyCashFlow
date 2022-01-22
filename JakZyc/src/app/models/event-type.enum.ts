@@ -12,4 +12,3 @@ export const EVENT_TYPES: string[] = [
   "Purchase",
 ]
 
-

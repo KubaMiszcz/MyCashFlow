@@ -1,3 +1,4 @@
+import { GameService } from './services/game.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'JakZyc';
+
+  constructor(
+    private gameService: GameService,
+  ) {
+
+  }
+
+  nextTurn() {
+    this.gameService.nextTurn();
+  }
 }

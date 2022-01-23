@@ -8,30 +8,15 @@
       </div>
 
       <div class="col-3 m-0 p-0 pr-1">
-        <div class="card col zm-4 p-0">
-          <div class="card-body p-0 m-0">
-            <h5 class="card-title p-2">Razem Wydatki: {{totalExpenses | plnPipe}}</h5>
-            <app-cash-table [list]="player.expenses"></app-cash-table>
-          </div>
-        </div>
+        <app-cash-table [title]="'Razem Wydatki'" [list]="player.expenses"></app-cash-table>
       </div>
 
       <div class="col-3 m-0 p-0 pr-1">
-        <div class="card col zm-4 p-0">
-          <div class="card-body p-0 m-0">
-            <h5 class="card-title p-2">Razem Przychody: {{totalIncomes | plnPipe}}</h5>
-            <app-cash-table [list]="player.incomes"></app-cash-table>
-          </div>
-        </div>
+        <app-cash-table [title]="'Razem Przychody'" [list]="player.incomes"></app-cash-table>
       </div>
 
-      <div class="col-3 m-0 p-0">
-        <div class="card col zm-4 p-0">
-          <div class="card-body p-0 m-0">
-            <h5 class="card-title p-2">Majatek: {{totalAssets | plnPipe}}</h5>
-            <app-cash-table [list]="player.assets"></app-cash-table>
-          </div>
-        </div>
+      <div class="col-3 m-0 p-0 pr-1">
+        <app-cash-table [title]="'Majatek'" [list]="player.assets"></app-cash-table>
       </div>
 
     </div>

@@ -36,8 +36,8 @@
                 <div
                      class="input-group-text col-7 text-bold justify-content-between px-1" id="basic-addon3"
                      [ngClass]="{
-                    'text-red' : isBalanceNegative, 
-                    'text-green' : !isBalanceNegative
+                    'text-red' : player.totalCash < 0, 
+                    'text-green' : player.totalCash > 0
                 }">
                   <span *ngIf="isBalanceNegative">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -53,9 +53,9 @@
 
             <div class="col m-0 p-0">
               <div class="progress" style="height: 2.4em;">
-                <div class="label">wyplata za 2 tygodnie</div>
+                <div class="label">{{salaryMessage}}</div>
                 <div class="progress-bar progress-bar-striped progress-bar-animated"
-                     role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
+                     role="progressbar" aria-valuenow="player.age.day" aria-valuemin="0" aria-valuemax="28" style="width: {{(player.age.day/28)*100}}%">
                 </div>
               </div>
 

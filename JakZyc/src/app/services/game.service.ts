@@ -18,7 +18,9 @@ export class GameService {
 
   loanInterestRate = 0.1;
   personalExpensesRate = 0.5;
-  paydayInterval = 4;
+
+  turnDurationInDays = 7;
+  paydayIntervalInWeeks = 4;
   dateYearInterval = 0;
 
   constructor() {
@@ -39,8 +41,7 @@ export class GameService {
     const player = this.player$.value;
     this.cleanIsNewStatus(player);
 
-    // this.player$.value.age = (player.age * 10 + 1) / 10;
-    this.player$.value.age.year = player.age.year + 1;
+    this.increasePlayerAge(player);
 
     let currentEvent = this.currentEvent$.value;
 
@@ -48,10 +49,25 @@ export class GameService {
       this.handleWithCurrentEvent(player, currentEvent);
     }
 
-    this.applyPayday(player);
+    if (player.age.day === 1) {
+      this.applyPayday(player);
+    }
 
     currentEvent = this.drawEvent();
     this.currentEvent$.next(currentEvent);
+  }
+
+  increasePlayerAge(player: IPlayer) {
+    player.age.day += 7;
+    if (player.age.day > (this.turnDurationInDays * this.paydayIntervalInWeeks)) {
+      player.age.day = 1;
+      player.age.month += 1;
+    }
+
+    if (player.age.month > 11) {
+      player.age.year += 1;
+      player.age.month = 0;
+    }
   }
 
   cleanIsNewStatus(player: IPlayer) {
@@ -96,12 +112,6 @@ export class GameService {
   }
 
   applyPayday(player: IPlayer) {
-    if (!(player.age?.year % this.paydayInterval)) {
-      this.updateTotalCash(player);
-    }
-  }
-
-  updateTotalCash(player: IPlayer) {
     let totalIncomes = 0;
     let totalExpenses = 0;
     player.incomes.forEach(i => totalIncomes += i.value);

@@ -11,6 +11,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PlayerCardComponent implements OnInit {
   @Input() player: IPlayer;
+  salaryProgress = 0;
+  paydayInterval = 0;
+
+  get salaryMessage() {
+
+    let message = this.player.age.day === 1 ?
+      'WYPLATA!'
+      : 'wyplata za ' + (this.paydayInterval - this.player.age.day) + ' dni';
+    return message;
+  }
 
   get totalIncomes(): number {
     let res = 0;
@@ -39,9 +49,11 @@ export class PlayerCardComponent implements OnInit {
   }
 
   constructor(
+    private gameService: GameService
   ) { }
 
   ngOnInit(): void {
+    this.paydayInterval = this.gameService.paydayIntervalInWeeks * this.gameService.turnDurationInDays;
   }
 
 }

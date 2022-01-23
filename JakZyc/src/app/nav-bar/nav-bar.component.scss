@@ -3,3 +3,18 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.nav-item {
+  width: -webkit-fill-available;
+}
+
+.navbar-item {
+  color: #000080;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.next-turn-btn {
+  font-weight: bold;
+  height: 3.5em;
+}

@@ -20,6 +20,7 @@ export class GameService {
   constructor() {
     const player = PLAYER;
     player.job = this.jobsList[Math.floor(Math.random() * this.jobsList.length)];
+    player.totalCash = player.job.salary;
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
     this.player$.next(PLAYER);
   }

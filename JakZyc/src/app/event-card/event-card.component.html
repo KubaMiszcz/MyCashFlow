@@ -1,7 +1,11 @@
-<div class="card-body">
-  <h5 class="card-title">Current Event</h5>
+<div *ngIf="event.name" class="card-body">
+  <h5 class="card-title">{{event.name}}</h5>
   <div class="card-text">
-    <!-- <p>{{currentEvent.name}}</p>
-    <p>{{currentEvent.value  | plnPipe}}</p> -->
+    <p>{{event.description}}</p>
+    <p>{{event.value  | plnPipe}}</p>
+    <div class="buttons row">
+        <button *ngIf="event.rejectable" type="button" name="" id="" class="col-2 btn btn-outline-danger btn-md btn-bloxck mr-1">Odrzuc</button>
+        <button type="button" name="" id="" class="col-2 btn btn-outline-success btn-md btn-blxock">OK</button>
+    </div>
   </div>
 </div>

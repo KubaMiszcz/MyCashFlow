@@ -14,6 +14,7 @@ export class GameService {
   currentEvent$ = new BehaviorSubject<IEvent>(new Event);
   eventList = EVENTS;
   jobsList = JOBS;
+  monthlyProfitRate = 0.1;
 
   constructor() {
     const player = PLAYER;
@@ -34,15 +35,12 @@ export class GameService {
 
     switch (currentEvent.type) {
       case EventType.BigDeal:
-        player.incomes.push(currentEvent);
+        player.assets.push(currentEvent);
+        player.incomes.push({ name: currentEvent.name, value: currentEvent.value * this.monthlyProfitRate });
         break;
 
       case EventType.Event:
-        if (currentEvent.value > 0) {
-          player.incomes.push(currentEvent);
-        } else {
-          player.expenses.push(currentEvent);
-        }
+        player.totalCash += currentEvent.value;
         break;
 
       case EventType.Purchase:

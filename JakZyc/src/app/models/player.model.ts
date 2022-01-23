@@ -7,6 +7,7 @@ export interface IPlayer {
   age: number;
   incomes: IIncome[];
   expenses: IIncome[];
+  assets: IIncome[];
 }
 
 
@@ -18,6 +19,7 @@ export class Player implements IPlayer {
   age = 0;
   incomes = [];
   expenses = [];
+  assets = [];
 }
 
 
@@ -28,4 +30,5 @@ export const PLAYER: IPlayer = {
   age: 20.0,
   incomes: [],
   expenses: [],
+  assets: [],
 }

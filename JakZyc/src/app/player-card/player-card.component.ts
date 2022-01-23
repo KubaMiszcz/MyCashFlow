@@ -24,6 +24,12 @@ export class PlayerCardComponent implements OnInit {
     return res;
   }
 
+  get totalAssets(): number {
+    let res = 0;
+    this.player.assets.forEach(e => res += e.value);
+    return res;
+  }
+
   constructor(
     private gameService: GameService,
   ) { }

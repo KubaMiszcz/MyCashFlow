@@ -1,7 +1,7 @@
+import { EVENT_TYPES, IEventType } from './../models/event-type.model';
 import { IPlayer } from './../models/player.model';
 import { GameService } from './../services/game.service';
-import { IEvent, Event } from './../models/event.model';
-import { EventType, EVENT_TYPES } from './../models/event-type.enum';
+import { IEvent } from './../models/event.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameBoardComponent implements OnInit {
   player: IPlayer;
-  eventTypes: string[] = [];
+  eventTypes: IEventType[] = [];
 
   currentEvent: IEvent;
 

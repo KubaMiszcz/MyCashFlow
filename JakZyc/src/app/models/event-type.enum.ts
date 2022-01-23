@@ -1,4 +1,4 @@
-export enum EventType {
+export enum EventTypeEnum {
   SmallDeal = "Mały Hajs",
   BigDeal = "Duży Hajs",
   Event = "Zdarzenie",
@@ -6,10 +6,9 @@ export enum EventType {
   SpecialEvent = "SpecialEvent",
 }
 
-export const EVENT_TYPES: string[] = [
-  "Maly Hajs",
-  "Duzy Hajs",
-  "Zdarzenie",
-  "Zakupki",
-]
-
+// export const EVENT_TYPES_NAMES: string[] = [
+//   "Maly Hajs",
+//   "Duzy Hajs",
+//   "Zdarzenie",
+//   "Zakupki",
+// ]

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IPlayer, Player, PLAYER } from '../models/player.model';
 import { IEvent, Event, EVENTS } from './../models/event.model';
-import { EventType } from '../models/event-type.enum';
+import { EventTypeEnum } from '../models/event-type.enum';
 import { JOBS } from '../models/job.model';
 
 @Injectable({
@@ -36,15 +36,15 @@ export class GameService {
     const currentEvent = this.drawEvent();
 
     switch (currentEvent.type) {
-      case EventType.BigDeal:
+      case EventTypeEnum.BigDeal:
         this.handleBigDeal(player, currentEvent);
         break;
 
-      case EventType.Event:
+      case EventTypeEnum.Event:
         player.totalCash += currentEvent.value;
         break;
 
-      case EventType.Purchase:
+      case EventTypeEnum.Purchase:
         if (this.hasPlayerEnoughCash(player, currentEvent)) {
           player.totalCash -= currentEvent.value;
         } else {
@@ -55,10 +55,10 @@ export class GameService {
         player.assets.push(currentEvent);
         break;
 
-      case EventType.SmallDeal:
+      case EventTypeEnum.SmallDeal:
         break;
 
-      case EventType.SpecialEvent:
+      case EventTypeEnum.SpecialEvent:
         break;
 
       default:

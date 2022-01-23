@@ -1,5 +1,5 @@
-import { EVENT_TYPES } from './../models/event-type.enum';
 import { Component, OnInit } from '@angular/core';
+import { EVENT_TYPES, IEventType } from './../models/event-type.model';
 
 @Component({
   selector: 'app-next-turn-modal',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./next-turn-modal.component.scss']
 })
 export class NextTurnModalComponent implements OnInit {
-  eventTypes: string[] = [];
+  eventTypes: IEventType[] = [];
 
 
   constructor() {

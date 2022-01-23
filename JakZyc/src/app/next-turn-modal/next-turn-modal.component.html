@@ -8,27 +8,9 @@
 
       <div class="row events">
 
-        <div class="event card col">
+        <div *ngFor="let item of eventTypes" class="event card col">
           <div class="card-body">
-            {{eventTypes[0]}}
-          </div>
-        </div>
-
-        <div class="event card col">
-          <div class="card-body">
-            {{eventTypes[1]}}
-          </div>
-        </div>
-
-        <div class="event card col">
-          <div class="card-body">
-            {{eventTypes[2]}}
-          </div>
-        </div>
-
-        <div class="event card col">
-          <div class="card-body">
-            {{eventTypes[3]}}
+            {{item.name}}
           </div>
         </div>
 

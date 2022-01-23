@@ -34,6 +34,10 @@ export class PlayerCardComponent implements OnInit {
     return this.totalIncomes + ' - ' + this.totalExpenses + ' = ' + (this.totalIncomes - this.totalExpenses);
   }
 
+  get isBalanceNegative() {
+    return this.totalIncomes - this.totalExpenses < 0;
+  }
+
   constructor(
   ) { }
 

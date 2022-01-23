@@ -1,8 +1,7 @@
 import { IIncome } from './../models/income.model';
-import { Player } from './../models/player.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IPlayer, PLAYER } from '../models/player.model';
+import { IPlayer, Player, PLAYER } from '../models/player.model';
 import { IEvent, Event, EVENTS } from './../models/event.model';
 import { EventType } from '../models/event-type.enum';
 import { JOBS } from '../models/job.model';
@@ -28,7 +27,7 @@ export class GameService {
   nextTurn() {
     const player = this.player$.value;
     if (!(player.age % 4)) {
-      player.totalCash += player.job.salary;
+      this.updateTotalCash(player);
     }
 
     // this.player$.value.age = (player.age * 10 + 1) / 10;
@@ -67,6 +66,15 @@ export class GameService {
 
     this.currentEvent$.next(currentEvent);
   }
+  updateTotalCash(player: IPlayer) {
+    let totalIncomes = 0;
+    let totalExpenses = 0;
+    player.incomes.forEach(i => totalIncomes += i.value);
+    player.expenses.forEach(i => totalExpenses += i.value);
+
+    player.totalCash += player.job.salary + totalIncomes + totalExpenses;
+  }
+
   createLoan(currentEvent: IEvent) {
     const loanValue = Math.round(currentEvent.value * (1 + this.loanInterestRate));
     let loan: IIncome = {

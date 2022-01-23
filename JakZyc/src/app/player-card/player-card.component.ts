@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./player-card.component.scss']
 })
 export class PlayerCardComponent implements OnInit {
-  player: IPlayer = new Player;
+  player: IPlayer;
 
   get totalIncomes(): number {
     let res = 0;
@@ -28,6 +28,10 @@ export class PlayerCardComponent implements OnInit {
     let res = 0;
     this.player.assets.forEach(e => res += e.value);
     return res;
+  }
+
+  get balanceDescription() {
+    return this.totalIncomes + ' - ' + this.totalExpenses + ' = ' + (this.totalIncomes - this.totalExpenses);
   }
 
   constructor(

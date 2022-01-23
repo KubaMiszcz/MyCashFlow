@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class GameBoardComponent implements OnInit {
   eventTypes: string[] = [];
 
-  currentEvent = new Event;
+  currentEvent: IEvent;
 
   constructor(
     private gameService: GameService,

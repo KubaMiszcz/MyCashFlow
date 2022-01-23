@@ -57,3 +57,13 @@
 .align-text-right {
   text-align: right;
 }
+
+.align-items-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.align-items-right {
+  display: flex;
+  justify-content: flex-end;
+}

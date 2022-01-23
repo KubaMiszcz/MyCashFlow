@@ -1,3 +1,4 @@
+import { IGameGoal } from './goal.model';
 import { IIncome } from './income.model';
 import { IJob } from './job.model';
 export interface IPlayer {
@@ -9,6 +10,7 @@ export interface IPlayer {
   incomes: IIncome[];
   expenses: IIncome[];
   assets: IIncome[];
+  goal?: IGameGoal;
 }
 
 

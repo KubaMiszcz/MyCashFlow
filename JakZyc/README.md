@@ -6,6 +6,19 @@ jobchange-specialevent
 top100
 top100score model
 
+nowe elementy flaga New isNewlAdded
+age jako custom format daty
+splacanie kredytow reczne
+kupoec=? event?
+wplata co 4 tyg
+biezaca data
+wywal rejctable? a deal jako IDeal i default rejectable
+infoCard po najechaniu modal z info
+dodaj id i powiaz do infocard
+pierwsza strona wybor imeinia celu czasu
+cel
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
 

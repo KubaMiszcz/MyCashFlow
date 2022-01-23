@@ -1,3 +1,9 @@
 .container {
   min-height: 16.5em;
 }
+
+.label {
+  position: absolute;
+  z-index: 10;
+  color: red;
+}

@@ -1,7 +1,7 @@
 import { IIncome } from './../models/income.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IPlayer, Player, PLAYER } from '../models/player.model';
+import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
 import { IEvent, Event, EVENTS } from './../models/event.model';
 import { EventTypeEnum } from '../models/event-type.enum';
 import { JOBS } from '../models/job.model';
@@ -19,19 +19,19 @@ export class GameService {
   paydayInterval = 4;
 
   constructor() {
-    const player = PLAYER;
+    const player = INITIAL_PLAYER;
     player.job = this.jobsList[Math.floor(Math.random() * this.jobsList.length)];
     player.totalCash = player.job.salary;
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
     this.currentEvent$.next(this.drawEvent());
-    this.player$.next(PLAYER);
+    this.player$.next(INITIAL_PLAYER);
   }
 
   nextTurn(isEventAccepted: boolean) {
     const player = this.player$.value;
 
     // this.player$.value.age = (player.age * 10 + 1) / 10;
-    this.player$.value.age = player.age + 1;
+    this.player$.value.age.year = player.age.year + 1;
 
     let currentEvent = this.currentEvent$.value;
 
@@ -78,7 +78,7 @@ export class GameService {
   }
 
   applyPayday(player: IPlayer) {
-    if (!(player.age % this.paydayInterval)) {
+    if (!(player.age?.year % this.paydayInterval)) {
       this.updateTotalCash(player);
     }
   }

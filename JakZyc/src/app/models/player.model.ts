@@ -1,3 +1,4 @@
+import { IAge } from './age.model';
 import { IGameGoal } from './goal.model';
 import { IIncome } from './income.model';
 import { IJob } from './job.model';
@@ -5,7 +6,7 @@ export interface IPlayer {
   name: string;
   job: IJob;
   totalCash: number;
-  age: number;
+  age: IAge;
   image?: string;
   incomes: IIncome[];
   expenses: IIncome[];
@@ -15,22 +16,22 @@ export interface IPlayer {
 
 
 export class Player implements IPlayer {
-  name = '';
-  job = { name: '', salary: 0 };
-  salary = 0;
-  totalCash = 0;
-  age = 0;
-  incomes = [];
-  expenses = [];
-  assets = [];
+  name: '';
+  job: { name: '', salary: 0 };
+  age: { year: 20, month: 1, week: 1 };
+  salary: 0;
+  totalCash: 0;
+  incomes: [];
+  expenses: [];
+  assets: [];
 }
 
 
-export const PLAYER: IPlayer = {
+export const INITIAL_PLAYER: IPlayer = {
   name: 'JohnDoe',
   job: { name: '', salary: 0, },
   totalCash: 0,
-  age: 20.0,
+  age: { year: 20, month: 1, week: 1 },
   incomes: [],
   expenses: [],
   assets: [],

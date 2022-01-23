@@ -1,7 +1,7 @@
 import { Player } from './../models/player.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GameService } from './../services/game.service';
-import { IPlayer, PLAYER } from '../models/player.model';
+import { IPlayer, INITIAL_PLAYER } from '../models/player.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

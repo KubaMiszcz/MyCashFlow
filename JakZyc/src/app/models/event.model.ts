@@ -14,8 +14,8 @@ export interface IEvent {
 
 
 export class Event implements IEvent {
-  name = '';
-  value = 0;
+  name: '';
+  value: 0;
 }
 
 export const EVENTS: IEvent[] = [

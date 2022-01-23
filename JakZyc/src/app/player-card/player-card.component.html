@@ -1,88 +1,87 @@
 <div class="card">
-  <div class="card-body">
+  <div class="card-body p-2">
     <h5 class="card-title">Gracz: {{player.name}}, {{player.age}}lat, {{player.job.name}}</h5>
-    <div class="row">
+    <div class="row m-0 p-0">
 
-      <div class="col-5">
-        <div class="card col">
-          <!-- <div class="card-body"> -->
-          <img src="http://placekitten.com/200/300" class="card-img-top" style="height: 9em;" alt="http://placekitten.com/200/300">
-          <!-- </div> -->
-        </div>
-      </div>
+      <div class="col m-0 p-0">
 
-      <div class="col-7">
+        <div class="row m-0 p-0">
 
-        <div class="row">
-
-          <div class="col">
-            <div class="input-group mb-3">
-              <span class="input-group-text col-4" id="basic-addon3">Zawód:</span>
-              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" [value]="player.job.name" disabled>
+          <div class="col-5 m-0 p-0 mr-2">
+            <div class="card">
+              <!-- <div class="card-body"> -->
+              <img src="http://placekitten.com/200/300" class="card-img-top" style="height: 9em;" alt="http://placekitten.com/200/300">
+              <!-- </div> -->
             </div>
           </div>
 
-          <div class="col">
-            <div class="input-group mb-3">
-              <span class="input-group-text col-6" id="basic-addon3">Wypłata:</span>
-              <input type="text" class="form-control col-6" id="basic-url" aria-describedby="basic-addon3" 
-              [value]="player.job.salary | plnPipe" disabled>
-            </div>
-          </div>
+          <div class="col m-0 p-0">
 
-        </div>
-
-        <div class="row">
-
-          <div class="col">
-            <div class="input-group mb-3">
-              <span class="input-group-text col-4" id="basic-addon3">Konto:</span>
-              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" 
-              [value]="player.totalCash | plnPipe"
-               disabled>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col">
+            <div class="col m-0 p-0">
               <div class="input-group mb-3">
-                <span class="input-group-text col-4" id="basic-addon3">Bilans:</span>
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" 
-                [value]="balanceDescription | plnPipe" disabled>
+                <span class="input-group-text col-5" id="basic-addon3">Zawód:</span>
+                <input type="text" class="form-control col" id="basic-url" aria-describedby="basic-addon3" [value]="player.job.name" disabled>
               </div>
-  
             </div>
+
+            <div class="col m-0 p-0">
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-5" id="basic-addon3">Wypłata:</span>
+                <input type="text" class="form-control col" id="basic-url" aria-describedby="basic-addon3"
+                       [value]="player.job.salary | plnPipe" disabled>
+              </div>
+            </div>
+
+            <div class="col m-0 p-0">
+                <div class="input-group mb-3">
+                  <span class="input-group-text col-5" id="basic-addon3">Konto:</span>
+                <input type="text" class="form-control col" id="basic-url" aria-describedby="basic-addon3"
+                       [value]="player.totalCash | plnPipe"
+                       disabled>
+              </div>
+            </div>
+
           </div>
-
-      </div>
-    </div>
-
-  </div>
-
-
-  <div class="row ">
-    <div class="card col m-4 p-0">
-        <div class="card-body p-0 m-0">
-            <h5 class="card-title p-2">Razem Wydatki: {{totalExpenses | plnPipe}}</h5>
-            <app-cash-table [list]="player.expenses"></app-cash-table>
         </div>
-    </div>
-    
-    <div class="card col m-4 p-0">
-      <div class="card-body p-0 m-0">
-        <h5 class="card-title p-2">Razem Przychody: {{totalIncomes | plnPipe}}</h5>
-        <app-cash-table [list]="player.incomes"></app-cash-table>
-      </div>
-    </div>
-  </div>
 
-  <div class="card col m-4 p-0">
-    <div class="card-body p-0 m-0">
-      <h5 class="card-title p-2">Majatek: {{totalAssets | plnPipe}}</h5>
-      <app-cash-table [list]="player.assets"></app-cash-table>
+
+        <div class="col m-0 p-0">
+            <div class="input-group mb-3">
+              <span class="input-group-text col-5" id="basic-addon3">Bilans:</span>
+            <input type="text" class="form-control col" id="basic-url" aria-describedby="basic-addon3"
+                   [value]="balanceDescription | plnPipe" disabled>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </div>
+
+<!-- 
+      <div class="col-3">
+        <div class="card col zm-4 p-0">
+          <div class="card-body p-0 m-0">
+            <h5 class="card-title p-2">Razem Wydatki: {{totalExpenses | plnPipe}}</h5>
+            <app-cash-table [list]="player.expenses"></app-cash-table>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card col zm-4 p-0">
+          <div class="card-body p-0 m-0">
+            <h5 class="card-title p-2">Razem Przychody: {{totalIncomes | plnPipe}}</h5>
+            <app-cash-table [list]="player.incomes"></app-cash-table>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card col zm-4 p-0">
+          <div class="card-body p-0 m-0">
+            <h5 class="card-title p-2">Majatek: {{totalAssets | plnPipe}}</h5>
+            <app-cash-table [list]="player.assets"></app-cash-table>
+          </div>
+        </div>
+      </div>
+ -->

@@ -1,5 +1,47 @@
 <div class="card">
-  <div class="card-body">
+  <div class="card-body pt-2">
+
+    <div class="row">
+
+      <div class="col-3 m-0 p-0 pr-1">
+        <app-player-card [player]="player"></app-player-card>
+      </div>
+
+      <div class="col-3 m-0 p-0 pr-1">
+        <div class="card col zm-4 p-0">
+          <div class="card-body p-0 m-0">
+            <h5 class="card-title p-2">Razem Wydatki: {{totalExpenses | plnPipe}}</h5>
+            <app-cash-table [list]="player.expenses"></app-cash-table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3 m-0 p-0 pr-1">
+        <div class="card col zm-4 p-0">
+          <div class="card-body p-0 m-0">
+            <h5 class="card-title p-2">Razem Przychody: {{totalIncomes | plnPipe}}</h5>
+            <app-cash-table [list]="player.incomes"></app-cash-table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3 m-0 p-0">
+        <div class="card col zm-4 p-0">
+          <div class="card-body p-0 m-0">
+            <h5 class="card-title p-2">Majatek: {{totalAssets | plnPipe}}</h5>
+            <app-cash-table [list]="player.assets"></app-cash-table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
     <h5 class="card-title">Events</h5>
     <p class="card-text">
 

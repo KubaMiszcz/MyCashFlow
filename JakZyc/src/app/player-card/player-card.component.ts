@@ -2,7 +2,7 @@ import { Player } from './../models/player.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GameService } from './../services/game.service';
 import { IPlayer, PLAYER } from '../models/player.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-player-card',
@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./player-card.component.scss']
 })
 export class PlayerCardComponent implements OnInit {
-  player: IPlayer;
+  @Input() player: IPlayer;
 
   get totalIncomes(): number {
     let res = 0;
@@ -35,11 +35,9 @@ export class PlayerCardComponent implements OnInit {
   }
 
   constructor(
-    private gameService: GameService,
   ) { }
 
   ngOnInit(): void {
-    this.gameService.player$.subscribe(p => this.player = p);
   }
 
 }

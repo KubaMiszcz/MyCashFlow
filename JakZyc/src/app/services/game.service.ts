@@ -25,6 +25,14 @@ export class GameService {
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
     this.currentEvent$.next(this.drawEvent());
     this.player$.next(INITIAL_PLAYER);
+
+    let i = 1;
+    this.eventList.forEach(e => {
+      e.id = i;
+      i++;
+    })
+    console.log(JSON.stringify(this.eventList));
+
   }
 
   nextTurn(isEventAccepted: boolean) {

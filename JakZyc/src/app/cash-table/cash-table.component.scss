@@ -7,4 +7,9 @@
     display: flex;
     justify-content: space-between;
   }
+
+  th,
+  td {
+    border: 1px solid lightgray;
+  }
 }

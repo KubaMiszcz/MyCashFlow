@@ -13,16 +13,16 @@
         <div class="col-3">
           <div class="row nav-items justify-content-start">
 
-            <li class="nav-item col-4 p-1">
+            <li class="nav-item col-4 p-1 d-flex align-items-center ">
               <a class="nav-link active" aria-current="page" href="#"><span class="navbar-item">New Game</span></a>
             </li>
 
-            <li class="nav-item col-4 p-1">
+            <li class="nav-item col-4 p-1 d-flex align-items-center ">
               <a class="nav-link" aria-current="page" href="#"><span class="navbar-item">Trololo</span></a>
             </li>
             
-            <li class="nav-item col-4 p-1">
-            <span class="navbar-item">Date: </span><br>
+            <li class="nav-item col-4 p-1 date d-flex align-items-center ">
+            <span class="navbar-item">Date: </span>
             <span class="navbar-item">{{currentDate.year}} {{monthsList[currentDate.month]}} {{currentDate.day}}</span>
             </li>
           </div>
@@ -44,7 +44,9 @@
           <div class="row nav-items justify-content-end">
 
             <li class="nav-item col-4 p-1 ">
-              <a class="nav-link" aria-current="page" href="#"><span class="navbar-item">Top 100</span></a>
+              <!-- [routerLink]="['/routePath']" routerLinkActive="router-link-active"  -->
+              <!-- <div></div> -->
+              <a class="nav-link" [routerLink]="['/top-100']" aria-current="page" href="#"><span class="navbar-item">Top 100</span></a>
             </li>
 
           </div>

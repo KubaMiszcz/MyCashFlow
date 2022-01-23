@@ -11,6 +11,7 @@ import { CashTableComponent } from './cash-table/cash-table.component';
 import { PlnPipePipe as PlnPipe } from './pipes/pln.pipe';
 import { EventCardComponent } from './event-card/event-card.component';
 import { NextTurnModalComponent } from './next-turn-modal/next-turn-modal.component';
+import { Top100ScoreBoardComponent } from './top100-score-board/top100-score-board.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NextTurnModalComponent } from './next-turn-modal/next-turn-modal.compon
     CashTableComponent,
     PlnPipe,
     EventCardComponent,
-    NextTurnModalComponent
+    NextTurnModalComponent,
+    Top100ScoreBoardComponent
   ],
   imports: [
     BrowserModule,

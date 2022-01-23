@@ -1,0 +1,28 @@
+<div class="card col zm-4 p-0">
+    <h5 class="card-header p-2">
+      <span class="align-text-left"> Top 100 </span>
+    </h5>
+  
+    <div class="card-body p-0 m-0">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr class="py-0 d-flex justify-content-batween">
+            <th scope="col" class="col-1 py-0 d-flex justify-content-center">#</th>
+            <th scope="col" class="col-2 py-0 d-flex justify-content-center">Gracz</th>
+            <th scope="col" class="col-2 py-0 d-flex justify-content-end">Hajsy</th>
+            <th scope="col" class="col-4 py-0 d-flex justify-content-center">Cel</th>
+            <th scope="col" class="col-3 py-0 d-flex justify-content-center">Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of top100" class="d-flex justify-content-between">
+            <td class="col-1 py-0 d-flex justify-content-center">{{item.placeNumber}}</td>
+            <td class="col-2 py-0 d-flex justify-content-center">{{item.player.name}}</td>
+            <td class="col-2 py-0 d-flex justify-content-end">{{item.totalCash  | plnPipe}}</td>
+            <td class="col-4 py-0 d-flex justify-content-center">{{item.goal?.name}}</td>
+            <td class="col-3 py-0 d-flex justify-content-center">{{item.date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

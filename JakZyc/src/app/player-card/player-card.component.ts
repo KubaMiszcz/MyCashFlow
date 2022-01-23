@@ -21,7 +21,7 @@ export class PlayerCardComponent implements OnInit {
   get totalExpenses(): number {
     let res = 0;
     this.player.expenses.forEach(e => res += e.value);
-    return res;
+    return Math.abs(res);
   }
 
   get totalAssets(): number {

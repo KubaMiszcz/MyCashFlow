@@ -1,0 +1,27 @@
+.align-text-left {
+  text-align: left;
+}
+
+.align-text-right {
+  text-align: right;
+}
+
+.balance {
+  font-weight: bold;
+
+  .text-red {
+    color: red;
+  }
+
+  .text-green {
+    color: green;
+  }
+
+  .background-red {
+    background-color: #ffb8b8;
+  }
+
+  .background-green {
+    background-color: #b8ffb8;
+  }
+}

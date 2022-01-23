@@ -27,24 +27,8 @@
 
 
 
-    <h5 class="card-title">Events</h5>
-    <p class="card-text">
-
-      <div class="row">
-
-        <div *ngFor="let item of eventTypes" class="card col m-1">
-          <div class="card-body">
-            {{item}}
-          </div>
-        </div>
-
-      </div>
-
-      <app-event-card [event]="currentEvent"></app-event-card>
-
+    <!-- <h5 class="card-title">Events</h5> -->
+    <!-- <p class="card-text"> -->
+    <app-event-card [event]="currentEvent"></app-event-card>
   </div>
 </div>
-
-
-
-

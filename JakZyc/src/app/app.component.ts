@@ -10,12 +10,5 @@ export class AppComponent {
   title = 'JakZyc';
 
   constructor(
-    private gameService: GameService,
-  ) {
-
-  }
-
-  nextTurn() {
-    this.gameService.nextTurn();
-  }
+  ) { }
 }

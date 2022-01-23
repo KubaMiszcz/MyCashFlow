@@ -11,8 +11,13 @@
   justify-content: flex-start;
 }
 
-.modal-header {
+.modal-header,
+.modal-footer {
   height: 3em;
+}
+
+.modal-footer {
+  padding: 0em;
 }
 
 .card-header {

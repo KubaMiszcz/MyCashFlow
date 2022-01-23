@@ -16,6 +16,7 @@ export class GameService {
   jobsList = JOBS;
 
   loanInterestRate = 0.1;
+  paydayInterval = 4;
 
   constructor() {
     const player = PLAYER;
@@ -27,14 +28,19 @@ export class GameService {
 
   nextTurn() {
     const player = this.player$.value;
-    if (!(player.age % 4)) {
-      this.updateTotalCash(player);
-    }
 
     // this.player$.value.age = (player.age * 10 + 1) / 10;
     this.player$.value.age = player.age + 1;
     const currentEvent = this.drawEvent();
 
+    this.handleWithCurrentEvent(player, currentEvent);
+
+    this.applyPayday(player);
+
+    this.currentEvent$.next(currentEvent);
+  }
+
+  handleWithCurrentEvent(player: IPlayer, currentEvent: IEvent) {
     switch (currentEvent.type) {
       case EventTypeEnum.BigDeal:
         this.handleBigDeal(player, currentEvent);
@@ -64,9 +70,14 @@ export class GameService {
       default:
         break;
     }
-
-    this.currentEvent$.next(currentEvent);
   }
+
+  applyPayday(player: IPlayer) {
+    if (!(player.age % this.paydayInterval)) {
+      this.updateTotalCash(player);
+    }
+  }
+
   updateTotalCash(player: IPlayer) {
     let totalIncomes = 0;
     let totalExpenses = 0;
@@ -127,8 +138,7 @@ export class GameService {
   drawEvent(): IEvent {
     const ran = Math.floor(Math.random() * this.eventList.length);
     const event = this.eventList[ran];
-    event.rejectable = true;
-    return this.eventList[ran];
+    return event;
   }
 
   hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {

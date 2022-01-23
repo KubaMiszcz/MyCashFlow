@@ -112,12 +112,12 @@ export const EVENTS: IEvent[] = [
   // { name: 'pozyczka mala komus 3', description: 'pozyczka mala komus 3', type: EventType.SmallDeal, value: 1000, rejectable:true},
 
   //specialevents
-  { name: 'strata pracy 1tura', description: 'strata pracy 1tura', type: EventTypeEnum.SpecialEvent, value: -100, },//%
-  { name: 'zmiana pracy na lepsza1', description: 'zmiana pracy na lepsza1', type: EventTypeEnum.SpecialEvent, value: 10, percentable: true, },//%
-  { name: 'zmiana pracy na lepsza2', description: 'zmiana pracy na lepsza2', type: EventTypeEnum.SpecialEvent, value: 20, percentable: true, },//%
-  { name: 'zmiana pracy na lepsza3', description: 'zmiana pracy na lepsza3', type: EventTypeEnum.SpecialEvent, value: 30, percentable: true, },//%
-  { name: 'zmiana pracy na gorsza1', description: 'zmiana pracy na gorsza1', type: EventTypeEnum.SpecialEvent, value: -10, percentable: true, },//%
-  { name: 'zmiana pracy na gorsza2', description: 'zmiana pracy na gorsza2', type: EventTypeEnum.SpecialEvent, value: -20, percentable: true, },//%
-  { name: 'zmiana pracy na gorsza3', description: 'zmiana pracy na gorsza3', type: EventTypeEnum.SpecialEvent, value: -30, percentable: true, },//%
+  // { name: 'strata pracy 1tura', description: 'strata pracy 1tura', type: EventTypeEnum.SpecialEvent, value: -100, },//%
+  // { name: 'zmiana pracy na lepsza1', description: 'zmiana pracy na lepsza1', type: EventTypeEnum.SpecialEvent, value: 10, percentable: true, },//%
+  // { name: 'zmiana pracy na lepsza2', description: 'zmiana pracy na lepsza2', type: EventTypeEnum.SpecialEvent, value: 20, percentable: true, },//%
+  // { name: 'zmiana pracy na lepsza3', description: 'zmiana pracy na lepsza3', type: EventTypeEnum.SpecialEvent, value: 30, percentable: true, },//%
+  // { name: 'zmiana pracy na gorsza1', description: 'zmiana pracy na gorsza1', type: EventTypeEnum.SpecialEvent, value: -10, percentable: true, },//%
+  // { name: 'zmiana pracy na gorsza2', description: 'zmiana pracy na gorsza2', type: EventTypeEnum.SpecialEvent, value: -20, percentable: true, },//%
+  // { name: 'zmiana pracy na gorsza3', description: 'zmiana pracy na gorsza3', type: EventTypeEnum.SpecialEvent, value: -30, percentable: true, },//%
 
 ]

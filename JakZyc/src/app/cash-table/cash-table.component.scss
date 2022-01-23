@@ -2,4 +2,9 @@
   min-height: 16em;
   max-height: 17em;
   overflow: auto;
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+  }
 }

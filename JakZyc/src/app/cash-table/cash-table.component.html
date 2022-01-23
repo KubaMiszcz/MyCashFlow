@@ -14,7 +14,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of list">
-          <td class="col-8 py-0 align-text-left">{{item.name}}</td>
+          <td class="col-8 py-0 align-text-left">
+            {{item.name}}
+            <span *ngIf="item.isNew" class="badge rounded-pill bg-primary">Nowe</span>
+          </td>
           <td class="col-4 py-0 align-text-right">{{item.value  | plnPipe}}</td>
         </tr>
       </tbody>

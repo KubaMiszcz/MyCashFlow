@@ -35,7 +35,9 @@ export class GameService {
   }
 
   nextTurn(isEventAccepted: boolean) {
+
     const player = this.player$.value;
+    this.cleanIsNewStatus(player);
 
     // this.player$.value.age = (player.age * 10 + 1) / 10;
     this.player$.value.age.year = player.age.year + 1;
@@ -50,7 +52,12 @@ export class GameService {
 
     currentEvent = this.drawEvent();
     this.currentEvent$.next(currentEvent);
+  }
 
+  cleanIsNewStatus(player: IPlayer) {
+    player.incomes.forEach(i => i.isNew = false)
+    player.expenses.forEach(i => i.isNew = false)
+    player.assets.forEach(i => i.isNew = false)
   }
 
   handleWithCurrentEvent(player: IPlayer, currentEvent: IEvent) {
@@ -68,10 +75,13 @@ export class GameService {
           player.totalCash -= currentEvent.value;
         } else {
           const loan = this.createLoan(currentEvent);
+          loan.isNew = true;
           player.expenses.push(loan);
         }
 
-        player.assets.push(currentEvent);
+        let asset = currentEvent as IIncome;
+        asset.isNew = true;
+        player.assets.push(asset);
         break;
 
       case EventTypeEnum.SmallDeal:
@@ -116,6 +126,7 @@ export class GameService {
       player.totalCash -= currentEvent.value;
     } else {
       const loan = this.createLoan(currentEvent);
+      loan.isNew = true;
       player.expenses.push(loan);
     }
 
@@ -124,18 +135,23 @@ export class GameService {
         player.incomes.push({
           name: this.getPrefix(currentEvent) + currentEvent.name,
           value: currentEvent.monthlyProfit ?? 0,
+          isNew: true,
         });
       }
       if (currentEvent.monthlyProfit < 0) {
         player.expenses.push({
           name: this.getPrefix(currentEvent) + currentEvent.name,
           value: currentEvent.monthlyProfit ?? 0,
+          isNew: true,
         });
       }
     }
 
-    player.assets.push(currentEvent);
+    let asset = currentEvent as IIncome;
+    asset.isNew = true;
+    player.assets.push(asset);
   }
+
   getPrefix(currentEvent: IEvent): string {
     if (currentEvent.monthlyProfit) {
       if (currentEvent.monthlyProfit > 0) {

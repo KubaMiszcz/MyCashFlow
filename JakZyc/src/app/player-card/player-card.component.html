@@ -50,17 +50,16 @@
 
   <div class="row ">
     <div class="card col m-4 p-0">
+        <div class="card-body p-0 m-0">
+            <h5 class="card-title p-2">Razem Wydatki: {{totalExpenses}}</h5>
+            <app-cash-table [list]="player.expenses"></app-cash-table>
+        </div>
+    </div>
+    
+    <div class="card col m-4 p-0">
       <div class="card-body p-0 m-0">
         <h5 class="card-title p-2">Razem Przychody: {{totalIncomes}}</h5>
         <app-cash-table [list]="player.incomes"></app-cash-table>
-      </div>
-    </div>
-
-
-    <div class="card col m-4 p-0">
-      <div class="card-body p-0 m-0">
-        <h5 class="card-title p-2">Razem Wydatki: {{totalExpenses}}</h5>
-        <app-cash-table [list]="player.expenses"></app-cash-table>
       </div>
     </div>
   </div>

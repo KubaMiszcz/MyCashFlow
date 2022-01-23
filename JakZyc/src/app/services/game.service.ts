@@ -1,3 +1,4 @@
+import { IIncome } from './../models/income.model';
 import { Player } from './../models/player.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -14,7 +15,8 @@ export class GameService {
   currentEvent$ = new BehaviorSubject<IEvent>(new Event);
   eventList = EVENTS;
   jobsList = JOBS;
-  monthlyProfitRate = 0.1;
+
+  loanInterestRate = 0.1;
 
   constructor() {
     const player = PLAYER;
@@ -35,8 +37,7 @@ export class GameService {
 
     switch (currentEvent.type) {
       case EventType.BigDeal:
-        player.assets.push(currentEvent);
-        player.incomes.push({ name: currentEvent.name, value: currentEvent.value * this.monthlyProfitRate });
+        this.handleBigDeal(player, currentEvent);
         break;
 
       case EventType.Event:
@@ -44,11 +45,17 @@ export class GameService {
         break;
 
       case EventType.Purchase:
-        player.totalCash += currentEvent.value;
+        if (this.hasPlayerEnoughCash(player, currentEvent)) {
+          player.totalCash -= currentEvent.value;
+        } else {
+          const loan = this.createLoan(currentEvent);
+          player.expenses.push(loan);
+        }
+
+        player.assets.push(currentEvent);
         break;
 
       case EventType.SmallDeal:
-        player.incomes.push(currentEvent);
         break;
 
       case EventType.SpecialEvent:
@@ -58,14 +65,54 @@ export class GameService {
         break;
     }
 
-
-
-
-
-
-
-
     this.currentEvent$.next(currentEvent);
+  }
+  createLoan(currentEvent: IEvent) {
+    const loanValue = Math.round(currentEvent.value * (1 + this.loanInterestRate));
+    let loan: IIncome = {
+      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name,
+      value: Math.round(-1 * loanValue * this.loanInterestRate),
+      duration: 12,
+    }
+    console.log(loan);
+
+    return loan;
+  }
+
+  handleBigDeal(player: IPlayer, currentEvent: IEvent) {
+    if (this.hasPlayerEnoughCash(player, currentEvent)) {
+      player.totalCash -= currentEvent.value;
+    } else {
+      const loan = this.createLoan(currentEvent);
+      player.expenses.push(loan);
+    }
+
+    if (currentEvent.monthlyProfit) {
+      if (currentEvent.monthlyProfit > 0) {
+        player.incomes.push({
+          name: this.getPrefix(currentEvent) + currentEvent.name,
+          value: currentEvent.monthlyProfit ?? 0,
+        });
+      }
+      if (currentEvent.monthlyProfit < 0) {
+        player.expenses.push({
+          name: this.getPrefix(currentEvent) + currentEvent.name,
+          value: currentEvent.monthlyProfit ?? 0,
+        });
+      }
+    }
+
+    player.assets.push(currentEvent);
+  }
+  getPrefix(currentEvent: IEvent): string {
+    if (currentEvent.monthlyProfit) {
+      if (currentEvent.monthlyProfit > 0) {
+        return 'wynajem '
+      } else {
+        return 'utrzymanie '
+      }
+    }
+    return ''
   }
 
   drawEvent(): IEvent {
@@ -73,4 +120,8 @@ export class GameService {
     return this.eventList[ran];
   }
 
+  hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {
+    return ((player.totalCash / 2) - currentEvent.value) > 0;
+  }
 }
+

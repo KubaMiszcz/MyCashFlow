@@ -1,0 +1,16 @@
+.card {
+  margin: 1em;
+}
+
+.events {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
+
+  .event {
+    padding: 0px;
+    margin: 0 0.25em 0 0.25em;
+    height: 10em;
+  }
+}

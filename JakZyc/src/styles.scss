@@ -2,3 +2,48 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+.modal-header,
+.card-header {
+  background-color: #bedeff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.modal-header {
+  height: 3em;
+}
+
+.card-header {
+  height: 2em;
+}
+
+
+.card {
+  border-color: #007bfb;
+}
+
+.text-red {
+  color: red;
+}
+
+.text-green {
+  color: green;
+}
+
+.background-red {
+  background-color: #ffb8b8;
+}
+
+.background-green {
+  background-color: #b8ffb8;
+}
+
+.align-text-left {
+  text-align: left;
+}
+
+.align-text-right {
+  text-align: right;
+}

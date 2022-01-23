@@ -1,6 +1,7 @@
-<div class="card">
-  <div class="card-body p-2">
-    <h5 class="card-title">Gracz: {{player.name}}, {{player.age}}lat, {{player.job.name}}</h5>
+<div class="card container p-0">
+  <h5 class="card-header">Gracz: {{player.name}}, {{player.age}}lat, {{player.job.name}}</h5>
+
+  <div class="card-body p-2 mx-0">
     <div class="row m-0 p-0">
 
       <div class="col m-0 p-0">
@@ -54,12 +55,12 @@
               [ngClass]="{'text-red': (totalIncomes - totalExpenses) < 0}"
               id="basic-addon3">Bilans:
         </span>
-        <div type="text" class="balance form-control col align-text-right" 
-        [ngClass]="{
+        <div type="text" class="balance form-control col align-text-right"
+             [ngClass]="{
             'background-red' : ((totalIncomes - totalExpenses) < 0), 
             'background-green' : ((totalIncomes - totalExpenses) >= 0)
         }"
-        id="basic-url" aria-describedby="basic-addon3"
+             id="basic-url" aria-describedby="basic-addon3"
              disabled>
           <span class="text-green">{{totalIncomes}}</span>
           <span class="text-red">{{' - ' + totalExpenses}} </span>
@@ -72,7 +73,6 @@
             {{(totalIncomes - totalExpenses) | plnPipe}}</span>
         </div>
 
-        <!-- 'text-red' : ((totalIncomes - totalExpenses) >= 0), -->
       </div>
     </div>
 

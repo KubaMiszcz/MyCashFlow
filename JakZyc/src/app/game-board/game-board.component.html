@@ -3,19 +3,19 @@
 
     <div class="row">
 
-      <div class="col-3 m-0 p-0 pr-1">
+      <div class="col-3 m-0 p-0 pr-2">
         <app-player-card [player]="player"></app-player-card>
       </div>
 
-      <div class="col-3 m-0 p-0 pr-1">
+      <div class="col-3 m-0 p-0 pr-2">
         <app-cash-table [title]="'Razem Wydatki'" [list]="player.expenses"></app-cash-table>
       </div>
 
-      <div class="col-3 m-0 p-0 pr-1">
+      <div class="col-3 m-0 p-0 pr-2">
         <app-cash-table [title]="'Razem Przychody'" [list]="player.incomes"></app-cash-table>
       </div>
 
-      <div class="col-3 m-0 p-0 pr-1">
+      <div class="col-3 m-0 p-0 pr-2">
         <app-cash-table [title]="'Majatek'" [list]="player.assets"></app-cash-table>
       </div>
 
@@ -44,3 +44,7 @@
 
   </div>
 </div>
+
+
+
+

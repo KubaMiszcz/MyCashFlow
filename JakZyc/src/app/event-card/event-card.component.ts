@@ -14,4 +14,8 @@ export class EventCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  rejectEvent() {
+
+  }
+
 }

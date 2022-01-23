@@ -16,9 +16,9 @@
         </li>
 
         <li class="nav-item col-3">
-            <a class="nav-link" aria-current="page" href="#"><span>Top 100</span></a>
+          <a class="nav-link" aria-current="page" href="#"><span>Top 100</span></a>
         </li>
-  
+
         <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
@@ -34,11 +34,43 @@
 
         <div class="nav-item col-12">
           <button type="button" name="" id=""
-                  class="btn btn-light btn-outline-dark btn-mdd btn-block msb-4" (click)="nextTurn()">Next Turn
+                  class="btn btn-light btn-outline-dark btn-mdd btn-block msb-4"
+                  data-bs-toggle="modal"
+                  data-bs-target="#nextTurnModal"
+                  (click)="nextTurn()">Next Turn
           </button>
+
         </div>
 
       </ul>
     </div>
   </div>
 </nav>
+
+
+
+
+
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+
+<app-next-turn-modal></app-next-turn-modal>
+
+
+  <!-- </div> -->
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="eventCardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-event-card [event]="currentEvent"></app-event-card>
+</div>
+
+<div class="modal fade" id="nextTurnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <app-next-turn-modal></app-next-turn-modal>
+  </div>

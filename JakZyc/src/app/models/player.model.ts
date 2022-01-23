@@ -5,6 +5,7 @@ export interface IPlayer {
   job: IJob;
   totalCash: number;
   age: number;
+  image?: string;
   incomes: IIncome[];
   expenses: IIncome[];
   assets: IIncome[];

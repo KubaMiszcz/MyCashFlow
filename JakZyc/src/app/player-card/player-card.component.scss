@@ -1,27 +1,15 @@
-.align-text-left {
-  text-align: left;
-}
+.container {
+  min-height: 16em;
 
-.align-text-right {
-  text-align: right;
-}
-
-.balance {
-  font-weight: bold;
-
-  .text-red {
-    color: red;
+  .align-text-left {
+    text-align: left;
   }
 
-  .text-green {
-    color: green;
+  .align-text-right {
+    text-align: right;
   }
 
-  .background-red {
-    background-color: #ffb8b8;
-  }
-
-  .background-green {
-    background-color: #b8ffb8;
+  .balance {
+    font-weight: bold;
   }
 }

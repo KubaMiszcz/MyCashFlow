@@ -1,4 +1,4 @@
-<div *ngIf="event.name" class="card-body">
+<!-- <div *ngIf="event.name" class="card-body">
   <h5 class="card-title">{{event.name}}</h5>
   <div class="card-text">
     <p>{{event.description}}</p>
@@ -6,6 +6,34 @@
     <div class="buttons row">
         <button *ngIf="event.rejectable" type="button" name="" id="" class="col-2 btn btn-outline-danger btn-md btn-bloxck mr-1">Odrzuc</button>
         <button type="button" name="" id="" class="col-2 btn btn-outline-success btn-md btn-blxock">OK</button>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">{{event.type}}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <h5>{{event.name}}</h5>
+      <p>{{event.description}}</p>
+      <p>{{event.value  | plnPipe}}</p>
+    </div>
+    <div class="modal-footer">
+      <button *ngIf="event.rejectable" type="button" name="" id="" 
+      class="col-2 btn btn-outline-danger btn-md btn-bloxck mr-1"
+      (click)="rejectEvent()"
+      >
+          Odrzuc</button>
+      <button type="button" name="" id="" data-bs-dismiss="modal"
+              class="col-2 btn btn-outline-success btn-md btn-blxock">
+        OK
+      </button>
     </div>
   </div>
 </div>

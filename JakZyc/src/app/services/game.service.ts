@@ -126,6 +126,8 @@ export class GameService {
 
   drawEvent(): IEvent {
     const ran = Math.floor(Math.random() * this.eventList.length);
+    const event = this.eventList[ran];
+    event.rejectable = true;
     return this.eventList[ran];
   }
 

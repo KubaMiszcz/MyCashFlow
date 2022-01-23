@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CashTableComponent } from './cash-table/cash-table.component';
 import { PlnPipePipe as PlnPipe } from './pipes/pln.pipe';
 import { EventCardComponent } from './event-card/event-card.component';
+import { NextTurnModalComponent } from './next-turn-modal/next-turn-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EventCardComponent } from './event-card/event-card.component';
     NavBarComponent,
     CashTableComponent,
     PlnPipe,
-    EventCardComponent
+    EventCardComponent,
+    NextTurnModalComponent
   ],
   imports: [
     BrowserModule,

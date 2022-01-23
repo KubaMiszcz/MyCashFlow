@@ -14,13 +14,17 @@
           <div class="row nav-items justify-content-start">
 
             <li class="nav-item col-4 p-1">
-              <a class="nav-link active" aria-current="page" href="#"><span class="navbar-item">Home</span></a>
+              <a class="nav-link active" aria-current="page" href="#"><span class="navbar-item">New Game</span></a>
             </li>
 
             <li class="nav-item col-4 p-1">
               <a class="nav-link" aria-current="page" href="#"><span class="navbar-item">Trololo</span></a>
             </li>
-
+            
+            <li class="nav-item col-4 p-1">
+            <span class="navbar-item">Date: </span><br>
+            <span class="navbar-item">{{currentDate.year}} {{monthsList[currentDate.month]}} {{currentDate.day}}</span>
+            </li>
           </div>
         </div>
 
@@ -28,10 +32,10 @@
           <div class="nav-item">
             <button type="button" name="" id=""
                     class="btn btn-light btn-outline-dark btn-mdd btn-block msb-4 next-turn-btn"
-                    data-bs-toggle="modal"
                     (click)="nextTurn(true)">Akceptuj zdarzenie i dawaj kolejny miesiac
-            </button>
-            <!-- data-bs-target="#nextTurnModal" -->
+                  </button>
+                  <!-- data-bs-toggle="modal"
+            data-bs-target="#nextTurnModal" -->
           </div>
 
         </div>

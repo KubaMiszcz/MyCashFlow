@@ -20,58 +20,42 @@
 
             <div class="col m-0 p-0">
               <div class="input-group input-group-sm mb-2">
-                <span class="input-group-text col-5 align-text-left text-bold" id="basic-addon3">Zawód:</span>
-                <input type="text" class="form-control col align-text-right text-bold" id="basic-url" aria-describedby="basic-addon3"
-                       [value]="player.job.name"
-                       disabled>
+                <span class="input-group-text col-5 text-bold justify-content-start" id="basic-addon3">Zawód:</span>
+                <span class="input-group-text col text-bold justify-content-end" id="basic-addon3">{{player.job.name}}</span>
               </div>
             </div>
 
             <div class="col m-0 p-0">
               <div class="input-group input-group-sm mb-2">
-                <span class="input-group-text col-5 align-text-left text-bold" id="basic-addon3">Wypłata:</span>
-                <input type="text" class="form-control col align-text-right text-bold" id="basic-url" aria-describedby="basic-addon3"
-                       [value]="player.job.salary | plnPipe" disabled>
+                <span class="input-group-text col-5 text-bold justify-content-start" id="basic-addon3">Wypłata:</span>
+                <span class="input-group-text col text-bold justify-content-end" id="basic-addon3">{{player.job.salary | plnPipe}}</span>
               </div>
             </div>
 
             <div class="col m-0 p-0">
               <div class="input-group input-group-sm mb-2">
-                <span class="input-group-text col-5 align-text-left text-bold" id="basic-addon3">Konto:</span>
-                <input type="text" class="form-control col align-text-right text-bold" id="basic-url" aria-describedby="basic-addon3"
-                       [value]="player.totalCash | plnPipe"
-                       disabled>
-              </div>
-            </div>
-
-            <div *ngIf="false" class="col m-0 p-0">
-              <!-- <div class="input-group input-group-sm mb-2"> -->
-              <div class="progress" style="height: 2.4em;">
-                <span class="label">do wyplaty 3mce</span>
-                <div class="progress-bar progress-bar-striped progress-bar-animated"
-                     role="progressbar"
-                     aria-valuenow="75"
-                     aria-valuemin="0"
-                     aria-valuemax="100"
-                     style="width: 35%">
-                  <!-- <span class="labsel">do wyplaty 3mce</span> -->
+                <span class="input-group-text col-5 text-bold justify-content-start" id="basic-addon3">Konto:</span>
+                <div
+                     class="input-group-text col text-bold justify-content-between" id="basic-addon3"
+                     [ngClass]="{
+                    'text-red' : ((totalIncomes - totalExpenses) < 0), 
+                    'text-green' : ((totalIncomes - totalExpenses) >= 0)
+                }">
+                  <span>
+                    <i *ngIf="(totalIncomes - totalExpenses) < 0" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    <i *ngIf="(totalIncomes - totalExpenses) > 0" class="fa fa-check-circle" aria-hidden="true"></i>
+                  </span>
+                  <span>{{player.totalCash | plnPipe}}</span>
                 </div>
+
               </div>
-              <!-- <span class="input-group-text col align-text-left text-bold" id="basic-addon3">Wyplata</span> -->
-              <!-- <input type="text" class="form-control col align-text-right text-bold" id="basic-url" aria-describedby="basic-addon3"
-                         [value]="player.totalCash | plnPipe"
-                         disabled> -->
-              <!-- </div> -->
             </div>
 
-
-
-
             <div class="col m-0 p-0">
-                <div class="progress" style="height: 2.4em;">
-                    <div class="label">wyplata za 2 tygodnie</div>
-                <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
+              <div class="progress" style="height: 2.4em;">
+                <div class="label">wyplata za 2 tygodnie</div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                     role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
                 </div>
               </div>
 
@@ -87,26 +71,41 @@
 
     <div class="col m-0 p-0 mt-2">
       <div class="text-bold input-group input-group-md mb-1">
-        <span class="text-bold input-group-text col-3 align-text-left"
-              [ngClass]="{'text-red': (totalIncomes - totalExpenses) < 0}"
-              id="basic-addon3">Bilans:
-        </span>
-        <div type="text" class="text-bold form-control col align-text-right"
+        <div class="text-bold input-group-text col-3 align-text-left"
+             [ngClass]="{'text-red': (totalIncomes - totalExpenses) < 0}"
+             id="basic-addon3">Bilans:
+        </div>
+        <div type="text" class="text-bold form-control "
              [ngClass]="{
             'background-red' : ((totalIncomes - totalExpenses) < 0), 
-            'background-green' : ((totalIncomes - totalExpenses) >= 0)
+            'background-green' : ((totalIncomes - totalExpenses) >= 0),
+            'text-red' : ((totalIncomes - totalExpenses) < 0), 
+            'text-green' : ((totalIncomes - totalExpenses) >= 0)
         }"
              id="basic-url" aria-describedby="basic-addon3"
              disabled>
-          <span class="text-green">{{totalIncomes}}</span>
-          <span class="text-red">{{' - ' + totalExpenses}} </span>
-          <span> = </span>
-          <span
-                [ngClass]="{
-                    'text-red' : ((totalIncomes - totalExpenses) < 0), 
-                    'text-green' : ((totalIncomes - totalExpenses) >= 0)
-                }">
-            {{(totalIncomes - totalExpenses) | plnPipe}}</span>
+
+          <div class="d-flex justify-content-between">
+            <span>
+              <i *ngIf="(totalIncomes - totalExpenses) < 0" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+              <i *ngIf="(totalIncomes - totalExpenses) > 0" class="fa fa-check-circle" aria-hidden="true"></i>
+            </span>
+
+            <span>
+                <span class="text-green">{{totalIncomes}}</span>
+                <span class="text-red">{{' - ' + totalExpenses}} </span>
+                <span> = </span>
+                <span> {{(totalIncomes - totalExpenses) | plnPipe}}</span>
+            </span>
+          </div>
+
+
+
+
+
+
+
+
         </div>
 
       </div>

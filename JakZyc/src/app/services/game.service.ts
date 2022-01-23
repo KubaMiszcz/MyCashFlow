@@ -5,6 +5,7 @@ import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
 import { IEvent, Event, EVENTS } from './../models/event.model';
 import { EventTypeEnum } from '../models/event-type.enum';
 import { JOBS } from '../models/job.model';
+import { IAge } from '../models/age.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,23 +17,21 @@ export class GameService {
   jobsList = JOBS;
 
   loanInterestRate = 0.1;
+  personalExpensesRate = 0.5;
   paydayInterval = 4;
+  dateYearInterval = 0;
 
   constructor() {
     const player = INITIAL_PLAYER;
     player.job = this.jobsList[Math.floor(Math.random() * this.jobsList.length)];
     player.totalCash = player.job.salary;
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
-    this.currentEvent$.next(this.drawEvent());
+    player.expenses.push({ name: 'Wydatki domowe', value: (player.job.salary * this.personalExpensesRate) });
     this.player$.next(INITIAL_PLAYER);
 
-    let i = 1;
-    this.eventList.forEach(e => {
-      e.id = i;
-      i++;
-    })
-    console.log(JSON.stringify(this.eventList));
+    this.dateYearInterval = new Date().getFullYear() - player.age.year;
 
+    this.currentEvent$.next(this.drawEvent());
   }
 
   nextTurn(isEventAccepted: boolean) {
@@ -51,6 +50,7 @@ export class GameService {
 
     currentEvent = this.drawEvent();
     this.currentEvent$.next(currentEvent);
+
   }
 
   handleWithCurrentEvent(player: IPlayer, currentEvent: IEvent) {
@@ -107,7 +107,6 @@ export class GameService {
       value: Math.round(-1 * loanValue * this.loanInterestRate),
       duration: 12,
     }
-    console.log(loan);
 
     return loan;
   }

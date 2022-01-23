@@ -7,13 +7,15 @@ import { PlayerCardComponent } from './player-card/player-card.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CashTableComponent } from './cash-table/cash-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerCardComponent,
     GameBoardComponent,
-    NavBarComponent
+    NavBarComponent,
+    CashTableComponent
   ],
   imports: [
     BrowserModule,

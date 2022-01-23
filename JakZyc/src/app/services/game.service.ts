@@ -18,7 +18,7 @@ export class GameService {
   constructor() {
     const player = PLAYER;
     player.job = this.jobsList[Math.floor(Math.random() * this.jobsList.length)];
-
+    player.incomes.push({ name: 'Wyplata', value: player.job.salary });
     this.player$.next(PLAYER);
   }
 
@@ -51,6 +51,9 @@ export class GameService {
 
       case EventType.SmallDeal:
         player.incomes.push(currentEvent);
+        break;
+
+      case EventType.SpecialEvent:
         break;
 
       default:

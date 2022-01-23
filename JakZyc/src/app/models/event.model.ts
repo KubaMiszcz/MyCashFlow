@@ -3,6 +3,7 @@ import { EventType } from './event-type.enum';
 
 export interface IEvent {
   name: string;
+  description?: string; //make it nonnullable
   type?: EventType
   value: number;
   rejectable?: boolean;
@@ -75,13 +76,16 @@ export const EVENTS: IEvent[] = [
 
   { name: 'toster', type: EventType.Purchase, value: -100, },
   { name: 'tv', type: EventType.Purchase, value: -1000, },
-  { name: 'smartfon', type: EventType.Purchase, value: -500, },
+  { name: 'big TV', description: 'TV 120" musiales go miec', type: EventType.Purchase, value: -3000, },
   { name: 'lapek', type: EventType.Purchase, value: -2000, },
-  { name: 'big TV', type: EventType.Purchase, value: -3000, },
   { name: 'superlapek', type: EventType.Purchase, value: -6000, },
+  { name: 'smartfon', type: EventType.Purchase, value: -500, },
   { name: 'supersmartfon', type: EventType.Purchase, value: -1500, },
   { name: 'auto', type: EventType.Purchase, value: -5000, },
   { name: 'superauto', type: EventType.Purchase, value: -15000, },
+  { name: 'naprawa auta1', type: EventType.Purchase, value: -200, },
+  { name: 'naprawa auta3', type: EventType.Purchase, value: -500, },
+  { name: 'naprawa auta3', type: EventType.Purchase, value: -1000, },
   { name: 'rolki', type: EventType.Purchase, value: -200, },
   { name: 'meble', type: EventType.Purchase, value: -5000, },
   { name: 'sofa', type: EventType.Purchase, value: -1500, },

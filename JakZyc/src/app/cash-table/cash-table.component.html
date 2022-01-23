@@ -1,0 +1,14 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Wartosc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of list" >
+      <td class="py-0">{{item.name}}</td>
+      <td class="py-0">{{item.value}}</td>
+    </tr>
+  </tbody>
+</table>

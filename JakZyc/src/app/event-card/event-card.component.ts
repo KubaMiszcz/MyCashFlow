@@ -1,3 +1,4 @@
+import { GameService } from './../services/game.service';
 import { IEvent } from './../models/event.model';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -9,13 +10,19 @@ import { Component, Input, OnInit } from '@angular/core';
 export class EventCardComponent implements OnInit {
   @Input() event: IEvent;
 
-  constructor() { }
+  constructor(
+    private gameService: GameService,
+  ) { }
 
   ngOnInit(): void {
   }
 
   rejectEvent() {
+    this.gameService.nextTurn(false);
+  }
 
+  acceptEvent() {
+    this.gameService.nextTurn(true);
   }
 
 }

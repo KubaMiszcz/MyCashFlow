@@ -44,9 +44,9 @@ export const EVENTS: IEvent[] = [
 
   //one time events in plus
   { name: 'wlasne urodziny', description: 'wlasne urodziny', type: EventTypeEnum.Event, value: 500, },
-  { name: 'szkolenie1podwyzka%', description: 'szkolenie1podwyzka%', type: EventTypeEnum.Event, value: 10, percentable: true, },//%
-  { name: 'szkolenie2podwyzka%', description: 'szkolenie2podwyzka%', type: EventTypeEnum.Event, value: 20, percentable: true, },//%
-  { name: 'szkolenie2podwyzka%', description: 'szkolenie2podwyzka%', type: EventTypeEnum.Event, value: 30, percentable: true, },//%
+  // { name: 'szkolenie1podwyzka%', description: 'szkolenie1podwyzka%', type: EventTypeEnum.Event, value: 10, percentable: true, },//%
+  // { name: 'szkolenie2podwyzka%', description: 'szkolenie2podwyzka%', type: EventTypeEnum.Event, value: 20, percentable: true, },//%
+  // { name: 'szkolenie2podwyzka%', description: 'szkolenie2podwyzka%', type: EventTypeEnum.Event, value: 30, percentable: true, },//%
   { name: 'wyprzedaz z domu cos1', description: 'wyprzedaz z domu cos1', type: EventTypeEnum.Event, value: 100, },
   { name: 'wyprzedaz z domu cos2', description: 'wyprzedaz z domu cos2', type: EventTypeEnum.Event, value: 200, },
   { name: 'wyprzedaz z domu cos3', description: 'wyprzedaz z domu cos3', type: EventTypeEnum.Event, value: 500, },

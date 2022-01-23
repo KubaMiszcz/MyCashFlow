@@ -1,5 +1,5 @@
 <div class="card container p-0">
-  <h5 class="card-header">Gracz: {{player.name}}, {{player.age}} lat, {{player.job.name}}</h5>
+  <h5 class="card-header  text-bold">Gracz: {{player.name}}, {{player.age}} lat, {{player.job.name}}</h5>
 
   <div class="card-body p-2 mx-0">
     <div class="row m-0 p-0">
@@ -20,28 +20,38 @@
 
             <div class="col m-0 p-0">
               <div class="input-group input-group-sm mb-2">
-                <span class="input-group-text col-5 align-text-left" id="basic-addon3">Zawód:</span>
-                <input type="text" class="form-control col align-text-right" id="basic-url" aria-describedby="basic-addon3" [value]="player.job.name"
+                <span class="input-group-text col-5 align-text-left text-bold" id="basic-addon3">Zawód:</span>
+                <input type="text" class="form-control col align-text-right text-bold" id="basic-url" aria-describedby="basic-addon3" [value]="player.job.name"
                        disabled>
               </div>
             </div>
 
             <div class="col m-0 p-0">
               <div class="input-group input-group-sm mb-2">
-                <span class="input-group-text col-5 align-text-left" id="basic-addon3">Wypłata:</span>
-                <input type="text" class="form-control col align-text-right" id="basic-url" aria-describedby="basic-addon3"
+                <span class="input-group-text col-5 align-text-left text-bold" id="basic-addon3">Wypłata:</span>
+                <input type="text" class="form-control col align-text-right text-bold" id="basic-url" aria-describedby="basic-addon3"
                        [value]="player.job.salary | plnPipe" disabled>
               </div>
             </div>
 
             <div class="col m-0 p-0">
               <div class="input-group input-group-sm mb-2">
-                <span class="input-group-text col-5 align-text-left" id="basic-addon3">Konto:</span>
-                <input type="text" class="form-control col align-text-right" id="basic-url" aria-describedby="basic-addon3"
+                <span class="input-group-text col-5 align-text-left text-bold" id="basic-addon3">Konto:</span>
+                <input type="text" class="form-control col align-text-right text-bold" id="basic-url" aria-describedby="basic-addon3"
                        [value]="player.totalCash | plnPipe"
                        disabled>
               </div>
             </div>
+
+            <div class="col m-0 p-0">
+                <div class="input-group input-group-sm mb-2">
+                  <span class="input-group-text col-5 align-text-left text-bold" id="basic-addon3">Wyplata</span>
+                  <input type="text" class="form-control col align-text-right text-bold" id="basic-url" aria-describedby="basic-addon3"
+                         [value]="player.totalCash | plnPipe"
+                         disabled>
+                </div>
+              </div>
+  
 
           </div>
         </div>
@@ -50,12 +60,12 @@
     </div>
 
     <div class="col m-0 p-0 mt-2">
-      <div class="balance input-group input-group-md mb-1">
-        <span class="balance input-group-text col-3 align-text-left"
+      <div class="text-bold input-group input-group-md mb-1">
+        <span class="text-bold input-group-text col-3 align-text-left"
               [ngClass]="{'text-red': (totalIncomes - totalExpenses) < 0}"
               id="basic-addon3">Bilans:
         </span>
-        <div type="text" class="balance form-control col align-text-right"
+        <div type="text" class="text-bold form-control col align-text-right"
              [ngClass]="{
             'background-red' : ((totalIncomes - totalExpenses) < 0), 
             'background-green' : ((totalIncomes - totalExpenses) >= 0)

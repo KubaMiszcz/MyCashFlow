@@ -18,8 +18,8 @@ export class NavBarComponent implements OnInit {
     this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
   }
 
-  nextTurn() {
-    this.gameService.nextTurn();
+  nextTurn(value: boolean) {
+    this.gameService.nextTurn(value);
   }
 
 }

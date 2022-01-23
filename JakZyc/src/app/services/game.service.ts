@@ -23,20 +23,25 @@ export class GameService {
     player.job = this.jobsList[Math.floor(Math.random() * this.jobsList.length)];
     player.totalCash = player.job.salary;
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
+    this.currentEvent$.next(this.drawEvent());
     this.player$.next(PLAYER);
   }
 
-  nextTurn() {
+  nextTurn(isEventAccepted: boolean) {
     const player = this.player$.value;
 
     // this.player$.value.age = (player.age * 10 + 1) / 10;
     this.player$.value.age = player.age + 1;
-    const currentEvent = this.drawEvent();
 
-    this.handleWithCurrentEvent(player, currentEvent);
+    let currentEvent = this.currentEvent$.value;
+
+    if (isEventAccepted) {
+      this.handleWithCurrentEvent(player, currentEvent);
+    }
 
     this.applyPayday(player);
 
+    currentEvent = this.drawEvent();
     this.currentEvent$.next(currentEvent);
   }
 
@@ -84,7 +89,7 @@ export class GameService {
     player.incomes.forEach(i => totalIncomes += i.value);
     player.expenses.forEach(i => totalExpenses += i.value);
 
-    player.totalCash += player.job.salary + totalIncomes + totalExpenses;
+    player.totalCash += totalIncomes + totalExpenses;
   }
 
   createLoan(currentEvent: IEvent) {

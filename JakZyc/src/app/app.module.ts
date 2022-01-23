@@ -12,6 +12,7 @@ import { PlnPipePipe as PlnPipe } from './pipes/pln.pipe';
 import { EventCardComponent } from './event-card/event-card.component';
 import { NextTurnModalComponent } from './next-turn-modal/next-turn-modal.component';
 import { Top100ScoreBoardComponent } from './top100-score-board/top100-score-board.component';
+import { InfoCardComponent } from './info-card/info-card.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { Top100ScoreBoardComponent } from './top100-score-board/top100-score-boa
     PlnPipe,
     EventCardComponent,
     NextTurnModalComponent,
-    Top100ScoreBoardComponent
+    Top100ScoreBoardComponent,
+    InfoCardComponent
   ],
   imports: [
     BrowserModule,

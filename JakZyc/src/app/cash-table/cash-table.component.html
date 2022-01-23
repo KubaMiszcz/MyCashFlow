@@ -14,13 +14,25 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of list">
-          <td class="col-8 py-0 align-text-left">
-            {{item.name}}
-            <span *ngIf="item.isNew" class="badge rounded-pill bg-primary">Nowe</span>
+          <td class="col-8 py-0 px-1">
+            <div class="row d-flex justify-content-between;">
+              <span class="col">{{item.name}}</span>
+              <span class="col-auto mr-auto"></span>
+              <span *ngIf="item.isNew" class="col-2 badge rounded-pill bg-primary m-auto">Nowe</span>
+              <span class="col-1 mr-2 p-0"><i class="fa fa-question-circle" aria-hidden="true"
+                   data-bs-toggle="modal"
+                   data-bs-target="#infoCardModal"></i></span>
+            </div>
           </td>
           <td class="col-4 py-0 align-text-right">{{item.value  | plnPipe}}</td>
         </tr>
       </tbody>
     </table>
   </div>
+</div>
+
+
+
+<div class="modal fade" id="infoCardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <app-info-card></app-info-card>
 </div>

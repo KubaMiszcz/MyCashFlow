@@ -1,0 +1,31 @@
+<div *ngIf="event?.name" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">{{event.type}}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row m-0 p-0">
+        <div class="card col-3 m-0 p-0 mr-2">
+          <img src="http://placekitten.com/200/300" class="card-img-top" style="height: 9em;" alt="http://placekitten.com/200/300">
+        </div>
+
+        <div class="col m-0 p-0">
+          <h5>{{event.name}}</h5>
+          <p>{{event.description}}</p>
+          <p>{{event.value  | plnPipe}}</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="button" name="" id="" data-bs-dismiss="modal"
+              class="col-2 btn btn-outline-success btn-md btn-blxock">
+        OK
+      </button>
+    </div>
+  </div>
+</div>

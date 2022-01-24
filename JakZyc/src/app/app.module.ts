@@ -15,6 +15,7 @@ import { Top100ScoreBoardComponent } from './top100-score-board/top100-score-boa
 import { InfoCardComponent } from './info-card/info-card.component';
 import { PlayerInfoPageComponent } from './player-info-page/player-info-page.component';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     NextTurnModalComponent,
     Top100ScoreBoardComponent,
     InfoCardComponent,
-    PlayerInfoPageComponent
+    PlayerInfoPageComponent,
+    FooterComponent
   ],
   imports: [
     FormsModule,

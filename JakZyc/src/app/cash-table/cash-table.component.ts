@@ -11,7 +11,7 @@ export class CashTableComponent implements OnInit {
   @Input() title = '';
   @Input() list: IIncome[] = [];
   @Input() totalAmount = 0;
-  relatedEvent = new Event();
+  relatedEvent: IEvent = new Event();
 
   constructor() { }
 

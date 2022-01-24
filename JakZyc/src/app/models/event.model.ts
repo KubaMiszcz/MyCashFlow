@@ -136,14 +136,3 @@ export const EVENT_LIST: IEvent[] = [
 
 ]
 
-
-
-
-
-
-
-export const EVENTSXX: IEvent[] = [
-
-
-]
-

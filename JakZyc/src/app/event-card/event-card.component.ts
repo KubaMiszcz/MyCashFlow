@@ -1,5 +1,5 @@
 import { GameService } from './../services/game.service';
-import { IEvent } from './../models/event.model';
+import { IEvent, Event } from './../models/event.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./event-card.component.scss']
 })
 export class EventCardComponent implements OnInit {
-  @Input() event: IEvent;
+  @Input() event: IEvent = new Event();
 
   constructor(
     private gameService: GameService,

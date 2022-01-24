@@ -1,13 +1,3 @@
-Gracz: JohnDoe, 2022 lat, Kierowca
-http://placekitten.com/200/300
-Zawód:
-Kierowca
-Zarobki:
-5000 PLN
-Konto:
-5000 PLN
-
-
 <div class="container-fluid d-flex justify-content-center">
 
   <form class="card col-6 pt-3">
@@ -28,7 +18,8 @@ Konto:
               <div class="input-group-prepend row">
                 <span class="input-group-text" id="basic-addon1">Imie:</span>
               </div>
-              <input type="text" class="form-control" placeholder="Wpisz imie" aria-label="Username" aria-describedby="basic-addon1">
+              <input [(ngModel)]="player.name" [ngModelOptions]="{standalone: true}"
+              type="text" class="form-control" placeholder="Wpisz imie" aria-label="Username" aria-describedby="basic-addon1">
             </div>
           </div>
 
@@ -37,7 +28,8 @@ Konto:
               <div class="input-group-prepend row">
                 <span class="input-group-text " id="basic-addon1">Wiek:</span>
               </div>
-              <input type="text" class="form-control " placeholder="Wpisz wiek" aria-label="Username" aria-describedby="basic-addon1">
+              <input [(ngModel)]="player.age.year" [ngModelOptions]="{standalone: true}"
+               type="text" class="form-control " placeholder="Wpisz wiek" aria-label="Username" aria-describedby="basic-addon1">
             </div>
 
           </div>
@@ -51,7 +43,7 @@ Konto:
                 <label class="input-group-text" for="inputGroupSelect01">Zawod:</label>
               </div>
               <select class="custom-select" id="inputGroupSelect01" (change)="selectJob($event)">
-                <option *ngFor="let item of jobList" [selected]="item.id===selectedJob.id" [value]="item.id">{{item.name}}</option>
+                <option *ngFor="let item of jobList" [selected]="item.id===player.job?.id" [value]="item.id">{{item.name}}</option>
               </select>
             </div>
           </div>
@@ -59,32 +51,9 @@ Konto:
           <div class="col-6 pl-0">
             <div class="input-group">
               <span class="input-group-text col" id="basic-addon3">Zarobki:</span>
-              <span class="input-group-text col" id="basic-addon3">{{selectedJob?.salary | plnPipe}}</span>
+              <span class="input-group-text col" id="basic-addon3">{{player.job?.salary | plnPipe}}</span>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <!-- <div class="col-6">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend row">
-                <span class="input-group-text col" id="basic-addon1">Zarobki:</span>
-              </div>
-              <input type="text" class="form-control col" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-          </div> -->
 
         </div>
 
@@ -92,22 +61,91 @@ Konto:
 
     </div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Cel:</label>
+
+
+    <div class="mb-4">
+
+      <div class="row ml-0">
+
+        <div class="col">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend row goal-label ">
+              <label class="input-group-text" for="inputGroupSelect01">Cel:</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" (change)="selectGoal($event)">
+              <option *ngFor="let item of goalList" [selected]="item.id===player.goal?.id" [value]="item.id">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-5 pl-0">
+          <div class="input-group  ">
+            <span class="input-group-text col " id="basic-addon3">Wartosc:</span>
+            <span class="input-group-text col" id="basic-addon3">{{player.goal?.price | plnPipe}}</span>
+          </div>
+        </div>
+
       </div>
-      <select class="custom-select" id="inputGroupSelect01">
-        <option selected>Choose...</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
+
+      <div class="row ">
+
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend" style="width: 8%;">
+              <span class="input-group-text col">Opis:</span>
+            </div>
+            <textarea [value]="player.goal?.description" class="form-control col" aria-label="With textarea" disabled></textarea>
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
 
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Wlasny Cel:</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+    <div class="mb-4">
+
+      <div class="row ml-0">
+        <label for="exampleFormControlTextarea1">Wlasny Cel:</label>
+
+        <div class="col">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend row goal-label ">
+              <label class="input-group-text" for="inputGroupSelect01">Cel:</label>
+            </div>
+            <input [(ngModel)]="player.goal!.name" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Wpisz nazwe celu" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+
+        <div class="col-5 pl-0">
+          <div class="input-group  ">
+            <span class="input-group-text col " id="basic-addon3">Wartosc:</span>
+            <input [(ngModel)]="player.goal!.price" [ngModelOptions]="{standalone: true}" type="text" class="form-control" placeholder="Wpisz wartosc" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row ">
+
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend" style="width: 8%;">
+              <span class="input-group-text col">Opis:</span>
+            </div>
+            <textarea [(ngModel)]="player.goal!.description" [ngModelOptions]="{standalone: true}" class="form-control col" aria-label="With textarea"></textarea>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="mb-3 d-flex justify-content-end">
+      <button type="button" name="" id="" data-bs-dismiss="modal"
+              class="col-2 btn btn-outline-success btn-md btn-blxock"
+              (click)="savePlayerInfo()"> Zapisz </button>
     </div>
 
   </form>

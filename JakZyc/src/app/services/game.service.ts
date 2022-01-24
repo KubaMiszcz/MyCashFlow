@@ -1,3 +1,4 @@
+import { GAME_GOALS_LIST } from './../models/goal.model';
 import { HelperService } from './helper.service';
 import { IIncome } from './../models/income.model';
 import { Injectable } from '@angular/core';
@@ -20,7 +21,6 @@ export class GameService {
   totalAssets$ = new BehaviorSubject<number>(0);
 
   eventList = EVENTS;
-  jobsList = JOBS_LIST;
 
   loanInterestRate = 0.1;
   personalExpensesRate = 0.5;
@@ -33,7 +33,8 @@ export class GameService {
     private helperService: HelperService,
   ) {
     const player = INITIAL_PLAYER;
-    player.job = this.jobsList[_.random(this.jobsList.length - 1)];
+    player.job = JOBS_LIST[_.random(JOBS_LIST.length - 1)];
+    player.goal = GAME_GOALS_LIST[_.random(GAME_GOALS_LIST.length - 1)];
     player.totalCash = player.job.salary;
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
     player.expenses.push({ name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
@@ -194,5 +195,10 @@ export class GameService {
   hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {
     return ((player.totalCash / 2) - currentEvent.value) > 0;
   }
+
+  updatePlayerInfo(player: IPlayer) {
+    this.player$.next(player)
+  }
+
 }
 

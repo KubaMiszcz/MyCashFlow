@@ -1,5 +1,6 @@
 import { GameService } from './services/game.service';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,8 @@ export class AppComponent {
   title = 'JakZyc';
 
   constructor(
-  ) { }
+    private router: Router,
+  ) {
+    this.router.navigate(['/player-info']);
+  }
 }

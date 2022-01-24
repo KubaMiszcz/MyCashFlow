@@ -1,3 +1,4 @@
+import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
 import { GAME_GOALS_LIST } from './../models/goal.model';
 import { HelperService } from './helper.service';
 import { IIncome } from './../models/income.model';
@@ -14,6 +15,7 @@ import _ from 'lodash';
   providedIn: 'root'
 })
 export class GameService {
+
   player$ = new BehaviorSubject<IPlayer>(new Player);
   currentEvent$ = new BehaviorSubject<IEvent>(new Event);
   totalIncomes$ = new BehaviorSubject<number>(0);
@@ -32,18 +34,12 @@ export class GameService {
   constructor(
     private helperService: HelperService,
   ) {
-    const player = INITIAL_PLAYER;
-    player.job = JOBS_LIST[_.random(JOBS_LIST.length - 1)];
-    player.goal = GAME_GOALS_LIST[_.random(GAME_GOALS_LIST.length - 1)];
-    player.totalCash = player.job.salary;
-    player.incomes.push({ name: 'Wyplata', value: player.job.salary });
-    player.expenses.push({ name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
-    this.player$.next(player);
+    this.createNewPlayer();
+    this.updateAndPublishTotalAmounts(this.player$.value);
 
-    this.dateYearInterval = new Date().getFullYear() - player.age.year;
+    this.dateYearInterval = new Date().getFullYear() - this.player$.value.age.year;
 
     this.currentEvent$.next(this.drawEvent());
-    this.player$.next(player);
   }
 
   nextTurn(isEventAccepted: boolean) {
@@ -199,6 +195,34 @@ export class GameService {
 
   updatePlayerInfo(player: IPlayer) {
     this.player$.next(player)
+  }
+
+  createNewPlayer() {
+    const player = INITIAL_PLAYER;
+    player.name = PLAYER_NAMES_LIST[_.random(PLAYER_NAMES_LIST.length - 1)];
+
+    player.job = JOBS_LIST[_.random(JOBS_LIST.length - 1)];
+    player.job.salary = Math.floor(player.job.salary * _.random(0.8, 1.2) / 100) * 100;
+    player.totalCash = player.job.salary;
+
+    player.age = { year: _.random(20, 50), month: 0, day: 1 };
+
+    player.goal = GAME_GOALS_LIST[_.random(GAME_GOALS_LIST.length - 1)];
+
+    player.incomes.push({ name: 'Wyplata', value: player.job.salary });
+    player.expenses.push({ name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
+
+    this.player$.next(player);
+  }
+
+  isPlayerNewlyCreated(): boolean {
+    const player = this.player$.value;
+    return (player.age.month == 0)
+      && (player.age.day == 1)
+      && (player.assets?.length == 0)
+      && (player.incomes?.length == 1)
+      && (player.expenses?.length == 1)
+      && (player.totalCash == player.job.salary);
   }
 
 }

@@ -1,4 +1,4 @@
-import { MONTHS_LIST } from './../models/monthsList';
+import { MONTHS_LIST } from '../models/constants/monthsList';
 import { Component, OnInit } from '@angular/core';
 import { IAge, Age } from '../models/age.model';
 import { IEvent } from '../models/event.model';

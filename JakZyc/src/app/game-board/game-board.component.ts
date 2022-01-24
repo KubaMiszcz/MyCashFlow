@@ -3,6 +3,7 @@ import { IPlayer } from './../models/player.model';
 import { GameService } from './../services/game.service';
 import { IEvent } from './../models/event.model';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-board',
@@ -20,19 +21,22 @@ export class GameBoardComponent implements OnInit {
 
   constructor(
     private gameService: GameService,
+    private router: Router
   ) {
     this.eventTypes = EVENT_TYPES;
   }
 
   ngOnInit(): void {
-    this.gameService.player$.subscribe(e => {this.player = e
-    console.log(e);
-    });
+    this.gameService.player$.subscribe(e => this.player = e);
     this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
     this.gameService.totalIncomes$.subscribe(e => this.totalIncomes = e);
     this.gameService.totalExpenses$.subscribe(e => this.totalExpenses = e);
     this.gameService.totalAssets$.subscribe(e => this.totalAssets = e);
-    console.log(this.player);
+
+    // if (this.player?.name?.length < 1) {
+    // this.gameService.createNewPlayer();
+    // this.router.navigate(['/player-info']);
+    // }
   }
 
 }

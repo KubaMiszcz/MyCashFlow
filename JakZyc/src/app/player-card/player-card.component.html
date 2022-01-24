@@ -1,5 +1,8 @@
 <div class="card container p-0">
-  <h5 class="card-header  text-bold">Gracz: {{player.name}}, {{player.age.year}} lat, {{player.job.name}}</h5>
+  <h5 class="card-header text-bold player-header">
+    <span>Gracz: {{player.name}}</span>
+    <span> {{player.age.year}} lat, {{player.job.name}}</span>
+  </h5>
 
   <div class="card-body p-2 mx-0">
     <div class="row m-0 p-0">
@@ -55,7 +58,8 @@
               <div class="progress" style="height: 2.4em;">
                 <div class="label">{{salaryMessage}}</div>
                 <div class="progress-bar progress-bar-striped progress-bar-animated"
-                     role="progressbar" aria-valuenow="player.age.day" aria-valuemin="0" aria-valuemax="28" style="width: {{(player.age.day/28)*100}}%">
+                     role="progressbar" aria-valuenow="player.age.day" aria-valuemin="0" aria-valuemax="28"
+                     style="width: {{(player.age.day/28)*100}}%">
                 </div>
               </div>
 
@@ -71,7 +75,7 @@
 
     <div class="col m-0 p-0 mt-2">
       <div class="text-bold input-group input-group-md mb-1 d-flex">
-        <div class="text-bold input-group-text align-text-left"
+        <div class="text-bold input-group-text text-align-left"
              [ngClass]="{'text-red': (totalIncomes - totalExpenses) < 0}"
              id="basic-addon3">Bilans:
         </div>

@@ -28,7 +28,7 @@ export class Player implements IPlayer {
 
 
 export const INITIAL_PLAYER: IPlayer = {
-  name: 'JohnDoe',
+  name: '',
   job: { id: 1, name: '', salary: 0, },
   goal: GAME_GOALS_LIST[2],
   totalCash: 0,

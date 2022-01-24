@@ -1,5 +1,13 @@
 .container {
   min-height: 16.5em;
+
+  .player-header {
+    height: 3.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 }
 
 .label {

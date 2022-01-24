@@ -19,7 +19,6 @@ export class PlayerCardComponent implements OnInit {
   totalAssets = 0;
 
   get salaryMessage() {
-
     let message = this.player.age.day === 1 ?
       'WYPLATA!'
       : 'wyplata za ' + (this.paydayInterval - this.player.age.day) + ' dni';
@@ -44,7 +43,6 @@ export class PlayerCardComponent implements OnInit {
     this.gameService.totalExpenses$.subscribe(i => this.totalExpenses = Math.abs(i));
     this.gameService.totalAssets$.subscribe(i => this.totalAssets = i);
     console.log(this.player);
-
   }
 
 }

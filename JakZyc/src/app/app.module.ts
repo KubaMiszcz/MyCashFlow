@@ -13,6 +13,8 @@ import { EventCardComponent } from './event-card/event-card.component';
 import { NextTurnModalComponent } from './next-turn-modal/next-turn-modal.component';
 import { Top100ScoreBoardComponent } from './top100-score-board/top100-score-board.component';
 import { InfoCardComponent } from './info-card/info-card.component';
+import { PlayerInfoPageComponent } from './player-info-page/player-info-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,11 @@ import { InfoCardComponent } from './info-card/info-card.component';
     EventCardComponent,
     NextTurnModalComponent,
     Top100ScoreBoardComponent,
-    InfoCardComponent
+    InfoCardComponent,
+    PlayerInfoPageComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule

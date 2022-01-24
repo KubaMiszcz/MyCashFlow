@@ -5,8 +5,9 @@ import { BehaviorSubject } from 'rxjs';
 import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
 import { IEvent, Event, EVENTS } from './../models/event.model';
 import { EventTypeEnum } from '../models/event-type.enum';
-import { JOBS } from '../models/job.model';
-import { IAge } from '../models/age.model';
+import { JOBS_LIST } from '../models/job.model';
+import _ from 'lodash';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class GameService {
   totalAssets$ = new BehaviorSubject<number>(0);
 
   eventList = EVENTS;
-  jobsList = JOBS;
+  jobsList = JOBS_LIST;
 
   loanInterestRate = 0.1;
   personalExpensesRate = 0.5;
@@ -32,7 +33,7 @@ export class GameService {
     private helperService: HelperService,
   ) {
     const player = INITIAL_PLAYER;
-    player.job = this.jobsList[Math.floor(Math.random() * this.jobsList.length)];
+    player.job = this.jobsList[_.random(this.jobsList.length - 1)];
     player.totalCash = player.job.salary;
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
     player.expenses.push({ name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
@@ -187,9 +188,7 @@ export class GameService {
   }
 
   drawEvent(): IEvent {
-    const ran = Math.floor(Math.random() * this.eventList.length);
-    const event = this.eventList[ran];
-    return event;
+    return this.eventList[_.random(this.eventList.length - 1)];
   }
 
   hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {

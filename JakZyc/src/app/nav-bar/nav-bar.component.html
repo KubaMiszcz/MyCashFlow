@@ -17,12 +17,12 @@
               <a class="nav-link active center" aria-current="page" [routerLink]="['/game']"><span class="navbar-item">Gra</span></a>
             </li>
 
-            <li class="nav-item col-4 p-1">
-              <a class="nav-link d-flex center" aria-current="page" [routerLink]="['/game']">
+            <li class="nav-item col-4 p-1 center">
+              <a class="nav-link d-flex cesnter" aria-current="page" [routerLink]="['/player-info']">
                 <span class="navbar-item">Dane Gracza</span>
               </a>
             </li>
-            
+
             <li class="nav-item col-4 p-1 center  ">
             <span class="navbar-item">Date: </span>
             <span class="navbar-item">{{currentDate.year}} {{monthsList[currentDate.month]}} {{currentDate.day}}</span>
@@ -34,7 +34,7 @@
           <div class="nav-item">
             <button type="button" name="" id=""
                     class="btn btn-light btn-outline-dark btn-mdd btn-block msb-4 next-turn-btn"
-                    (click)="nextTurn(true)">Nastepny tydzien
+                    (click)="nextTurn(true)"><span style="font-size: 2em;">Nastepny tydzien</span>
                   </button>
                   <!-- data-bs-toggle="modal"
             data-bs-target="#nextTurnModal" -->

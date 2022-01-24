@@ -20,13 +20,18 @@
       "es2018",
       "dom"
     ],
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
-    // "strictPropertyInitialization": false
+    // "strictPropertyInitialization": false,
+    // "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   }
 }

@@ -12,7 +12,7 @@ import { IPlayer } from '../models/player.model';
 })
 export class NavBarComponent implements OnInit {
   currentEvent: IEvent;
-  currentDate = new Age;
+  currentDate = new Age();
   currentPlayer: IPlayer;
 
   monthsList = MONTHS_LIST;

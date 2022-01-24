@@ -17,7 +17,7 @@ export interface IPlayer {
 
 export class Player implements IPlayer {
   name: '';
-  job: { name: '', salary: 0 };
+  job: { id: 1, name: '', salary: 0 };
   age: { year: 20, month: 1, day: 1 };
   salary: 0;
   totalCash: 0;
@@ -29,7 +29,7 @@ export class Player implements IPlayer {
 
 export const INITIAL_PLAYER: IPlayer = {
   name: 'JohnDoe',
-  job: { name: '', salary: 0, },
+  job: { id: 1, name: '', salary: 0, },
   goal: GAME_GOALS_LIST[2],
   totalCash: 0,
   age: { year: 20, month: 1, day: 1 },

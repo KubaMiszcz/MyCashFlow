@@ -2,9 +2,9 @@ import { IIncome } from './income.model';
 import { EventTypeEnum } from './event-type.enum';
 
 export interface IEvent {
-  id?: number;
+  id: number;
   name: string;
-  description?: string; //make it nonnullable
+  description: string;
   value: number;
   monthlyProfit?: number;
   type?: EventTypeEnum
@@ -15,11 +15,23 @@ export interface IEvent {
 
 
 export class Event implements IEvent {
-  name: '';
-  value: 0;
+  id: number;
+  description: string;
+  monthlyProfit?: number | undefined;
+  type?: EventTypeEnum | undefined;
+  image?: string | undefined;
+  rejectable?: boolean | undefined;
+  percentable?: boolean | undefined;
+  name: string;
+  value: number;
 }
 
-export const EVENTS: IEvent[] = [
+export const EVENT_LIST: IEvent[] = [
+  // { name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
+  { id: -1, name: "Wypłata", description: "Z roboty, co miesiac, jak to wyplata", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },
+  { id: -2, name: "Wydatki domowe", description: "Zwykle drobne wydatki domowe, jedzonko, bulki, serek, zimjoki...", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },
+
+
   //big deals
   { id: 1, name: "dzialkaRODOS", description: "dzialkaRODOS", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: 1000, rejectable: true, },
   { id: 2, name: "dzialkaRODOS", description: "dzialkaRODOS", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: -1000, rejectable: true, },

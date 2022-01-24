@@ -5,7 +5,7 @@ import { IIncome } from './../models/income.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
-import { IEvent, Event, EVENTS } from './../models/event.model';
+import { IEvent, Event, EVENT_LIST } from './../models/event.model';
 import { EventTypeEnum } from '../models/event-type.enum';
 import { JOBS_LIST } from '../models/job.model';
 import _ from 'lodash';
@@ -22,7 +22,7 @@ export class GameService {
   totalExpenses$ = new BehaviorSubject<number>(0);
   totalAssets$ = new BehaviorSubject<number>(0);
 
-  eventList = EVENTS;
+  eventList = EVENT_LIST;
 
   loanInterestRate = 0.1;
   personalExpensesRate = 0.5;
@@ -30,6 +30,8 @@ export class GameService {
   turnDurationInDays = 7;
   paydayIntervalInWeeks = 4;
   dateYearInterval = 0;
+  private incomeNamePrefix = 'wynajem ';
+  private expenseNamePrefix = 'utrzymanie ';
 
   constructor(
     private helperService: HelperService,
@@ -104,14 +106,11 @@ export class GameService {
         if (this.hasPlayerEnoughCash(player, currentEvent)) {
           player.totalCash -= currentEvent.value;
         } else {
-          const loan = this.createLoan(currentEvent);
-          loan.isNew = true;
+          const loan = this.createNewLoan(currentEvent);
           player.expenses.push(loan);
         }
 
-        let asset = currentEvent as IIncome;
-        asset.isNew = true;
-        player.assets.push(asset);
+        player.assets.push(this.convertEventToNewlyAddedIncome(currentEvent, false));
         break;
 
       case EventTypeEnum.SmallDeal:
@@ -132,12 +131,14 @@ export class GameService {
     player.totalCash += totalIncomes + totalExpenses;
   }
 
-  createLoan(currentEvent: IEvent) {
+  createNewLoan(currentEvent: IEvent) {
     const loanValue = Math.round(currentEvent.value * (1 + this.loanInterestRate));
     let loan: IIncome = {
       name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name,
       value: Math.round(-1 * loanValue * this.loanInterestRate),
+      isNew: true,
       duration: 12,
+      relatedEventId: currentEvent.id,
     }
 
     return loan;
@@ -147,46 +148,44 @@ export class GameService {
     if (this.hasPlayerEnoughCash(player, currentEvent)) {
       player.totalCash -= currentEvent.value;
     } else {
-      const loan = this.createLoan(currentEvent);
-      loan.isNew = true;
+      const loan = this.createNewLoan(currentEvent);
       player.expenses.push(loan);
     }
 
     if (currentEvent.monthlyProfit) {
       if (currentEvent.monthlyProfit > 0) {
-        player.incomes.push({
-          name: this.getPrefix(currentEvent) + currentEvent.name,
-          value: currentEvent.monthlyProfit ?? 0,
-          isNew: true,
-        });
+        player.incomes.push(this.convertEventToNewlyAddedIncome(currentEvent, true));
       }
       if (currentEvent.monthlyProfit < 0) {
-        player.expenses.push({
-          name: this.getPrefix(currentEvent) + currentEvent.name,
-          value: currentEvent.monthlyProfit ?? 0,
-          isNew: true,
-        });
+        player.expenses.push(this.convertEventToNewlyAddedIncome(currentEvent, true));
       }
     }
 
-    let asset = currentEvent as IIncome;
-    asset.isNew = true;
-    player.assets.push(asset);
+    player.assets.push(this.convertEventToNewlyAddedIncome(currentEvent, false));
+  }
+
+  convertEventToNewlyAddedIncome(currentEvent: IEvent, withPrefix: boolean): IIncome {
+    return {
+      name: (withPrefix ? this.getPrefix(currentEvent) : '') + currentEvent.name,
+      value: currentEvent.monthlyProfit ?? 0,
+      isNew: true,
+      relatedEventId: currentEvent.id,
+    };
   }
 
   getPrefix(currentEvent: IEvent): string {
     if (currentEvent.monthlyProfit) {
       if (currentEvent.monthlyProfit > 0) {
-        return 'wynajem '
+        return this.incomeNamePrefix;
       } else {
-        return 'utrzymanie '
+        return this.expenseNamePrefix;
       }
     }
     return ''
   }
 
   drawEvent(): IEvent {
-    return this.eventList[_.random(this.eventList.length - 1)];
+    return this.eventList.filter(e => e.id > 0)?.[_.random(this.eventList.length - 1)];
   }
 
   hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {
@@ -209,10 +208,30 @@ export class GameService {
 
     player.goal = GAME_GOALS_LIST[_.random(GAME_GOALS_LIST.length - 1)];
 
-    player.incomes.push({ name: 'Wyplata', value: player.job.salary });
-    player.expenses.push({ name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
+    this.addInitialIncomes(player);
+    this.addInitialExpenses(player);
 
     this.player$.next(player);
+  }
+
+  addInitialIncomes(player: IPlayer) {
+    const salaryId = -1;
+    const event = EVENT_LIST.find(e => e.id === salaryId) ?? new Event();
+    event.value = player.job.salary;
+    event.monthlyProfit = event.value;
+
+    const income = this.convertEventToNewlyAddedIncome(event, false);
+    player.incomes.push(income);
+  }
+
+  addInitialExpenses(player: IPlayer) {
+    const smallOrdinaryMonthlyExpensesId = -2;
+    const event = EVENT_LIST.find(e => e.id === smallOrdinaryMonthlyExpensesId) ?? new Event();
+    event.value = -1 * player.job.salary * 0.5;
+    event.monthlyProfit = event.value;
+
+    const expense = this.convertEventToNewlyAddedIncome(event, false);
+    player.expenses.push(expense);
   }
 
   isPlayerNewlyCreated(): boolean {

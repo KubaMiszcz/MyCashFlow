@@ -3,5 +3,6 @@ export interface IIncome {
   value: number;
   duration?: number;
   isNew?: boolean
+  relatedEventId?: number
 }
 

@@ -42,7 +42,6 @@ export class PlayerCardComponent implements OnInit {
     this.gameService.totalIncomes$.subscribe(i => this.totalIncomes = i);
     this.gameService.totalExpenses$.subscribe(i => this.totalExpenses = Math.abs(i));
     this.gameService.totalAssets$.subscribe(i => this.totalAssets = i);
-    console.log(this.player);
   }
 
 }

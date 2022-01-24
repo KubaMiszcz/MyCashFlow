@@ -5,7 +5,9 @@ export interface IEventType {
   type: EventTypeEnum;
   image?: string;
   backgroundColor?: string;
+  probabilityRate?: number
 }
+
 
 export const EVENT_TYPES: IEventType[] = [
   {

@@ -1,5 +1,5 @@
 import { IAge } from './age.model';
-import { IGameGoal } from './goal.model';
+import { IGameGoal, GAME_GOALS_LIST } from './goal.model';
 import { IIncome } from './income.model';
 import { IJob } from './job.model';
 export interface IPlayer {
@@ -30,6 +30,7 @@ export class Player implements IPlayer {
 export const INITIAL_PLAYER: IPlayer = {
   name: 'JohnDoe',
   job: { name: '', salary: 0, },
+  goal: GAME_GOALS_LIST[2],
   totalCash: 0,
   age: { year: 20, month: 1, day: 1 },
   incomes: [],

@@ -11,17 +11,19 @@
       <ul class="col navbar-nav me-auto mb-2 mb-lg-0">
 
         <div class="col-3">
-          <div class="row nav-items justify-content-start">
+          <div class="row nav-items d-flex justify-content-start">
 
-            <li class="nav-item col-4 p-1 d-flex align-items-center ">
-              <a class="nav-link active" aria-current="page" [routerLink]="['/game']"><span class="navbar-item">New Game</span></a>
+            <li class="nav-item col-4 p-1 center ">
+              <a class="nav-link active center" aria-current="page" [routerLink]="['/game']"><span class="navbar-item">Gra</span></a>
             </li>
 
-            <li class="nav-item col-4 p-1 d-flex align-items-center ">
-              <a class="nav-link" aria-current="page" [routerLink]="['/game']"><span class="navbar-item">Trololo</span></a>
+            <li class="nav-item col-4 p-1">
+              <a class="nav-link d-flex center" aria-current="page" [routerLink]="['/game']">
+                <span class="navbar-item">Dane Gracza</span>
+              </a>
             </li>
             
-            <li class="nav-item col-4 p-1 date d-flex align-items-center ">
+            <li class="nav-item col-4 p-1 center  ">
             <span class="navbar-item">Date: </span>
             <span class="navbar-item">{{currentDate.year}} {{monthsList[currentDate.month]}} {{currentDate.day}}</span>
             </li>
@@ -32,7 +34,7 @@
           <div class="nav-item">
             <button type="button" name="" id=""
                     class="btn btn-light btn-outline-dark btn-mdd btn-block msb-4 next-turn-btn"
-                    (click)="nextTurn(true)">Akceptuj zdarzenie i dawaj kolejny miesiac
+                    (click)="nextTurn(true)">Nastepny tydzien
                   </button>
                   <!-- data-bs-toggle="modal"
             data-bs-target="#nextTurnModal" -->

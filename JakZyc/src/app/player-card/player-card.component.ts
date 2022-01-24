@@ -14,30 +14,16 @@ export class PlayerCardComponent implements OnInit {
   salaryProgress = 0;
   paydayInterval = 0;
 
+  totalIncomes = 0;
+  totalExpenses = 0;
+  totalAssets = 0;
+
   get salaryMessage() {
 
     let message = this.player.age.day === 1 ?
       'WYPLATA!'
       : 'wyplata za ' + (this.paydayInterval - this.player.age.day) + ' dni';
     return message;
-  }
-
-  get totalIncomes(): number {
-    let res = 0;
-    this.player.incomes.forEach(e => res += e.value);
-    return res;
-  }
-
-  get totalExpenses(): number {
-    let res = 0;
-    this.player.expenses.forEach(e => res += e.value);
-    return Math.abs(res);
-  }
-
-  get totalAssets(): number {
-    let res = 0;
-    this.player.assets.forEach(e => res += e.value);
-    return res;
   }
 
   get balanceDescription() {
@@ -54,6 +40,9 @@ export class PlayerCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.paydayInterval = this.gameService.paydayIntervalInWeeks * this.gameService.turnDurationInDays;
+    this.gameService.totalIncomes$.subscribe(i => this.totalIncomes = i);
+    this.gameService.totalExpenses$.subscribe(i => this.totalExpenses = Math.abs(i));
+    this.gameService.totalAssets$.subscribe(i => this.totalAssets = i);
   }
 
 }

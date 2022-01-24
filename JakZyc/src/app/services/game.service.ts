@@ -1,3 +1,4 @@
+import { HelperService } from './helper.service';
 import { IIncome } from './../models/income.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -13,6 +14,10 @@ import { IAge } from '../models/age.model';
 export class GameService {
   player$ = new BehaviorSubject<IPlayer>(new Player);
   currentEvent$ = new BehaviorSubject<IEvent>(new Event);
+  totalIncomes$ = new BehaviorSubject<number>(0);
+  totalExpenses$ = new BehaviorSubject<number>(0);
+  totalAssets$ = new BehaviorSubject<number>(0);
+
   eventList = EVENTS;
   jobsList = JOBS;
 
@@ -23,12 +28,14 @@ export class GameService {
   paydayIntervalInWeeks = 4;
   dateYearInterval = 0;
 
-  constructor() {
+  constructor(
+    private helperService: HelperService,
+  ) {
     const player = INITIAL_PLAYER;
     player.job = this.jobsList[Math.floor(Math.random() * this.jobsList.length)];
     player.totalCash = player.job.salary;
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
-    player.expenses.push({ name: 'Wydatki domowe', value: (player.job.salary * this.personalExpensesRate) });
+    player.expenses.push({ name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
     this.player$.next(INITIAL_PLAYER);
 
     this.dateYearInterval = new Date().getFullYear() - player.age.year;
@@ -55,6 +62,14 @@ export class GameService {
 
     currentEvent = this.drawEvent();
     this.currentEvent$.next(currentEvent);
+
+    this.updateAndPublishTotalAmounts(player);
+  }
+
+  updateAndPublishTotalAmounts(player: IPlayer) {
+    this.totalIncomes$.next(this.helperService.sumValues(player.incomes));
+    this.totalExpenses$.next(this.helperService.sumValues(player.expenses));
+    this.totalAssets$.next(this.helperService.sumValues(player.assets));
   }
 
   increasePlayerAge(player: IPlayer) {
@@ -112,10 +127,8 @@ export class GameService {
   }
 
   applyPayday(player: IPlayer) {
-    let totalIncomes = 0;
-    let totalExpenses = 0;
-    player.incomes.forEach(i => totalIncomes += i.value);
-    player.expenses.forEach(i => totalExpenses += i.value);
+    let totalIncomes = this.helperService.sumValues(player.incomes);
+    let totalExpenses = this.helperService.sumValues(player.expenses);
 
     player.totalCash += totalIncomes + totalExpenses;
   }

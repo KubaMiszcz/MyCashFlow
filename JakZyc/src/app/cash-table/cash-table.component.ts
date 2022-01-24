@@ -9,17 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CashTableComponent implements OnInit {
   @Input() title = '';
   @Input() list: IIncome[] = [];
-
-  get totalAmount(): number {
-    let res = 0;
-    this.list.forEach(e => res += e.value);
-    return res;
-  }
-
+  @Input() totalAmount = 0;
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

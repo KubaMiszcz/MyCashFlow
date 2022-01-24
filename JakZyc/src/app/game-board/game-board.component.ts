@@ -11,27 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameBoardComponent implements OnInit {
   player: IPlayer;
+  currentEvent: IEvent;
   eventTypes: IEventType[] = [];
 
-  currentEvent: IEvent;
-
-  get totalIncomes(): number {
-    let res = 0;
-    this.player.incomes.forEach(e => res += e.value);
-    return res;
-  }
-
-  get totalExpenses(): number {
-    let res = 0;
-    this.player.expenses.forEach(e => res += e.value);
-    return res;
-  }
-
-  get totalAssets(): number {
-    let res = 0;
-    this.player.assets.forEach(e => res += e.value);
-    return res;
-  }
+  totalIncomes = 0;
+  totalExpenses = 0;
+  totalAssets = 0;
 
   constructor(
     private gameService: GameService,
@@ -42,6 +27,9 @@ export class GameBoardComponent implements OnInit {
   ngOnInit(): void {
     this.gameService.player$.subscribe(e => this.player = e);
     this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
+    this.gameService.totalIncomes$.subscribe(e => this.totalIncomes = e);
+    this.gameService.totalExpenses$.subscribe(e => this.totalExpenses = e);
+    this.gameService.totalAssets$.subscribe(e => this.totalAssets = e);
   }
 
 }

@@ -17,11 +17,6 @@ export class NavBarComponent implements OnInit {
 
   monthsList = MONTHS_LIST;
 
-
-  // get currentYear() {
-  //   return this.currentDate.year + this.yearInterval;
-  // }
-
   constructor(
     private gameService: GameService,
   ) { }
@@ -29,9 +24,6 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
     this.gameService.player$.subscribe(p => {
-      // this.yearInterval = new Date().getFullYear() - p.age.year;
-      console.log(p.age);
-
       this.currentDate = p.age;
       this.currentDate.year += this.gameService.dateYearInterval;
     });

@@ -25,11 +25,14 @@ export class GameBoardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.gameService.player$.subscribe(e => this.player = e);
+    this.gameService.player$.subscribe(e => {this.player = e
+    console.log(e);
+    });
     this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
     this.gameService.totalIncomes$.subscribe(e => this.totalIncomes = e);
     this.gameService.totalExpenses$.subscribe(e => this.totalExpenses = e);
     this.gameService.totalAssets$.subscribe(e => this.totalAssets = e);
+    console.log(this.player);
   }
 
 }

@@ -24,7 +24,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
     this.gameService.player$.subscribe(p => {
-      this.currentDate = p.age;
+      this.currentDate = { ...p.age };
       this.currentDate.year += this.gameService.dateYearInterval;
     });
   }

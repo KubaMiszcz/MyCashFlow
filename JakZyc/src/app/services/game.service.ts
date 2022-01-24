@@ -38,15 +38,15 @@ export class GameService {
     player.totalCash = player.job.salary;
     player.incomes.push({ name: 'Wyplata', value: player.job.salary });
     player.expenses.push({ name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
-    this.player$.next(INITIAL_PLAYER);
+    this.player$.next(player);
 
     this.dateYearInterval = new Date().getFullYear() - player.age.year;
 
     this.currentEvent$.next(this.drawEvent());
+    this.player$.next(player);
   }
 
   nextTurn(isEventAccepted: boolean) {
-
     const player = this.player$.value;
     this.cleanIsNewStatus(player);
 
@@ -66,6 +66,7 @@ export class GameService {
     this.currentEvent$.next(currentEvent);
 
     this.updateAndPublishTotalAmounts(player);
+    this.player$.next(player);
   }
 
   updateAndPublishTotalAmounts(player: IPlayer) {

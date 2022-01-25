@@ -1,3 +1,4 @@
+import { IIncome } from './../models/income.model';
 import { EVENT_TYPES, IEventType } from './../models/event-type.model';
 import { IPlayer } from './../models/player.model';
 import { GameService } from './../services/game.service';
@@ -20,12 +21,8 @@ export class GameBoardComponent implements OnInit {
   totalExpenses = 0;
   totalAssets = 0;
 
-  // @ViewChild('content') content: any;
-
-
   constructor(
     private gameService: GameService,
-    private modalService: NgbModal,
   ) {
     this.eventTypes = EVENT_TYPES;
   }
@@ -38,31 +35,8 @@ export class GameBoardComponent implements OnInit {
     this.gameService.totalAssets$.subscribe(e => this.totalAssets = e);
   }
 
-
-
-
-
-
-  closeResult: string;
-
-
-  open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  onIncomeClick(value: IIncome) {
+    this.gameService.showInfoCardE$.emit(value);
   }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
 
 }

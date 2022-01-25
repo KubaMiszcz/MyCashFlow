@@ -1,14 +1,14 @@
-import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
 import { GAME_GOALS_LIST } from './../models/goal.model';
 import { HelperService } from './helper.service';
 import { IIncome } from './../models/income.model';
 import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
 import { IEvent, Event, EVENT_LIST } from './../models/event.model';
 import { EventTypeEnum } from '../models/event-type.enum';
 import { JOBS_LIST } from '../models/job.model';
 import _ from 'lodash';
+import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
 
 
 @Injectable({
@@ -21,6 +21,7 @@ export class GameService {
   totalIncomes$ = new BehaviorSubject<number>(0);
   totalExpenses$ = new BehaviorSubject<number>(0);
   totalAssets$ = new BehaviorSubject<number>(0);
+  showInfoCardE$ = new EventEmitter<IIncome>();
 
   eventList = EVENT_LIST;
 

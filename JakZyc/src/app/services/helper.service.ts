@@ -14,6 +14,10 @@ export class HelperService {
     return list.reduce((sum, current) => sum + current.value, 0);
   }
 
+  sumProperties(list: any[], propName: string) {
+    return list.reduce((sum, current) => sum + current[propName], 0);
+  }
+
   sumValuesWithLodash(list: { value: number }[]): number {
     return _.sumBy(list, function (day) {
       return day.value;

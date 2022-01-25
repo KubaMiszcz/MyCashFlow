@@ -26,7 +26,7 @@ export class Event implements IEvent {
   value: number;
 }
 
-export const EVENT_LIST: IEvent[] = [
+export const ALL_EVENTS_LIST: IEvent[] = [
   // { name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
   { id: -1, name: "Wypłata", description: "Z roboty, co miesiac, jak to wyplata", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },
   { id: -2, name: "Wydatki domowe", description: "Zwykle drobne wydatki domowe, jedzonko, bulki, serek, zimjoki...", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },

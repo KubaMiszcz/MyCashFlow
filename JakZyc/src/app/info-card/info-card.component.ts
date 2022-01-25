@@ -1,4 +1,4 @@
-import { IEvent, Event, EVENT_LIST } from './../models/event.model';
+import { IEvent, Event, ALL_EVENTS_LIST } from './../models/event.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GameService } from '../services/game.service';
@@ -20,7 +20,7 @@ export class InfoCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameService.showInfoCardE$.subscribe(value => {
-      this.eventInfo = EVENT_LIST.find(e => e.id === value.relatedEventId)!;// ?? new Event();;
+      this.eventInfo = ALL_EVENTS_LIST.find(e => e.id === value.relatedEventId)!;// ?? new Event();;
       this.showModal();
     })
   }

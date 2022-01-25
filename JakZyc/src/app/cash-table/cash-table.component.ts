@@ -1,4 +1,4 @@
-import { EVENT_LIST, IEvent, Event } from './../models/event.model';
+import { ALL_EVENTS_LIST, IEvent, Event } from './../models/event.model';
 import { IIncome } from './../models/income.model';
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';

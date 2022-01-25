@@ -1,8 +1,8 @@
 import { IIncome } from './../models/income.model';
-import { EVENT_TYPES, IEventType } from './../models/event-type.model';
+import { EVENT_TYPES_LIST, IEventType } from './../models/event-type.model';
 import { IPlayer } from './../models/player.model';
 import { GameService } from './../services/game.service';
-import { IEvent, EVENT_LIST } from './../models/event.model';
+import { IEvent, ALL_EVENTS_LIST } from './../models/event.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +24,7 @@ export class GameBoardComponent implements OnInit {
   constructor(
     private gameService: GameService,
   ) {
-    this.eventTypes = EVENT_TYPES;
+    this.eventTypes = EVENT_TYPES_LIST;
   }
 
   ngOnInit(): void {

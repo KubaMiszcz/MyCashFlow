@@ -1,22 +1,14 @@
 # JakZycs
 
-translations
+translations service? pipe? i18n?
 jobchange-specialevent
 
-top100
-top100score model
+top100 api and handle
 
-nowe elementy flaga New isNewlAdded
-age jako custom format daty
 splacanie kredytow reczne
 kupoec=? event?
-wplata co 4 tyg
-biezaca data
 wywal rejctable? a deal jako IDeal i default rejectable
-infoCard po najechaniu modal z info
-dodaj id i powiaz do infocard
-pierwsza strona wybor imeinia celu czasu
-cel
+cel jako progerss bar w butonie navbarze nextweek
 
 
 

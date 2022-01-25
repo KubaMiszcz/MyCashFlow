@@ -4,14 +4,14 @@
     <span> {{player.age.year}} lat, {{player.job.name}}</span>
   </h5>
 
-  <div class="card-body p-2 mx-0">
+  <div class="card-body p-3 mx-0">
     <div class="row m-0 p-0">
 
       <div class="col m-0 p-0">
 
         <div class="row m-0 p-0">
 
-          <div class="col-5 m-0 p-0 mr-2">
+          <div class="col-5 m-0 p-0 mr-3">
             <div class="card">
               <img src="http://placekitten.com/200/300" class="card-img-top" style="height: 9em;" alt="http://placekitten.com/200/300">
             </div>
@@ -39,7 +39,7 @@
                 <div
                      class="input-group-text col-7 text-bold justify-content-between px-1" id="basic-addon3"
                      [ngClass]="{
-                    'text-red' : player.totalCash < 0, 
+                    'text-red' : player.totalCash < 0,
                     'text-green' : player.totalCash > 0
                 }">
                   <span *ngIf="isBalanceNegative">
@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <div class="col m-0 p-0 mt-2">
+    <div class="col m-0 p-0 mt-4">
       <div class="text-bold input-group input-group-md mb-1 d-flex">
         <div class="text-bold input-group-text text-align-left"
              [ngClass]="{'text-red': (totalIncomes - totalExpenses) < 0}"
@@ -81,9 +81,9 @@
         </div>
         <div type="text" class=" text-bold form-control px-1"
              [ngClass]="{
-            'background-red' : isBalanceNegative, 
+            'background-red' : isBalanceNegative,
             'background-green' : !isBalanceNegative,
-            'text-red' : isBalanceNegative, 
+            'text-red' : isBalanceNegative,
             'text-green' : !isBalanceNegative
         }"
              id="basic-url" aria-describedby="basic-addon3"
@@ -95,7 +95,6 @@
             </span>
             <span *ngIf="!isBalanceNegative">
               <i class="fa fa-check-circle" aria-hidden="true"></i>
-              <!-- {{totalIncomes}}|{{totalExpenses}} -->
             </span>
 
             <span class="paax-1">

@@ -7,12 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./info-card.component.scss']
 })
 export class InfoCardComponent implements OnInit {
-  @Input() event: IEvent = new Event();
+  @Input() eventInfo: IEvent = new Event();
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.event);
+    console.log(this.eventInfo);
   }
 
 }

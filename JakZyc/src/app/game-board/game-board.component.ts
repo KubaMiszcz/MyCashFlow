@@ -1,9 +1,10 @@
 import { EVENT_TYPES, IEventType } from './../models/event-type.model';
 import { IPlayer } from './../models/player.model';
 import { GameService } from './../services/game.service';
-import { IEvent } from './../models/event.model';
-import { Component, OnInit } from '@angular/core';
+import { IEvent, EVENT_LIST } from './../models/event.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-game-board',
@@ -19,9 +20,12 @@ export class GameBoardComponent implements OnInit {
   totalExpenses = 0;
   totalAssets = 0;
 
+  // @ViewChild('content') content: any;
+
+
   constructor(
     private gameService: GameService,
-    private router: Router
+    private modalService: NgbModal,
   ) {
     this.eventTypes = EVENT_TYPES;
   }
@@ -32,11 +36,33 @@ export class GameBoardComponent implements OnInit {
     this.gameService.totalIncomes$.subscribe(e => this.totalIncomes = e);
     this.gameService.totalExpenses$.subscribe(e => this.totalExpenses = e);
     this.gameService.totalAssets$.subscribe(e => this.totalAssets = e);
-
-    // if (this.player?.name?.length < 1) {
-    // this.gameService.createNewPlayer();
-    // this.router.navigate(['/player-info']);
-    // }
   }
+
+
+
+
+
+
+  closeResult: string;
+
+
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
 
 }

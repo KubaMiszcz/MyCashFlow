@@ -1,10 +1,13 @@
-<div *ngIf="event?.name" class="modal-dialog">
-<!-- <div class="modal-dialog"> -->
+<!-- <div *ngIf="eventInfo?.id" class="modal-dialog"> -->
+<div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">{{event?.type}}</h5>
+      <h5 class="modal-title" id="exampleModalLabel">{{eventInfo?.type}}</h5>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
+
+
+
     <div class="modal-body">
 
       <div class="row m-0 p-0">
@@ -13,9 +16,9 @@
         </div>
 
         <div class="col m-0 p-0">
-          <h5>{{event?.name}}</h5>
-          <p>{{event?.description}}</p>
-          <p>{{event?.value  | plnPipe}}</p>
+          <h5>{{eventInfo?.name}}</h5>
+          <p>{{eventInfo?.description}}</p>
+          <p>{{eventInfo?.value  | plnPipe}}</p>
         </div>
       </div>
 

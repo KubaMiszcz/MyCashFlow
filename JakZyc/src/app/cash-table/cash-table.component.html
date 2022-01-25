@@ -14,15 +14,17 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of list" (click)="selectItem(item)">
-          <td class="col-8 py-0 px-1">
-            <div class="row d-flex justify-content-between;">
+          <td class="col-8 py-0 px-1"
+          (click)="open(mymodal, item.relatedEventId)"
+          >
+          <!-- data-bs-toggle="modal" 
+          data-bs-target="#infoCardModal" -->
+            <div class="row d-flex justify-content-between"
+            >
               <span class="col">{{item.name}}</span>
               <span class="col-auto mr-auto"></span>
               <span *ngIf="item.isNew" class="col-2 badge rounded-pill bg-primary m-auto">Nowe</span>
-              <span class="col-1 mr-2 p-0"
-              data-bs-toggle="modal"
-              data-bs-target="#infoCardModal"
-              >
+              <span class="col-1 mr-2 p-0">
                 <i class="fa fa-question-circle" aria-hidden="true"></i>
               </span>
             </div>
@@ -35,9 +37,34 @@
 </div>
 
 
+<!-- <div class="modal fade" id="infoCardModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <app-info-card [eventInfo]="relatedEvent"></app-info-card>
+</div> -->
 
-<div class="modal fade" id="infoCardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <app-info-card [event]="relatedEvent"></app-info-card>
-</div>
 
+
+
+
+
+
+
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal, 0)">Open My Modal</button>
+   
+<ng-template #mymodal let-modal>
+  <app-info-card [eventInfo]="relatedEvent"></app-info-card>
+
+  <!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is example from ItSolutionStuff.com
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+  </div> -->
+</ng-template>
 

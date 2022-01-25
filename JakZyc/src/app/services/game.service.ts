@@ -2,7 +2,7 @@ import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
 import { GAME_GOALS_LIST } from './../models/goal.model';
 import { HelperService } from './helper.service';
 import { IIncome } from './../models/income.model';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
 import { IEvent, Event, EVENT_LIST } from './../models/event.model';
@@ -61,6 +61,8 @@ export class GameService {
     }
 
     currentEvent = this.drawEvent();
+    console.log(currentEvent);
+
     this.currentEvent$.next(currentEvent);
 
     this.updateAndPublishTotalAmounts(player);
@@ -185,7 +187,8 @@ export class GameService {
   }
 
   drawEvent(): IEvent {
-    return this.eventList.filter(e => e.id > 0)?.[_.random(this.eventList.length - 1)];
+    const list = this.eventList.filter(e => e.id > 0);
+    return list?.[_.random(list.length - 1)];
   }
 
   hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {

@@ -27,6 +27,7 @@ export class NavBarComponent implements OnInit {
       this.currentDate = { ...p.age };
       this.currentDate.year += this.gameService.dateYearInterval;
     });
+
   }
 
   nextTurn(value: boolean) {

@@ -2,6 +2,9 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+html,body{
+  height: 100%;
+}
 
 .modal-header,
 .card-header {
@@ -11,24 +14,37 @@
   justify-content: flex-start;
 }
 
-.modal-header,
-.modal-footer {
-  height: 3em;
+.modal-header{
+  height: 2em;
+  padding: 0.5em;
+  border-radius: 8px 8px 0 0;
 }
 
 .modal-footer {
   padding: 0em;
+  border-radius: 0 0 8px 8px;
 }
+
+
 
 .card-header {
   height: 2em;
   padding: 0.5em;
+  border-bottom: 1px solid #007bfb;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-footer {
+  border-radius: 0 0 8px 8px;
+}
+
+.card, .modal-dialog {
+  border: 2px solid #007bfb;
+  border-radius: 10px;
+  filter: drop-shadow(2px 4px 6px black);
 }
 
 
-.card {
-  border-color: #007bfb;
-}
 
 .text-bold {
   font-weight: bold;

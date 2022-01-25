@@ -7,20 +7,25 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    border-radius: 8px 8px 0 0;
   }
-}
 
-.label {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  padding-top: 1em;
-  color: #212529;
-}
+  .label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    padding-top: 1em;
+    color: #212529;
+  }
 
-.indicator-red {
-  color: red;
+  .indicator-red {
+    color: red;
+  }
+
+  img {
+    border-radius: 8px;
+  }
 }

@@ -1,13 +1,13 @@
 <div class="card">
-  <div class="card-body pt-2">
+  <div class="card-body pt-3">
 
     <div class="row">
 
-      <div class="col-3 m-0 p-0 pr-2">
+      <div class="col-3 m-0 p-0 pl-3 pr-3">
         <app-player-card [player]="player"></app-player-card>
       </div>
 
-      <div class="col-3 m-0 p-0 pr-2">
+      <div class="col-3 m-0 p-0 pr-3">
         <app-cash-table
                         [title]="'Razem Wydatki'"
                         [list]="player.expenses"
@@ -15,7 +15,7 @@
                         (rowClick)="onIncomeClick($event)"></app-cash-table>
       </div>
 
-      <div class="col-3 m-0 p-0 pr-2">
+      <div class="col-3 m-0 p-0 pr-3">
         <app-cash-table
                         [title]="'Razem Przychody'"
                         [list]="player.incomes"
@@ -23,7 +23,7 @@
                         (rowClick)="onIncomeClick($event)"></app-cash-table>
       </div>
 
-      <div class="col-3 m-0 p-0 pr-2">
+      <div class="col-3 m-0 p-0 pr-3">
         <app-cash-table
                         [title]="'Majatek'"
                         [list]="player.assets"

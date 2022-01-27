@@ -5,10 +5,3 @@ export enum EventTypeEnum {
   Purchase = "Zakupki",
   SpecialEvent = "SpecialEvent",
 }
-
-// export const EVENT_TYPES_NAMES: string[] = [
-//   "Maly Hajs",
-//   "Duzy Hajs",
-//   "Zdarzenie",
-//   "Zakupki",
-// ]

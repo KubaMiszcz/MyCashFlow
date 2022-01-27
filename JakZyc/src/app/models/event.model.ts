@@ -9,8 +9,8 @@ export interface IEvent {
   monthlyProfit?: number;
   type?: EventTypeEnum
   image?: string;
-  rejectable?: boolean;
-  percentable?: boolean;
+  isRejectable?: boolean;
+  isValuePercentable?: boolean;
 }
 
 
@@ -20,37 +20,37 @@ export class Event implements IEvent {
   monthlyProfit?: number | undefined;
   type?: EventTypeEnum | undefined;
   image?: string | undefined;
-  rejectable?: boolean | undefined;
-  percentable?: boolean | undefined;
+  isRejectable?: boolean | undefined;
+  isValuePercentable?: boolean | undefined;
   name: string;
   value: number;
 }
 
-export const EVENT_LIST: IEvent[] = [
+export const ALL_EVENTS_LIST: IEvent[] = [
   // { name: 'Wydatki domowe', value: (-1 * player.job.salary * this.personalExpensesRate) });
   { id: -1, name: "Wypłata", description: "Z roboty, co miesiac, jak to wyplata", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },
   { id: -2, name: "Wydatki domowe", description: "Zwykle drobne wydatki domowe, jedzonko, bulki, serek, zimjoki...", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },
 
 
   //big deals
-  { id: 1, name: "dzialkaRODOS", description: "dzialkaRODOS", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: 1000, rejectable: true, },
-  { id: 2, name: "dzialkaRODOS", description: "dzialkaRODOS", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: -1000, rejectable: true, },
-  { id: 3, name: "kawalerka", description: "kawalerka", type: EventTypeEnum.BigDeal, value: 150000, monthlyProfit: 1500, rejectable: true, },
-  { id: 4, name: "mieszkanie2pok", description: "mieszkanie2pok", type: EventTypeEnum.BigDeal, value: 225000, monthlyProfit: 2250, rejectable: true, },
-  { id: 5, name: "mieszkanie4pok", description: "mieszkanie4pok", type: EventTypeEnum.BigDeal, value: 300000, monthlyProfit: 3000, rejectable: true, },
-  { id: 6, name: "dzialka grunt", description: "dzialka grunt", type: EventTypeEnum.BigDeal, value: 100000, monthlyProfit: -100, rejectable: true, },
-  { id: 7, name: "domek letni", description: "domek letni", type: EventTypeEnum.BigDeal, value: 50000, monthlyProfit: -300, rejectable: true, },
-  { id: 8, name: "domek letni", description: "domek letni", type: EventTypeEnum.BigDeal, value: 50000, monthlyProfit: 300, rejectable: true, },
-  { id: 9, name: "maly dom", description: "maly dom", type: EventTypeEnum.BigDeal, value: 300000, monthlyProfit: 1500, rejectable: true, },
-  { id: 10, name: "sredni dom", description: "sredni dom", type: EventTypeEnum.BigDeal, value: 500000, monthlyProfit: 2500, rejectable: true, },
-  { id: 11, name: "duzy dom", description: "duzy dom", type: EventTypeEnum.BigDeal, value: 1000000, monthlyProfit: 10000, rejectable: true, },
-  { id: 12, name: "auto1", description: "auto1", type: EventTypeEnum.BigDeal, value: 5000, monthlyProfit: -500, rejectable: true, },
-  { id: 13, name: "auto2", description: "auto2", type: EventTypeEnum.BigDeal, value: 15000, monthlyProfit: -1500, rejectable: true, },
-  { id: 14, name: "auto3", description: "auto3", type: EventTypeEnum.BigDeal, value: 30000, monthlyProfit: -3000, rejectable: true, },
-  { id: 15, name: "garaz duzy", description: "garaz duzy", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: -500, rejectable: true, },
-  { id: 16, name: "garaz maly", description: "garaz maly", type: EventTypeEnum.BigDeal, value: 25000, monthlyProfit: -1250, rejectable: true, },
-  { id: 17, name: "garaz duzy", description: "garaz duzy", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: 500, rejectable: true, },
-  { id: 18, name: "garaz maly", description: "garaz maly", type: EventTypeEnum.BigDeal, value: 25000, monthlyProfit: 1250, rejectable: true, },
+  { id: 1, name: "dzialkaRODOS", description: "dzialkaRODOS", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: 1000, isRejectable: true, },
+  { id: 2, name: "dzialkaRODOS", description: "dzialkaRODOS", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: -1000, isRejectable: true, },
+  { id: 3, name: "kawalerka", description: "kawalerka", type: EventTypeEnum.BigDeal, value: 150000, monthlyProfit: 1500, isRejectable: true, },
+  { id: 4, name: "mieszkanie2pok", description: "mieszkanie2pok", type: EventTypeEnum.BigDeal, value: 225000, monthlyProfit: 2250, isRejectable: true, },
+  { id: 5, name: "mieszkanie4pok", description: "mieszkanie4pok", type: EventTypeEnum.BigDeal, value: 300000, monthlyProfit: 3000, isRejectable: true, },
+  { id: 6, name: "dzialka grunt", description: "dzialka grunt", type: EventTypeEnum.BigDeal, value: 100000, monthlyProfit: -100, isRejectable: true, },
+  { id: 7, name: "domek letni", description: "domek letni", type: EventTypeEnum.BigDeal, value: 50000, monthlyProfit: -300, isRejectable: true, },
+  { id: 8, name: "domek letni", description: "domek letni", type: EventTypeEnum.BigDeal, value: 50000, monthlyProfit: 300, isRejectable: true, },
+  { id: 9, name: "maly dom", description: "maly dom", type: EventTypeEnum.BigDeal, value: 300000, monthlyProfit: 1500, isRejectable: true, },
+  { id: 10, name: "sredni dom", description: "sredni dom", type: EventTypeEnum.BigDeal, value: 500000, monthlyProfit: 2500, isRejectable: true, },
+  { id: 11, name: "duzy dom", description: "duzy dom", type: EventTypeEnum.BigDeal, value: 1000000, monthlyProfit: 10000, isRejectable: true, },
+  { id: 12, name: "auto1", description: "auto1", type: EventTypeEnum.BigDeal, value: 5000, monthlyProfit: -500, isRejectable: true, },
+  { id: 13, name: "auto2", description: "auto2", type: EventTypeEnum.BigDeal, value: 15000, monthlyProfit: -1500, isRejectable: true, },
+  { id: 14, name: "auto3", description: "auto3", type: EventTypeEnum.BigDeal, value: 30000, monthlyProfit: -3000, isRejectable: true, },
+  { id: 15, name: "garaz duzy", description: "garaz duzy", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: -500, isRejectable: true, },
+  { id: 16, name: "garaz maly", description: "garaz maly", type: EventTypeEnum.BigDeal, value: 25000, monthlyProfit: -1250, isRejectable: true, },
+  { id: 17, name: "garaz duzy", description: "garaz duzy", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: 500, isRejectable: true, },
+  { id: 18, name: "garaz maly", description: "garaz maly", type: EventTypeEnum.BigDeal, value: 25000, monthlyProfit: 1250, isRejectable: true, },
   // { name: 'pozyczka duza komus 1', description: 'pozyczka duza komus 1', type: EventType.BigDeal, value: 10000, rejectable:true},
   // { name: 'pozyczka duza komus 2', description: 'pozyczka duza komus 2', type: EventType.BigDeal, value: 20000, rejectable:true},
   // { name: 'pozyczka duza komus 3', description: 'pozyczka duza komus 3', type: EventType.BigDeal, value: 50000, rejectable:true},
@@ -113,13 +113,13 @@ export const EVENT_LIST: IEvent[] = [
   { id: 66, name: "gra3", description: "gra3", type: EventTypeEnum.Purchase, value: 150, },
 
   //small deals
-  { id: 67, name: "szkolenie1", description: "szkolenie1", type: EventTypeEnum.SmallDeal, value: 100, rejectable: true, },
-  { id: 68, name: "szkolenie2", description: "szkolenie2", type: EventTypeEnum.SmallDeal, value: 500, rejectable: true, },
-  { id: 69, name: "szkolenie3", description: "szkolenie3", type: EventTypeEnum.SmallDeal, value: 1000, rejectable: true, },
-  { id: 70, name: "kolekcja monet", description: "kolekcja monet", type: EventTypeEnum.SmallDeal, value: 5000, rejectable: true, },
-  { id: 71, name: "obraz1", description: "obraz1", type: EventTypeEnum.SmallDeal, value: 1000, rejectable: true, },
-  { id: 72, name: "obraz2", description: "obraz2", type: EventTypeEnum.SmallDeal, value: 2000, rejectable: true, },
-  { id: 73, name: "obraz3", description: "obraz3", type: EventTypeEnum.SmallDeal, value: 5000, rejectable: true, },
+  { id: 67, name: "szkolenie1", description: "szkolenie1", type: EventTypeEnum.SmallDeal, value: 100, isRejectable: true, },
+  { id: 68, name: "szkolenie2", description: "szkolenie2", type: EventTypeEnum.SmallDeal, value: 500, isRejectable: true, },
+  { id: 69, name: "szkolenie3", description: "szkolenie3", type: EventTypeEnum.SmallDeal, value: 1000, isRejectable: true, },
+  { id: 70, name: "kolekcja monet", description: "kolekcja monet", type: EventTypeEnum.SmallDeal, value: 5000, isRejectable: true, },
+  { id: 71, name: "obraz1", description: "obraz1", type: EventTypeEnum.SmallDeal, value: 1000, isRejectable: true, },
+  { id: 72, name: "obraz2", description: "obraz2", type: EventTypeEnum.SmallDeal, value: 2000, isRejectable: true, },
+  { id: 73, name: "obraz3", description: "obraz3", type: EventTypeEnum.SmallDeal, value: 5000, isRejectable: true, },
 
   // { name: 'pozyczka mala komus 1', description: 'pozyczka mala komus 1', type: EventType.SmallDeal, value: 100, rejectable:true},
   // { name: 'pozyczka mala komus 2', description: 'pozyczka mala komus 2', type: EventType.SmallDeal, value: 500, rejectable:true},

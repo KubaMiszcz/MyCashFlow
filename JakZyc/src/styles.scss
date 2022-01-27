@@ -3,32 +3,59 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-.modal-header,
-.card-header {
-  background-color: #bedeff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+html,
+body {
+  height: 100%;
 }
 
-.modal-header,
-.modal-footer {
-  height: 3em;
+.modal-dialog {
+  border: 2px solid #007bfb;
+  border-radius: 10px;
+  filter: drop-shadow(2px 4px 6px black);
+
+  .modal-content {
+    border-radius: 8px;
+
+    .modal-header {
+      background-color: #bedeff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 2em;
+      padding: 0.5em;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .modal-footer {
+      padding: 0em;
+      border-radius: 0 0 8px 8px;
+    }
+  }
 }
 
-.modal-footer {
-  padding: 0em;
-}
-
-.card-header {
-  height: 2em;
-  padding: 0.5em;
-}
 
 
 .card {
-  border-color: #007bfb;
+  border: 2px solid #007bfb;
+  border-radius: 10px;
+  filter: drop-shadow(2px 4px 6px black);
+
+  .card-header {
+    background-color: #bedeff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 2em;
+    padding: 0.5em;
+    border-bottom: 1px solid #007bfb;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .card-footer {
+    border-radius: 0 0 8px 8px;
+  }
 }
+
 
 .text-bold {
   font-weight: bold;

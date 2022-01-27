@@ -13,11 +13,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of list" (click)="selectItem(item)">
+        <tr *ngFor="let item of list" (click)="onRowClick(item)">
           <td class="col-8 py-0 px-1"
-          (click)="open(mymodal, item.relatedEventId)"
+
           >
-          <!-- data-bs-toggle="modal" 
+          <!-- data-bs-toggle="modal"
           data-bs-target="#infoCardModal" -->
             <div class="row d-flex justify-content-between"
             >
@@ -49,10 +49,10 @@
 
 
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal, 0)">Open My Modal</button>
-   
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal, 0)">Open My Modal</button>
+
 <ng-template #mymodal let-modal>
-  <app-info-card [eventInfo]="relatedEvent"></app-info-card>
+  <app-info-card [eventInfo]="relatedEvent"></app-info-card> -->
 
   <!-- <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
@@ -66,5 +66,5 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
   </div> -->
-</ng-template>
+<!-- </ng-template> -->
 

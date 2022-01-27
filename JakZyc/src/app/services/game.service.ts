@@ -1,14 +1,15 @@
-import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
+import { EventType, EVENT_TYPES_LIST, IEventType } from './../models/event-type.model';
 import { GAME_GOALS_LIST } from './../models/goal.model';
 import { HelperService } from './helper.service';
 import { IIncome } from './../models/income.model';
 import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
-import { IEvent, Event, EVENT_LIST } from './../models/event.model';
+import { IEvent, Event, ALL_EVENTS_LIST } from './../models/event.model';
 import { EventTypeEnum } from '../models/event-type.enum';
 import { JOBS_LIST } from '../models/job.model';
-import _ from 'lodash';
+import _, { max } from 'lodash';
+import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
 
 
 @Injectable({
@@ -21,8 +22,9 @@ export class GameService {
   totalIncomes$ = new BehaviorSubject<number>(0);
   totalExpenses$ = new BehaviorSubject<number>(0);
   totalAssets$ = new BehaviorSubject<number>(0);
+  showInfoCardE$ = new EventEmitter<IIncome>();
 
-  eventList = EVENT_LIST;
+  eventList = ALL_EVENTS_LIST;
 
   loanInterestRate = 0.1;
   personalExpensesRate = 0.5;
@@ -37,6 +39,7 @@ export class GameService {
     private helperService: HelperService,
   ) {
     this.createNewPlayer();
+    this.eventList = ALL_EVENTS_LIST.filter(e => e.id > 0);
     this.updateAndPublishTotalAmounts(this.player$.value);
 
     this.dateYearInterval = new Date().getFullYear() - this.player$.value.age.year;
@@ -187,8 +190,27 @@ export class GameService {
   }
 
   drawEvent(): IEvent {
-    const list = this.eventList.filter(e => e.id > 0);
+    const list = this.eventList.filter(e=>e.type===this.drawEventType().type);
     return list?.[_.random(list.length - 1)];
+  }
+
+  drawEventType(): IEventType {
+    let probabilitySum = this.helperService.sumProperties(EVENT_TYPES_LIST, 'probabilityRate');
+    let typeHit = _.random(0.001, probabilitySum - 1);
+
+    let drawedType = new EventType();
+    let low=0;
+    let high = 0;
+
+    EVENT_TYPES_LIST.forEach(t=>{
+      high = low + t.probabilityRate;
+      if (typeHit > low && typeHit <= high) {
+        drawedType = t;
+      }
+      low = high;
+    })
+
+    return drawedType;
   }
 
   hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {
@@ -219,7 +241,7 @@ export class GameService {
 
   addInitialIncomes(player: IPlayer) {
     const salaryId = -1;
-    const event = EVENT_LIST.find(e => e.id === salaryId) ?? new Event();
+    const event = ALL_EVENTS_LIST.find(e => e.id === salaryId) ?? new Event();
     event.value = player.job.salary;
     event.monthlyProfit = event.value;
 
@@ -229,7 +251,7 @@ export class GameService {
 
   addInitialExpenses(player: IPlayer) {
     const smallOrdinaryMonthlyExpensesId = -2;
-    const event = EVENT_LIST.find(e => e.id === smallOrdinaryMonthlyExpensesId) ?? new Event();
+    const event = ALL_EVENTS_LIST.find(e => e.id === smallOrdinaryMonthlyExpensesId) ?? new Event();
     event.value = -1 * player.job.salary * 0.5;
     event.monthlyProfit = event.value;
 

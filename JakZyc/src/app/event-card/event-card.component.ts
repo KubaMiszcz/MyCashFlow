@@ -18,11 +18,11 @@ export class EventCardComponent implements OnInit {
   }
 
   rejectEvent() {
-    this.gameService.nextTurn(false);
+    // this.gameService.nextTurn(false);
   }
 
   acceptEvent() {
-    this.gameService.nextTurn(true);
+    // this.gameService.nextTurn(true);
   }
 
 }

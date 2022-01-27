@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EVENT_TYPES, IEventType } from './../models/event-type.model';
+import { EVENT_TYPES_LIST, IEventType } from './../models/event-type.model';
 
 @Component({
   selector: 'app-next-turn-modal',
@@ -11,7 +11,7 @@ export class NextTurnModalComponent implements OnInit {
 
 
   constructor() {
-    this.eventTypes = EVENT_TYPES;
+    this.eventTypes = EVENT_TYPES_LIST;
   }
 
   ngOnInit(): void {

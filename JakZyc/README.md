@@ -10,6 +10,10 @@ kupoec=? event?
 wywal rejctable? a deal jako IDeal i default rejectable
 cel jako progerss bar w butonie navbarze nextweek
 
+infocard - odsun description i wartosc na prawo tak jka w eventcard
+dokoncz przeliczanie tury
+ukryj przycisk pry nowy tydzien tworzeniu gracza
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.

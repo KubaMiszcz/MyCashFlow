@@ -4,11 +4,11 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GameService } from '../services/game.service';
 
 @Component({
-  selector: 'app-info-card',
-  templateUrl: './info-card.component.html',
-  styleUrls: ['./info-card.component.scss']
+  selector: 'app-info-card-modal',
+  templateUrl: './info-card-modal.component.html',
+  styleUrls: ['./info-card-modal.component.scss']
 })
-export class InfoCardComponent implements OnInit {
+export class InfoCardModalComponent implements OnInit {
   eventInfo: IEvent = new Event();
 
   @ViewChild('infoCardModal') infoCardModal: any;

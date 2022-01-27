@@ -30,8 +30,9 @@ export class NavBarComponent implements OnInit {
 
   }
 
-  nextTurn(value: boolean) {
-    this.gameService.nextTurn(value);
+  nextTurn() {
+    this.gameService.showNextTurnModalE$.emit(true);
+    // this.gameService.nextTurn(value);
   }
 
 }

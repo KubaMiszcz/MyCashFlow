@@ -23,6 +23,7 @@ export class GameService {
   totalExpenses$ = new BehaviorSubject<number>(0);
   totalAssets$ = new BehaviorSubject<number>(0);
   showInfoCardE$ = new EventEmitter<IIncome>();
+  showNextTurnModalE$ = new EventEmitter<boolean>();
 
   eventList = ALL_EVENTS_LIST;
 
@@ -47,7 +48,17 @@ export class GameService {
     this.currentEvent$.next(this.drawEvent());
   }
 
-  nextTurn(isEventAccepted: boolean) {
+  nextTurn() {
+
+
+
+  }
+
+
+
+
+
+  nextTurn2(isEventAccepted: boolean) {
     const player = this.player$.value;
     this.cleanIsNewStatus(player);
 
@@ -190,7 +201,7 @@ export class GameService {
   }
 
   drawEvent(): IEvent {
-    const list = this.eventList.filter(e=>e.type===this.drawEventType().type);
+    const list = this.eventList.filter(e => e.type === this.drawEventType().type);
     return list?.[_.random(list.length - 1)];
   }
 
@@ -199,10 +210,10 @@ export class GameService {
     let typeHit = _.random(0.001, probabilitySum - 1);
 
     let drawedType = new EventType();
-    let low=0;
+    let low = 0;
     let high = 0;
 
-    EVENT_TYPES_LIST.forEach(t=>{
+    EVENT_TYPES_LIST.forEach(t => {
       high = low + t.probabilityRate;
       if (typeHit > low && typeHit <= high) {
         drawedType = t;

@@ -1,4 +1,4 @@
-# JakZycs
+# JakZyc
 
 translations
 jobchange-specialevent

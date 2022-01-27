@@ -8,7 +8,7 @@ import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
 import { IEvent, Event, ALL_EVENTS_LIST } from './../models/event.model';
 import { EventTypeEnum } from '../models/event-type.enum';
 import { JOBS_LIST } from '../models/job.model';
-import _, { max } from 'lodash';
+import _ from 'lodash';
 import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
 
 
@@ -23,7 +23,7 @@ export class GameService {
   totalExpenses$ = new BehaviorSubject<number>(0);
   totalAssets$ = new BehaviorSubject<number>(0);
   showInfoCardE$ = new EventEmitter<IIncome>();
-  showNextTurnModalE$ = new EventEmitter<boolean>();
+  showNextTurnModalE$ = new EventEmitter<IEvent>();
 
   eventList = ALL_EVENTS_LIST;
 
@@ -49,9 +49,10 @@ export class GameService {
   }
 
   nextTurn() {
-
-
-
+    let event = this.drawEvent();
+    this.showNextTurnModalE$.emit(event);
+    event.name += 'xxxxxxxxxxx';
+    this.currentEvent$.next(event);
   }
 
 

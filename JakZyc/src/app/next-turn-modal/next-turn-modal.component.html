@@ -1,67 +1,43 @@
-<!-- <div class="modal-dialog  modal-lg modal-dialog-centered">
+<ng-template #infoCardModal let-modal>
   <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body py-2">
-
-      <div class="row events">
-
-        <div *ngFor="let item of eventTypes" class="event card col">
-          <div class="card-body">
-            {{item.name}}
-          </div>
-        </div>
-
-        <div class="event card col">
-          <div class="card-body">
-            wyplata
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div> -->
-
-
-
-  <ng-template #infoCardModal let-modal>
 
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">{{'eventInfo?.type'}}</h4>
+      <h4 class="modal-title" id="modal-basic-title">Nowy Tydzien</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.close('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-  
-    <div class="modal-body">
-  
-  
-      <div class="row m-0 p-0">
-        <div class="card col-3 m-0 p-0 mr-2">
-          <img src="http://placekitten.com/200/300" class="card-img-top" style="height: 9em;" alt="http://placekitten.com/200/300">
-        </div>
-  
-        <div class="col m-0 p-0">
-          <h5>{{'eventInfo?.name'}}</h5>
-          <p>{{'eventInfo?.description'}}</p>
-          <p>{{'eventInfo?.value | plnPipe'}}</p>
+
+    <div class="modal-body py-2">
+
+      <div class="row m-0 mt-3 mb-4 p-0 events">
+        <div *ngFor="let item of eventTypes" class="event-type-tile card col"
+             [ngClass]="{ 'active-tile' : item.name === activeTypeName } ">
+          <div class="card-body">
+            {{item.name}}
+          </div>
         </div>
       </div>
-  
-  
+
+      <div class="col">
+        <div *ngIf="currentEvent" class="card-body m-0 p-0" [ngClass]="{ 'blur-event-card' : !eventPickingFinished} ">
+          <app-event-card [event]="currentEvent"></app-event-card>
+        </div>
+      </div>
+
+
+
+
+      <div class="modal-footer">
+        <button type="button" name="" id="" data-bs-dismiss="modal"
+                class="col-4 btn btn-outline-success btn-md btn-blxock"
+                (click)="modal.close('OK')">
+          OK
+        </button>
+      </div>
+
     </div>
-  
-  
-    <div class="modal-footer">
-      <button type="button" name="" id="" data-bs-dismiss="modal"
-              class="col-4 btn btn-outline-success btn-md btn-blxock"
-              (click)="modal.close('OK')">
-        OK
-      </button>
-    </div>
-  
-  </ng-template>
-  
+
+
+  </div>
+</ng-template>

@@ -1,4 +1,4 @@
-import { IEvent, Event, ALL_EVENTS_LIST } from './../models/event.model';
+import { IEvent, Event, ALL_EVENTS_LIST } from '../models/event.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GameService } from '../services/game.service';
@@ -27,5 +27,5 @@ export class InfoCardComponent implements OnInit {
 
   showModal() {
     this.modalService.open(this.infoCardModal, { ariaLabelledBy: 'modal-basic-title' });
-    }
+  }
 }

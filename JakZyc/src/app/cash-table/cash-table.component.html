@@ -14,11 +14,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of list" (click)="onRowClick(item)">
-          <td class="col-8 py-0 px-1"
-
-          >
-          <!-- data-bs-toggle="modal"
-          data-bs-target="#infoCardModal" -->
+          <td class="col-8 py-0 px-1">
             <div class="row d-flex justify-content-between"
             >
               <span class="col">{{item.name}}</span>
@@ -35,36 +31,3 @@
     </table>
   </div>
 </div>
-
-
-<!-- <div class="modal fade" id="infoCardModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <app-info-card [eventInfo]="relatedEvent"></app-info-card>
-</div> -->
-
-
-
-
-
-
-
-
-
-<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal, 0)">Open My Modal</button>
-
-<ng-template #mymodal let-modal>
-  <app-info-card [eventInfo]="relatedEvent"></app-info-card> -->
-
-  <!-- <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">×</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    This is example from ItSolutionStuff.com
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
-  </div> -->
-<!-- </ng-template> -->
-

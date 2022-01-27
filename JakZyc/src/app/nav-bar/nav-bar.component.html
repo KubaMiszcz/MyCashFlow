@@ -34,33 +34,14 @@
           <div class="nav-item">
             <button type="button" name="" id=""
                     class="btn btn-light btn-outline-dark btn-mdd btn-block msb-4 next-turn-btn"
-                    (click)="nextTurn(true)"><span style="font-size: 2em;">Nastepny tydzien</span>
+                    (click)="nextTurn()"><span style="font-size: 2em;">Nastepny tydzien</span>
             </button>
-            <!-- data-bs-toggle="modal"
-            data-bs-target="#nextTurnModal" -->
           </div>
 
         </div>
 
         <div class="col-3">
           <div class="row nav-items d-flex justify-content-end">
-
-
-            <!-- <div class="nav-item col-4 p-1 center ">
-              <a class="nav-link d-flex active center" aria-current="page" [routerLink]="['/game']"><span class="navbar-item">Gra</span></a>
-            </div> -->
-
-            <!-- <div class="nav-item col-4 p-1 center">
-              <a class="nav-link d-flex center" aria-current="page" [routerLink]="['/player-info']">
-                <span class="navbar-item">Dane Gracza</span>
-              </a>
-            </div>
-
-            <div class="nav-item col-4 p-1 center  ">
-              <span class="navbar-item">Date: </span>
-              <span class="navbar-item">{{currentDate.year}} {{monthsList[currentDate.month]}} {{currentDate.day}}</span>
-            </div> -->
-
 
             <div class="nav-item col-4 p-1 center ">
               <a class="nav-link d-flex center" [routerLink]="['/top-100']" aria-current="page">
@@ -70,7 +51,6 @@
 
           </div>
         </div>
-
 
 
 
@@ -85,10 +65,12 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="eventCardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="eventCardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <app-event-card [event]="currentEvent"></app-event-card>
-</div>
+</div> -->
 
-<div class="modal fade" id="nextTurnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="nextTurnModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <app-next-turn-modal></app-next-turn-modal>
-</div>
+</div> -->
+
+<app-next-turn-modal></app-next-turn-modal>

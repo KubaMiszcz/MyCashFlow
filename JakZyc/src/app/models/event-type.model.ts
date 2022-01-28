@@ -1,4 +1,4 @@
-import { EventTypeEnum } from './event-type.enum';
+import { EventTypeEnum } from './constants/event-type.enum';
 
 export interface IEventType {
   name: string;

@@ -1,11 +1,16 @@
 .card {
-  min-height: 16.5em;
-  max-height: 20em;
-  overflow: auto;
+  min-height: 20em;
+  max-height: 35em;
 
   .card-header {
     display: flex;
     justify-content: space-between;
+  }
+
+  .incomes-table {
+    overflow: auto;
+    border-radius: 0 0 8px 8px;
+
   }
 
   th,

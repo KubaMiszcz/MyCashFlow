@@ -1,3 +1,4 @@
+import { DialogResultEnum } from './../models/constants/dialog-result.enum';
 import { EventType, EVENT_TYPES_LIST, IEventType } from './../models/event-type.model';
 import { GAME_GOALS_LIST } from './../models/goal.model';
 import { HelperService } from './helper.service';
@@ -6,7 +7,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
 import { IEvent, Event, ALL_EVENTS_LIST } from './../models/event.model';
-import { EventTypeEnum } from '../models/event-type.enum';
+import { EventTypeEnum } from '../models/constants/event-type.enum';
 import { JOBS_LIST } from '../models/job.model';
 import _ from 'lodash';
 import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
@@ -23,13 +24,12 @@ export class GameService {
   totalExpenses$ = new BehaviorSubject<number>(0);
   totalAssets$ = new BehaviorSubject<number>(0);
   showInfoCardE$ = new EventEmitter<IIncome>();
-  showNextTurnModalE$ = new EventEmitter<IEvent>();
+  showNextTurnModalE$ = new EventEmitter<boolean>();
 
   eventList = ALL_EVENTS_LIST;
 
-  loanInterestRate = 0.1;
-  personalExpensesRate = 0.5;
-
+  private loanInterestRate = 0.1;
+  private personalExpensesRate = 0.5;
   turnDurationInDays = 7;
   paydayIntervalInWeeks = 4;
   dateYearInterval = 0;
@@ -48,20 +48,38 @@ export class GameService {
     this.currentEvent$.next(this.drawEvent());
   }
 
-  nextTurn() {
+  startNewTurn() {
     let event = this.drawEvent();
-    this.showNextTurnModalE$.emit(event);
-    event.name += 'xxxxxxxxxxx';
     this.currentEvent$.next(event);
+    this.showNextTurnModalE$.emit(true);
   }
 
+  finishTurn(result: DialogResultEnum) {
+    const player = this.player$.value;
+    this.cleanIsNewStatuses(player);
 
+    this.increasePlayerAge(player);
+
+    let currentEvent = this.currentEvent$.value;
+    if (result === DialogResultEnum.Accept) {
+      this.handleWithCurrentEvent(player, currentEvent);
+    }
+
+    if (player.age.day === 1) {
+      this.applyPayday(player);
+    }
+
+    this.updateAndPublishTotalAmounts(player);
+    this.player$.next(player);
+
+    this.showNextTurnModalE$.emit(false)
+  }
 
 
 
   nextTurn2(isEventAccepted: boolean) {
     const player = this.player$.value;
-    this.cleanIsNewStatus(player);
+    this.cleanIsNewStatuses(player);
 
     this.increasePlayerAge(player);
 
@@ -100,10 +118,16 @@ export class GameService {
     if (player.age.month > 11) {
       player.age.year += 1;
       player.age.month = 0;
+      this.applyBirthDay(player);
     }
   }
 
-  cleanIsNewStatus(player: IPlayer) {
+  private applyBirthDay(player: IPlayer) {
+    // let event = this.eventList.filter(e=>e.type===EventTypeEnum.SpecialEvent).find(e=>e.name.match)
+    // throw new Error('Method not implemented.');
+  }
+
+  cleanIsNewStatuses(player: IPlayer) {
     player.incomes.forEach(i => i.isNew = false)
     player.expenses.forEach(i => i.isNew = false)
     player.assets.forEach(i => i.isNew = false)
@@ -111,8 +135,12 @@ export class GameService {
 
   handleWithCurrentEvent(player: IPlayer, currentEvent: IEvent) {
     switch (currentEvent.type) {
+      case EventTypeEnum.SmallDeal:
+        this.handleWithDeal(player, currentEvent);
+        break;
+
       case EventTypeEnum.BigDeal:
-        this.handleBigDeal(player, currentEvent);
+        this.handleWithDeal(player, currentEvent);
         break;
 
       case EventTypeEnum.Event:
@@ -128,9 +156,6 @@ export class GameService {
         }
 
         player.assets.push(this.convertEventToNewlyAddedIncome(currentEvent, false));
-        break;
-
-      case EventTypeEnum.SmallDeal:
         break;
 
       case EventTypeEnum.SpecialEvent:
@@ -161,7 +186,7 @@ export class GameService {
     return loan;
   }
 
-  handleBigDeal(player: IPlayer, currentEvent: IEvent) {
+  handleWithDeal(player: IPlayer, currentEvent: IEvent) {
     if (this.hasPlayerEnoughCash(player, currentEvent)) {
       player.totalCash -= currentEvent.value;
     } else {
@@ -184,7 +209,7 @@ export class GameService {
   convertEventToNewlyAddedIncome(currentEvent: IEvent, withPrefix: boolean): IIncome {
     return {
       name: (withPrefix ? this.getPrefix(currentEvent) : '') + currentEvent.name,
-      value: currentEvent.monthlyProfit ?? 0,
+      value: currentEvent.monthlyProfit ?? currentEvent.value,
       isNew: true,
       relatedEventId: currentEvent.id,
     };

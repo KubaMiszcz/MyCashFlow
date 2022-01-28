@@ -21,20 +21,34 @@
 
       <div class="col">
         <div *ngIf="currentEvent" class="card-body m-0 p-0" [ngClass]="{ 'blur-event-card' : !eventPickingFinished} ">
-          <app-event-card [event]="currentEvent"></app-event-card>
+          <app-event-card [event]="currentEvent" (result)="onDialogClose($event)"></app-event-card>
         </div>
       </div>
 
 
 
+    <!-- <div class="modal-footer p-2">
+      <button *ngIf="event.isRejectable" type="button" name="" id=""
+              class="col-4 btn btn-outline-danger btn-md btn-bloxck mr-1"
+              (click)="rejectEvent()">
+        Odrzuc</button>
+      <button type="button" name="" id="" data-bs-dismiss="modal"
+              class="col-4 btn btn-outline-success btn-md btn-blxock"
+              (click)="acceptEvent()">
+        OK
+      </button>
+    </div> -->
 
-      <div class="modal-footer">
+
+
+
+      <!-- <div class="modal-footer">
         <button type="button" name="" id="" data-bs-dismiss="modal"
                 class="col-4 btn btn-outline-success btn-md btn-blxock"
                 (click)="modal.close('OK')">
           OK
         </button>
-      </div>
+      </div> -->
 
     </div>
 

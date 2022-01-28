@@ -23,8 +23,11 @@
           <div class="col event-description my-2">
             <p class="mx-4">{{eventInfo.description}}</p>
           </div>
+          <div *ngIf="eventInfo?.monthlyProfit" class="col d-flex justify-content-end">
+            <p class="event-description">Miesieczny {{(eventInfo?.monthlyProfit ?? 0) >=0 ? ' dochod' : 'wydatek'}} : {{eventInfo?.monthlyProfit | plnPipe}}</p>
+          </div>
           <div class="col d-flex justify-content-end">
-            <p class="event-value">{{eventInfo.value | plnPipe}}</p>
+            <p class="event-value">Wartosc: {{eventInfo?.value | plnPipe}}</p>
           </div>
         </div>
       </div>
@@ -33,7 +36,7 @@
 
 
     <div class="card-footer modal-footer p-2">
-      <button type="button" name="" id="" data-bs-dismiss="modal"
+      <button type="button" name="" id=""
               class="col-4 btn btn-outline-success btn-md btn-blxock"
               (click)="modal.close('OK')">
         OK

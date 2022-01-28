@@ -31,7 +31,7 @@ export class NavBarComponent implements OnInit {
   }
 
   nextTurn() {
-    this.gameService.nextTurn();
+    this.gameService.startNewTurn();
   }
 
 }

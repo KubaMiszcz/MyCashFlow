@@ -1,5 +1,5 @@
 import { IIncome } from './income.model';
-import { EventTypeEnum } from './event-type.enum';
+import { EventTypeEnum } from './constants/event-type.enum';
 
 export interface IEvent {
   id: number;
@@ -56,7 +56,6 @@ export const ALL_EVENTS_LIST: IEvent[] = [
   // { name: 'pozyczka duza komus 3', description: 'pozyczka duza komus 3', type: EventType.BigDeal, value: 50000, rejectable:true},
 
   //one time events in plus
-  { id: 19, name: "Wlasne urodziny", description: "Wlasne urodziny", type: EventTypeEnum.Event, value: 500, },
   { id: 20, name: "Wyprzedaz z domu cos1", description: "Wyprzedaz z domu cos1", type: EventTypeEnum.Event, value: 100, },
   { id: 21, name: "Wyprzedaz z domu cos2", description: "Wyprzedaz z domu cos2", type: EventTypeEnum.Event, value: 200, },
   { id: 22, name: "Wyprzedaz z domu cos3", description: "Wyprzedaz z domu cos3", type: EventTypeEnum.Event, value: 500, },
@@ -106,7 +105,7 @@ export const ALL_EVENTS_LIST: IEvent[] = [
   { id: 59, name: "Meble", description: "Meble", type: EventTypeEnum.Purchase, value: 5000, },
   { id: 60, name: "Sofa", description: "Sofa", type: EventTypeEnum.Purchase, value: 1500, },
   { id: 61, name: "Fotel", description: "Fotel", type: EventTypeEnum.Purchase, value: 500, },
-  { id: 62, name: "Wymiana okien", description: "Wymiana okien", type: EventTypeEnum.Purchase, value: 5000, },
+  { id: 62, name: "Nowe okna", description: "Dofinansowanie ze spoldzielni na nowe okna, ale troche swoich trza wylozyc", type: EventTypeEnum.Purchase, value: 5000, },
   { id: 63, name: "Dywan", description: "Dywan", type: EventTypeEnum.Purchase, value: 200, },
   { id: 64, name: "Gra1", description: "Gra1", type: EventTypeEnum.Purchase, value: 50, },
   { id: 65, name: "Gra2", description: "Gra2", type: EventTypeEnum.Purchase, value: 100, },
@@ -133,5 +132,9 @@ export const ALL_EVENTS_LIST: IEvent[] = [
   // { name: 'zmiana pracy na gorsza1', description: 'zmiana pracy na gorsza1', type: EventTypeEnum.SpecialEvent, value: -10, percentable: true, },//%
   // { name: 'zmiana pracy na gorsza2', description: 'zmiana pracy na gorsza2', type: EventTypeEnum.SpecialEvent, value: -20, percentable: true, },//%
   // { name: 'zmiana pracy na gorsza3', description: 'zmiana pracy na gorsza3', type: EventTypeEnum.SpecialEvent, value: -30, percentable: true, },//%
+
+  //VerySpecialEvents
+  { id: 74, name: "Masz urodziny", description: "Kasiurka od znajomych na urodziny;]", type: EventTypeEnum.VerySpecialEvent, value: 500, },
+  { id: 75, name: "Masz Urodziny", description: "Kasiurka od Wujak z Ameryki;]", type: EventTypeEnum.VerySpecialEvent, value: 2000, },
 ]
 

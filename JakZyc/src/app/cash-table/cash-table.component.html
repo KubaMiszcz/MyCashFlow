@@ -4,7 +4,8 @@
     <span class="text-align-right"> {{totalAmount | plnPipe}} </span>
   </h5>
 
-  <div class="card-body p-0 m-0">
+  <div class="card-body p-0 m-0 incomes-table">
+
     <table class="table table-striped table-hover">
       <thead>
         <tr class="py-0">
@@ -15,8 +16,7 @@
       <tbody>
         <tr *ngFor="let item of list" (click)="onRowClick(item)">
           <td class="col-8 py-0 px-1">
-            <div class="row d-flex justify-content-between"
-            >
+            <div class="row d-flex justify-content-between">
               <span class="col">{{item.name}}</span>
               <span class="col-auto mr-auto"></span>
               <span *ngIf="item.isNew" class="col-2 badge rounded-pill bg-primary m-auto">Nowe</span>
@@ -29,5 +29,6 @@
         </tr>
       </tbody>
     </table>
+
   </div>
 </div>

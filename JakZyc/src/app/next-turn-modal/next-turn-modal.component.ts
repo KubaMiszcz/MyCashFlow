@@ -1,8 +1,9 @@
+import { DialogResultEnum } from './../models/constants/dialog-result.enum';
 import { IEvent } from './../models/event.model';
 import { GameService } from './../services/game.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EVENT_TYPES_LIST, IEventType } from './../models/event-type.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-next-turn-modal',
@@ -18,9 +19,11 @@ export class NextTurnModalComponent implements OnInit {
   eventPickingFinished = false;
 
 
-  private minHitCount = 6;
-  private hitInterval = 150;
   @ViewChild('infoCardModal') infoCardModal: any;
+  private modalRef: NgbModalRef;
+
+  private minHitCount = 1;
+  private hitInterval = 150;
 
   constructor(
     private gameService: GameService,
@@ -31,15 +34,24 @@ export class NextTurnModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.gameService.showNextTurnModalE$.subscribe(e => {
-      this.currentEvent = e;
-      this.showModal();
+    this.gameService.showNextTurnModalE$.subscribe(v => {
+      if (v) {
+        this.showModal()
+      } else {
+        this.closeModal()
+      }
     });
+
+    this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
+  }
+
+  closeModal(): void {
+    this.modalRef.close();
   }
 
   showModal() {
     this.eventPickingFinished = false;
-    this.modalService.open(this.infoCardModal, { ariaLabelledBy: 'modal-basic-title', size: 'lg' });
+    this.modalRef = this.modalService.open(this.infoCardModal, { ariaLabelledBy: 'modal-basic-title', size: 'lg' });
 
     let idx = 0;
     let cnt = 0;
@@ -57,6 +69,11 @@ export class NextTurnModalComponent implements OnInit {
         this.eventPickingFinished = true;
       }
     }, this.hitInterval);
+  }
+
+  onDialogClose(value: DialogResultEnum) {
+    console.log(value);
+    this.gameService.finishTurn(value);
   }
 
 }

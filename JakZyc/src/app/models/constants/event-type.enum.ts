@@ -4,4 +4,5 @@ export enum EventTypeEnum {
   Event = "Zdarzenie",
   Purchase = "Zakupki",
   SpecialEvent = "SpecialEvent",
+  VerySpecialEvent = "VerySpecialEvent",
 }

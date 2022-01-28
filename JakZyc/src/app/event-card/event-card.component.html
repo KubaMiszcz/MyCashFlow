@@ -2,7 +2,10 @@
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">{{event.type}}</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <button type="button" class="btn-close" 
+      aria-label="Close">
+      <!-- data-bs-dismiss="modal"  -->
+    </button>
     </div>
     <div class="modal-body">
 
@@ -32,9 +35,10 @@
               class="col-4 btn btn-outline-danger btn-md btn-bloxck mr-1"
               (click)="rejectEvent()">
         Odrzuc</button>
-      <button type="button" name="" id="" data-bs-dismiss="modal"
-              class="col-4 btn btn-outline-success btn-md btn-blxock"
-              (click)="acceptEvent()">
+      <button type="button" name="" id="" 
+      class="col-4 btn btn-outline-success btn-md btn-blxock"
+      (click)="acceptEvent()">
+      <!-- data-bs-dismiss="modal" -->
         OK
       </button>
     </div>

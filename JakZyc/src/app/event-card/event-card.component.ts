@@ -1,6 +1,7 @@
+import { DialogResultEnum } from './../models/constants/dialog-result.enum';
 import { GameService } from './../services/game.service';
 import { IEvent, Event } from './../models/event.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-event-card',
@@ -9,20 +10,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EventCardComponent implements OnInit {
   @Input() event: IEvent = new Event();
+  @Output() result = new EventEmitter<DialogResultEnum>();
 
   constructor(
-    private gameService: GameService,
   ) { }
 
   ngOnInit(): void {
   }
 
   rejectEvent() {
-    // this.gameService.nextTurn(false);
+    this.result.emit(DialogResultEnum.Reject);
   }
 
   acceptEvent() {
-    // this.gameService.nextTurn(true);
+    this.result.emit(DialogResultEnum.Accept);
   }
-
 }

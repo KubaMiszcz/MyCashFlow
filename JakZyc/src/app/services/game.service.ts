@@ -44,7 +44,22 @@ export class GameService {
   }
 
   startNewTurn() {
-    let event = this.drawEvent();
+    const player = this.player$.value;
+
+    this.increasePlayerAge(player);
+
+    if (player.age.day === 1) {
+      this.applyPayday(player);
+      this.updateLoans(player.expenses);
+    }
+
+    let event: IEvent;
+    if (player.age.month === 1 && player.age.day === 1) {
+      event = this.getBirthDayEvent();
+    } else {
+      event = this.drawEvent();
+    }
+
     this.currentEvent$.next(event);
     this.showNextTurnModalE$.emit(true);
   }
@@ -53,19 +68,14 @@ export class GameService {
     const player = this.player$.value;
     this.cleanIsNewStatuses(player);
 
-    this.increasePlayerAge(player);
 
     let currentEvent = this.currentEvent$.value;
     if (result === DialogResultEnum.Accept) {
       this.handleWithCurrentEvent(player, currentEvent);
     }
 
-    if (player.age.day === 1) {
-      this.applyPayday(player);
-      this.updateLoans(player.expenses);
-    }
-
     this.updateAndPublishTotalAmounts(player);
+
     this.player$.next(player);
   }
 
@@ -111,13 +121,16 @@ export class GameService {
     if (player.age.month > 11) {
       player.age.year += 1;
       player.age.month = 0;
-      this.applyBirthDay(player);
     }
   }
 
-  private applyBirthDay(player: IPlayer) {
-    // let event = this.eventList.filter(e=>e.type===EventTypeEnum.SpecialEvent).find(e=>e.name.match)
-    // throw new Error('Method not implemented.');
+  private getBirthDayEvent() {
+    let rate = this.gameSettingsService.birthDayGiftRate;
+    let deviation = 1 + _.random(-rate, rate);
+    let event = { ...ALL_EVENTS_LIST.filter(e => e.id === -3 || e.id === -4)[_.random(1)] };
+    let gift = Math.round((event.value * deviation) / 10) * 10;
+    event.value = gift;
+    return event;
   }
 
   private cleanIsNewStatuses(player: IPlayer) {
@@ -265,7 +278,7 @@ export class GameService {
   private addInitialExpenses(player: IPlayer) {
     const smallOrdinaryMonthlyExpensesId = -2;
     const event = ALL_EVENTS_LIST.find(e => e.id === smallOrdinaryMonthlyExpensesId) ?? new Event();
-    event.value = -1 * player.job.salary * this.gameSettingsService.personalExpensesRate;
+    event.value = -1 * player.job.salary * this.gameSettingsService.initialPersonalExpensesRate;
     event.monthlyProfit = event.value;
 
     const expense = this.convertEventToNewlyAddedIncome(event, false);

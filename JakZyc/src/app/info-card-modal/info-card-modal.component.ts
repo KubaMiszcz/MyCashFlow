@@ -36,6 +36,8 @@ export class InfoCardModalComponent implements OnInit {
       this.showModal();
     })
 
+    console.log('InfoCardModalComponent');
+
     this.gameService.player$.subscribe(p => this.player = p);
   }
 
@@ -52,11 +54,16 @@ export class InfoCardModalComponent implements OnInit {
     return !!this.player.expenses.find(e => e.relatedEventId === this.eventInfo.id);
   }
 
-  isPayable() {
+  isLoanPayable(): boolean {
     let relatedIncome = this.player.expenses.find(e => e.relatedEventId === this.eventInfo.id)
-    let hasEventLoan = !!relatedIncome;
-    let loanValue = relatedIncome?.value;
-    // let isPayable = relatedIncome?.value < this.player.totalCash * this.gameSettingsService.personalExpensesRate;
-    // return
+    return this.player.totalCash * this.gameSettingsService.personalExpensesRate > Math.abs(relatedIncome?.value!);
+  }
+
+  getPayLoanButtonLabel(): string {
+    let relatedIncome = this.player.expenses.find(e => e.relatedEventId === this.eventInfo.id)
+
+    return this.isLoanPayable() ?
+      'Spłac pozostale ' + relatedIncome?.value + 'PLN kredytu'
+      : 'Za malo kasy zeby splacic kredyt';
   }
 }

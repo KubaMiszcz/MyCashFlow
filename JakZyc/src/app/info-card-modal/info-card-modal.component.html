@@ -24,7 +24,8 @@
             <p class="mx-4">{{eventInfo.description}}</p>
           </div>
           <div *ngIf="eventInfo?.monthlyProfit" class="col d-flex justify-content-end">
-            <p class="event-description">Miesieczny {{(eventInfo?.monthlyProfit ?? 0) >=0 ? ' dochod' : 'wydatek'}} : {{eventInfo?.monthlyProfit | plnPipe}}</p>
+            <p class="event-description">Miesieczny {{(eventInfo?.monthlyProfit ?? 0) >=0 ? ' dochod' : 'wydatek'}} :
+              {{eventInfo?.monthlyProfit | plnPipe}}</p>
           </div>
           <div class="col d-flex justify-content-end">
             <p class="event-value">Wartosc: {{eventInfo?.value | plnPipe}}</p>
@@ -36,10 +37,15 @@
 
 
     <div class="card-footer modal-footer p-2">
-      <button type="button" name="" id=""
-              class="col-4 btn btn-outline-success btn-md btn-blxock"
-              (click)="onPayLoan()">
-        Splac
+      <button *ngIf="hasEventLoan()" type="button" name="" id=""
+              class="col-6 btn btn-md btn-blxock"
+              [ngClass]="{ 
+                'btn-outline-secondary' : isLoanPayable(),
+                'btn-outline-success' : !isLoanPayable()
+               } "
+              (click)="onPayLoan()"
+              disabled="isLoanPayable()">
+        {{getPayLoanButtonLabel()}}
       </button>
       <button type="button" name="" id=""
               class="col-4 btn btn-outline-success btn-md btn-blxock"

@@ -31,7 +31,14 @@ export const ALL_EVENTS_LIST: IEvent[] = [
   { id: -1, name: "Wypłata", description: "Z roboty, co miesiac, jak to wyplata", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },
   { id: -2, name: "Wydatki domowe", description: "Zwykle drobne wydatki domowe, jedzonko, bulki, serek, zimjoki...", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },
 
+  //VerySpecialEvents
+  { id: -3, name: "Masz urodziny", description: "Kasiurka od znajomych na urodziny;]", type: EventTypeEnum.SmallDeal, value: 500, },
+  { id: -4, name: "Masz Urodziny", description: "Kasiurka od Wujka z Ameryki;]", type: EventTypeEnum.SmallDeal, value: 2000, },
 
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////
   //big deals
   { id: 1, name: "Dzialka RODOS", description: "Dzialka RODOS na wynajem", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: 1000, isRejectable: true, },
   { id: 2, name: "Dzialka RODOS", description: "Moze by tak poryl w gruncie na weekendy?", type: EventTypeEnum.BigDeal, value: 10000, monthlyProfit: -1000, isRejectable: true, },
@@ -132,9 +139,5 @@ export const ALL_EVENTS_LIST: IEvent[] = [
   // { name: 'zmiana pracy na gorsza1', description: 'zmiana pracy na gorsza1', type: EventTypeEnum.SpecialEvent, value: -10, percentable: true, },//%
   // { name: 'zmiana pracy na gorsza2', description: 'zmiana pracy na gorsza2', type: EventTypeEnum.SpecialEvent, value: -20, percentable: true, },//%
   // { name: 'zmiana pracy na gorsza3', description: 'zmiana pracy na gorsza3', type: EventTypeEnum.SpecialEvent, value: -30, percentable: true, },//%
-
-  //VerySpecialEvents
-  { id: 74, name: "Masz urodziny", description: "Kasiurka od znajomych na urodziny;]", type: EventTypeEnum.VerySpecialEvent, value: 500, },
-  { id: 75, name: "Masz Urodziny", description: "Kasiurka od Wujak z Ameryki;]", type: EventTypeEnum.VerySpecialEvent, value: 2000, },
 ]
 

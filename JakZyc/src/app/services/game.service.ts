@@ -75,40 +75,39 @@ export class GameService {
     this.showNextTurnModalE$.emit(false)
   }
 
-
-
-  nextTurn2(isEventAccepted: boolean) {
-    const player = this.player$.value;
-    this.cleanIsNewStatuses(player);
-
-    this.increasePlayerAge(player);
-
-    let currentEvent = this.currentEvent$.value;
-
-    if (isEventAccepted) {
-      this.handleWithCurrentEvent(player, currentEvent);
-    }
-
-    if (player.age.day === 1) {
-      this.applyPayday(player);
-    }
-
-    currentEvent = this.drawEvent();
-    console.log(currentEvent);
-
-    this.currentEvent$.next(currentEvent);
-
-    this.updateAndPublishTotalAmounts(player);
-    this.player$.next(player);
+  updatePlayerInfo(player: IPlayer) {
+    this.player$.next(player)
   }
 
-  updateAndPublishTotalAmounts(player: IPlayer) {
+  isPlayerNewlyCreated(): boolean {
+    const player = this.player$.value;
+    return (player.age.month == 0)
+      && (player.age.day == 1)
+      && (player.assets?.length == 0)
+      && (player.incomes?.length == 1)
+      && (player.expenses?.length == 1)
+      && (player.totalCash == player.job.salary);
+  }
+
+
+
+
+
+
+
+  //////////////////////////////////////////////////////////////////
+  /////////////////////                    /////////////////////////
+  /////////////////////       PRIVATE      /////////////////////////
+  /////////////////////                    /////////////////////////
+  //////////////////////////////////////////////////////////////////
+
+  private updateAndPublishTotalAmounts(player: IPlayer) {
     this.totalIncomes$.next(this.helperService.sumValues(player.incomes));
     this.totalExpenses$.next(this.helperService.sumValues(player.expenses));
     this.totalAssets$.next(this.helperService.sumValues(player.assets));
   }
 
-  increasePlayerAge(player: IPlayer) {
+  private increasePlayerAge(player: IPlayer) {
     player.age.day += 7;
     if (player.age.day > (this.turnDurationInDays * this.paydayIntervalInWeeks)) {
       player.age.day = 1;
@@ -127,13 +126,13 @@ export class GameService {
     // throw new Error('Method not implemented.');
   }
 
-  cleanIsNewStatuses(player: IPlayer) {
+  private cleanIsNewStatuses(player: IPlayer) {
     player.incomes.forEach(i => i.isNew = false)
     player.expenses.forEach(i => i.isNew = false)
     player.assets.forEach(i => i.isNew = false)
   }
 
-  handleWithCurrentEvent(player: IPlayer, currentEvent: IEvent) {
+  private handleWithCurrentEvent(player: IPlayer, currentEvent: IEvent) {
     switch (currentEvent.type) {
       case EventTypeEnum.SmallDeal:
         this.handleWithDeal(player, currentEvent);
@@ -166,14 +165,14 @@ export class GameService {
     }
   }
 
-  applyPayday(player: IPlayer) {
+  private applyPayday(player: IPlayer) {
     let totalIncomes = this.helperService.sumValues(player.incomes);
     let totalExpenses = this.helperService.sumValues(player.expenses);
 
     player.totalCash += totalIncomes + totalExpenses;
   }
 
-  createNewLoan(currentEvent: IEvent) {
+  private createNewLoan(currentEvent: IEvent) {
     const loanValue = Math.round(currentEvent.value * (1 + this.loanInterestRate));
     let loan: IIncome = {
       name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name,
@@ -186,7 +185,7 @@ export class GameService {
     return loan;
   }
 
-  handleWithDeal(player: IPlayer, currentEvent: IEvent) {
+  private handleWithDeal(player: IPlayer, currentEvent: IEvent) {
     if (this.hasPlayerEnoughCash(player, currentEvent)) {
       player.totalCash -= currentEvent.value;
     } else {
@@ -206,7 +205,7 @@ export class GameService {
     player.assets.push(this.convertEventToNewlyAddedIncome(currentEvent, false));
   }
 
-  convertEventToNewlyAddedIncome(currentEvent: IEvent, withPrefix: boolean): IIncome {
+  private convertEventToNewlyAddedIncome(currentEvent: IEvent, withPrefix: boolean): IIncome {
     return {
       name: (withPrefix ? this.getPrefix(currentEvent) : '') + currentEvent.name,
       value: currentEvent.monthlyProfit ?? currentEvent.value,
@@ -215,7 +214,7 @@ export class GameService {
     };
   }
 
-  getPrefix(currentEvent: IEvent): string {
+  private getPrefix(currentEvent: IEvent): string {
     if (currentEvent.monthlyProfit) {
       if (currentEvent.monthlyProfit > 0) {
         return this.incomeNamePrefix;
@@ -226,12 +225,12 @@ export class GameService {
     return ''
   }
 
-  drawEvent(): IEvent {
+  private drawEvent(): IEvent {
     const list = this.eventList.filter(e => e.type === this.drawEventType().type);
     return list?.[_.random(list.length - 1)];
   }
 
-  drawEventType(): IEventType {
+  private drawEventType(): IEventType {
     let probabilitySum = this.helperService.sumProperties(EVENT_TYPES_LIST, 'probabilityRate');
     let typeHit = _.random(0.001, probabilitySum - 1);
 
@@ -250,15 +249,11 @@ export class GameService {
     return drawedType;
   }
 
-  hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {
+  private hasPlayerEnoughCash(player: IPlayer, currentEvent: IEvent) {
     return ((player.totalCash / 2) - currentEvent.value) > 0;
   }
 
-  updatePlayerInfo(player: IPlayer) {
-    this.player$.next(player)
-  }
-
-  createNewPlayer() {
+  private createNewPlayer() {
     const player = INITIAL_PLAYER;
     player.name = PLAYER_NAMES_LIST[_.random(PLAYER_NAMES_LIST.length - 1)];
 
@@ -276,7 +271,7 @@ export class GameService {
     this.player$.next(player);
   }
 
-  addInitialIncomes(player: IPlayer) {
+  private addInitialIncomes(player: IPlayer) {
     const salaryId = -1;
     const event = ALL_EVENTS_LIST.find(e => e.id === salaryId) ?? new Event();
     event.value = player.job.salary;
@@ -286,7 +281,7 @@ export class GameService {
     player.incomes.push(income);
   }
 
-  addInitialExpenses(player: IPlayer) {
+  private addInitialExpenses(player: IPlayer) {
     const smallOrdinaryMonthlyExpensesId = -2;
     const event = ALL_EVENTS_LIST.find(e => e.id === smallOrdinaryMonthlyExpensesId) ?? new Event();
     event.value = -1 * player.job.salary * 0.5;
@@ -296,15 +291,6 @@ export class GameService {
     player.expenses.push(expense);
   }
 
-  isPlayerNewlyCreated(): boolean {
-    const player = this.player$.value;
-    return (player.age.month == 0)
-      && (player.age.day == 1)
-      && (player.assets?.length == 0)
-      && (player.incomes?.length == 1)
-      && (player.expenses?.length == 1)
-      && (player.totalCash == player.job.salary);
-  }
 
 }
 

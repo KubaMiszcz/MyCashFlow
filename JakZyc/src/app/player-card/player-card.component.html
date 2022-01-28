@@ -35,11 +35,16 @@
 
             <div class="col m-0 p-0">
               <div class="input-group input-group-sm mb-2 d-flexs csol">
-                <span class="input-group-text col text-bold justify-content-start" id="basic-addon3">Konto:</span>
+                <span class="input-group-text col text-bold justify-content-start"
+                      [ngClass]="{
+                  'indicator-danger' : player.totalCash < 0,
+                  'text-green' : player.totalCash > 0
+              }"
+                      id="basic-addon3">Konto:</span>
                 <div
                      class="input-group-text col-7 text-bold justify-content-between px-1" id="basic-addon3"
                      [ngClass]="{
-                    'text-red' : player.totalCash < 0,
+                    'indicator-danger' : player.totalCash < 0,
                     'text-green' : player.totalCash > 0
                 }">
                   <span *ngIf="isBalanceNegative">

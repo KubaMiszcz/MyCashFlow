@@ -21,8 +21,10 @@
     color: #212529;
   }
 
-  .indicator-red {
-    color: red;
+  .indicator-danger {
+    color: lightyellow;
+    border-color: black;
+    background-color: red;
   }
 
   img {

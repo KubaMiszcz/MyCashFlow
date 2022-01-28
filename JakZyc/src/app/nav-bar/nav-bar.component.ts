@@ -4,6 +4,7 @@ import { IAge, Age } from '../models/age.model';
 import { IEvent } from '../models/event.model';
 import { GameService } from '../services/game.service';
 import { IPlayer } from '../models/player.model';
+import { GameSettingsService } from '../services/game-settings.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -19,13 +20,14 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private gameService: GameService,
+    private gameSettingsService: GameSettingsService,
   ) { }
 
   ngOnInit(): void {
     this.gameService.currentEvent$.subscribe(e => this.currentEvent = e);
     this.gameService.player$.subscribe(p => {
       this.currentDate = { ...p.age };
-      this.currentDate.year += this.gameService.dateYearInterval;
+      this.currentDate.year += this.gameSettingsService.dateYearToPlayerAgeInterval;
     });
 
   }

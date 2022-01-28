@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { GameService } from './../services/game.service';
 import { IPlayer, INITIAL_PLAYER } from '../models/player.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { GameSettingsService } from '../services/game-settings.service';
 
 @Component({
   selector: 'app-player-card',
@@ -34,11 +35,12 @@ export class PlayerCardComponent implements OnInit {
   }
 
   constructor(
-    private gameService: GameService
+    private gameService: GameService,
+    private gameSettingsService: GameSettingsService,
   ) { }
 
   ngOnInit(): void {
-    this.paydayInterval = this.gameService.paydayIntervalInWeeks * this.gameService.turnDurationInDays;
+    this.paydayInterval = this.gameSettingsService.paydayIntervalInWeeks * this.gameSettingsService.turnDurationInDays;
     this.gameService.totalIncomes$.subscribe(i => this.totalIncomes = i);
     this.gameService.totalExpenses$.subscribe(i => this.totalExpenses = Math.abs(i));
     this.gameService.totalAssets$.subscribe(i => this.totalAssets = i);

@@ -1,3 +1,4 @@
+import { GameSettingsService } from './game-settings.service';
 import { DialogResultEnum } from './../models/constants/dialog-result.enum';
 import { EventType, EVENT_TYPES_LIST, IEventType } from './../models/event-type.model';
 import { GAME_GOALS_LIST } from './../models/goal.model';
@@ -29,23 +30,15 @@ export class GameService {
 
   eventList = ALL_EVENTS_LIST;
 
-  private loanDefaultInterestRate = 0.1;
-  private loanDefaultDuration = 12;
-  private personalExpensesRate = 0.5;
-  turnDurationInDays = 7;
-  paydayIntervalInWeeks = 4;
-  dateYearInterval = 0;
-  private incomeNamePrefix = 'wynajem ';
-  private expenseNamePrefix = 'utrzymanie ';
-
   constructor(
     private helperService: HelperService,
+    private gameSettingsService: GameSettingsService,
   ) {
     this.createNewPlayer();
     this.eventList = ALL_EVENTS_LIST.filter(e => e.id > 0);
     this.updateAndPublishTotalAmounts(this.player$.value);
 
-    this.dateYearInterval = new Date().getFullYear() - this.player$.value.age.year;
+    this.gameSettingsService.dateYearToPlayerAgeInterval = new Date().getFullYear() - this.player$.value.age.year;
 
     this.currentEvent$.next(this.drawEvent());
   }
@@ -110,7 +103,7 @@ export class GameService {
 
   private increasePlayerAge(player: IPlayer) {
     player.age.day += 7;
-    if (player.age.day > (this.turnDurationInDays * this.paydayIntervalInWeeks)) {
+    if (player.age.day > (this.gameSettingsService.turnDurationInDays * this.gameSettingsService.paydayIntervalInWeeks)) {
       player.age.day = 1;
       player.age.month += 1;
     }
@@ -205,9 +198,9 @@ export class GameService {
   private getPrefix(currentEvent: IEvent): string {
     if (currentEvent.monthlyProfit) {
       if (currentEvent.monthlyProfit > 0) {
-        return this.incomeNamePrefix;
+        return this.gameSettingsService.incomeNamePrefix;
       } else {
-        return this.expenseNamePrefix;
+        return this.gameSettingsService.expenseNamePrefix;
       }
     }
     return ''
@@ -272,7 +265,7 @@ export class GameService {
   private addInitialExpenses(player: IPlayer) {
     const smallOrdinaryMonthlyExpensesId = -2;
     const event = ALL_EVENTS_LIST.find(e => e.id === smallOrdinaryMonthlyExpensesId) ?? new Event();
-    event.value = -1 * player.job.salary * this.personalExpensesRate;
+    event.value = -1 * player.job.salary * this.gameSettingsService.personalExpensesRate;
     event.monthlyProfit = event.value;
 
     const expense = this.convertEventToNewlyAddedIncome(event, false);
@@ -283,11 +276,11 @@ export class GameService {
 
 
   private createNewLoan(currentEvent: IEvent) {
-    const loanValue = Math.round(currentEvent.value * (1 + this.loanDefaultInterestRate));
+    const loanValue = Math.round(currentEvent.value * (1 + this.gameSettingsService.loanDefaultInterestRate));
     let loan: IIncome = {
-      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + '(' + this.loanDefaultDuration + 'mcy)',
+      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + '(' + this.gameSettingsService.loanDefaultDuration + 'mcy)',
       type: IncomeTypeEnum.Loan,
-      value: Math.round(-1 * loanValue * this.loanDefaultInterestRate),
+      value: Math.round(-1 * loanValue * this.gameSettingsService.loanDefaultInterestRate),
       isNew: true,
       duration: 12,
       relatedEventId: currentEvent.id,

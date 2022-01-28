@@ -1,3 +1,4 @@
+import { IncomeTypeEnum } from './../models/constants/income-type.enum';
 import { ALL_EVENTS_LIST, IEvent, Event } from './../models/event.model';
 import { IIncome } from './../models/income.model';
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
@@ -13,12 +14,13 @@ export class CashTableComponent implements OnInit {
   @Input() list: IIncome[] = [];
   @Input() totalAmount = 0;
   @Output() rowClick = new EventEmitter<IIncome>();
+  icomeTypes = IncomeTypeEnum;
 
   constructor() { }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { }
 
-  onRowClick(value: IIncome){
+  onRowClick(value: IIncome) {
     this.rowClick.emit(value);
   }
 }

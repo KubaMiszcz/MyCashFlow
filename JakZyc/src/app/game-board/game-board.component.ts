@@ -1,3 +1,4 @@
+import { DialogResultEnum } from './../models/constants/dialog-result.enum';
 import { IIncome } from './../models/income.model';
 import { EVENT_TYPES_LIST, IEventType } from './../models/event-type.model';
 import { IPlayer } from './../models/player.model';
@@ -37,6 +38,14 @@ export class GameBoardComponent implements OnInit {
 
   onIncomeClick(value: IIncome) {
     this.gameService.showInfoCardE$.emit(value);
+  }
+
+  onPayLoan(event: number) {
+    console.log(event);
+
+    // if (event === DialogResultEnum.PayLoan) {
+
+    // }
   }
 
 }

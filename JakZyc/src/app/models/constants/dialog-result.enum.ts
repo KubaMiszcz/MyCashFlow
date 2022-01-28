@@ -1,6 +1,7 @@
 export enum DialogResultEnum {
-  Ok = "Ok",
+  OK = "OK",
   Cancel = "Mały Hajs",
   Accept = "Akceptuj",
   Reject = "Odrzuc",
+  PayLoan = "Splac Kredyt",
 }

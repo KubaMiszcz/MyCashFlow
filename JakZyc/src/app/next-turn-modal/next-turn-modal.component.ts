@@ -72,8 +72,14 @@ export class NextTurnModalComponent implements OnInit {
   }
 
   onDialogClose(value: DialogResultEnum) {
-    console.log(value);
     this.gameService.finishTurn(value);
+    this.closeModal();
   }
 
+  onKeyPressed(event: KeyboardEvent) {
+    if (event.code === "Enter") {
+      this.onDialogClose(DialogResultEnum.Accept);
+      this.closeModal();
+    }
+  }
 }

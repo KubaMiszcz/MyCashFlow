@@ -1,5 +1,5 @@
 <ng-template #infoCardModal let-modal>
-  <div class="modal-content">
+  <div class="modal-content" (keydown)="onKeyPressed($event)">
 
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Nowy Tydzien</h4>

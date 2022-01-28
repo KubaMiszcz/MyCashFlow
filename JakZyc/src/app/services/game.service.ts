@@ -11,6 +11,7 @@ import { EventTypeEnum } from '../models/constants/event-type.enum';
 import { JOBS_LIST } from '../models/job.model';
 import _ from 'lodash';
 import { PLAYER_NAMES_LIST } from '../models/constants/playerNamesList';
+import { IncomeTypeEnum } from '../models/constants/income-type.enum';
 
 
 @Injectable({
@@ -28,7 +29,8 @@ export class GameService {
 
   eventList = ALL_EVENTS_LIST;
 
-  private loanInterestRate = 0.1;
+  private loanDefaultInterestRate = 0.1;
+  private loanDefaultDuration = 12;
   private personalExpensesRate = 0.5;
   turnDurationInDays = 7;
   paydayIntervalInWeeks = 4;
@@ -67,12 +69,11 @@ export class GameService {
 
     if (player.age.day === 1) {
       this.applyPayday(player);
+      this.updateLoans(player.expenses);
     }
 
     this.updateAndPublishTotalAmounts(player);
     this.player$.next(player);
-
-    this.showNextTurnModalE$.emit(false)
   }
 
   updatePlayerInfo(player: IPlayer) {
@@ -170,19 +171,6 @@ export class GameService {
     let totalExpenses = this.helperService.sumValues(player.expenses);
 
     player.totalCash += totalIncomes + totalExpenses;
-  }
-
-  private createNewLoan(currentEvent: IEvent) {
-    const loanValue = Math.round(currentEvent.value * (1 + this.loanInterestRate));
-    let loan: IIncome = {
-      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name,
-      value: Math.round(-1 * loanValue * this.loanInterestRate),
-      isNew: true,
-      duration: 12,
-      relatedEventId: currentEvent.id,
-    }
-
-    return loan;
   }
 
   private handleWithDeal(player: IPlayer, currentEvent: IEvent) {
@@ -284,7 +272,7 @@ export class GameService {
   private addInitialExpenses(player: IPlayer) {
     const smallOrdinaryMonthlyExpensesId = -2;
     const event = ALL_EVENTS_LIST.find(e => e.id === smallOrdinaryMonthlyExpensesId) ?? new Event();
-    event.value = -1 * player.job.salary * 0.5;
+    event.value = -1 * player.job.salary * this.personalExpensesRate;
     event.monthlyProfit = event.value;
 
     const expense = this.convertEventToNewlyAddedIncome(event, false);
@@ -292,5 +280,39 @@ export class GameService {
   }
 
 
+
+
+  private createNewLoan(currentEvent: IEvent) {
+    const loanValue = Math.round(currentEvent.value * (1 + this.loanDefaultInterestRate));
+    let loan: IIncome = {
+      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + '(' + this.loanDefaultDuration + 'mcy)',
+      type: IncomeTypeEnum.Loan,
+      value: Math.round(-1 * loanValue * this.loanDefaultInterestRate),
+      isNew: true,
+      duration: 12,
+      relatedEventId: currentEvent.id,
+    }
+
+    return loan;
+  }
+
+  private updateLoans(list: IIncome[]) {
+    list.forEach(i => {
+      if (i.type === IncomeTypeEnum.Loan) {
+        if (i.duration && (i.duration > 0)) {
+          i.duration--;
+          i.name = this.updateLoanSuffix(i);
+        }
+      }
+    });
+  }
+
+  private updateLoanSuffix(loan: IIncome) {
+    let items = loan.name.split('(')
+    let ending = (loan.duration ?? 0) > 4 ? 'mcy'
+      : (loan.duration ?? 0) > 1 ? 'mce' : 'mc';
+
+    return items[0] + ' (' + loan.duration + ending + ')';
+  }
 }
 

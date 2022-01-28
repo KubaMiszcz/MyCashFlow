@@ -1,32 +1,32 @@
-.buttons {
-  display: flex;
-  justify-content: flex-end;
-}
+.modal-dialog {
+
+  .modal-content {
+
+    .modal-header {
+      height: 3em !important;
+      padding: 0.5em;
+      border-radius: 4px 4px 0 0;
+    }
 
 
-.modal-header{
-  height: 3em !important;
-  padding: 0.5em;
-  border-radius: 4px 4px 0 0;
-}
 
-.modal-body{
+    .modal-body {
 
-  img {
-    // border-radius: 8px;
-    border: 2px solid #007bfb;
-    border-radius: 10px;
-    filter: drop-shadow(2px 4px 6px black);
+      img {
+        // border-radius: 8px;
+        border: 2px solid #007bfb;
+        border-radius: 10px;
+        filter: drop-shadow(2px 4px 6px black);
+      }
+
+      .event-description {
+        line-height: 1.3em;
+        text-align: justify;
+      }
+
+      .event-value {
+        font-size: 1.5em;
+      }
+    }
   }
-
-  .event-description{
-    line-height: 1.3em;
-    text-align: justify;
-  }
-
-  .event-value{
-    font-size: 1.5em;
-  }
 }
-
-

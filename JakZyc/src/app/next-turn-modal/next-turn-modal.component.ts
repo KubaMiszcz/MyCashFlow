@@ -78,9 +78,18 @@ export class NextTurnModalComponent implements OnInit {
   }
 
   onKeyPressed(event: KeyboardEvent) {
-    if (event.code === "Enter") {
+    if (
+      !this.currentEvent.isRejectable
+      || event.code === "Enter"
+      || event.code === "Space"
+    ) {
       this.onDialogClose(DialogResultEnum.Accept);
-      this.closeModal();
+    }else{
+    // if (event.code === "Escape" && this.currentEvent.isRejectable) {
+    this.onDialogClose(DialogResultEnum.Reject);
     }
+
+    
+    this.closeModal();
   }
 }

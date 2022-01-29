@@ -103,7 +103,7 @@ export class GameService {
   payLoanForEvent(event: IEvent) {
     const player = this.player$.value;
     let income = player.expenses.find(e => e.relatedEventId === event.id);
-    player.totalCash -= income?.value! * income?.duration!;
+    player.totalCash += income?.value! * income?.duration!;
     player.expenses = this.helperService.removeFromArrayByProp<IIncome>(player.expenses, 'name', income?.name)!
   }
 

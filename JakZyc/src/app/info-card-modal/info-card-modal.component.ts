@@ -68,21 +68,6 @@ export class InfoCardModalComponent implements OnInit {
 
 
 
-
-  // private refreshLoanProperties(income: IIncome) {
-  //   this.hasEventLoan = this.getHasEventLoan(income);
-  //   this.isLoanPayable = this.getIsLoanPayable(income);
-  //   this.payLoanButtonLabel = this.getPayLoanButtonLabel(income);
-  // }
-
-  // private getRelatedExpense(){
-  //   return this.player.expenses.find(e => e.relatedEventId === this.eventInfo.id)
-  // }
-
-  // private getHasEventLoan() {
-  //   return !!this.player.expenses.find(e => e.relatedEventId === this.eventInfo.id);
-  // }
-
   private getIsLoanPayable(income: IIncome): boolean {
     let loanValue = Math.abs(income?.value! * income.duration!);
     let availableCash = this.player.totalCash * (1 - this.gameSettingsService.personalExpensesRate);
@@ -97,4 +82,5 @@ export class InfoCardModalComponent implements OnInit {
       'Spłac pozostale ' + Math.round(income?.value! * income?.duration!) + 'PLN kredytu'
       : 'Za malo kasy zeby splacic kredyt';
   }
+
 }

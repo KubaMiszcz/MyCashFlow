@@ -28,4 +28,13 @@ export class HelperService {
     let list = _.reject(array, { [propName]: value }) as T[];
     return list;
   }
+
+  getRandomWithPrecision(min: number, max: number, precision?: number) {
+    let res = _.random(min, max);
+    if (precision && precision > 0) {
+      res = (Math.round(res * precision * 10)) / 10
+    }
+
+    return res;
+  }
 }

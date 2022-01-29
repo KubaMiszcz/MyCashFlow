@@ -4,10 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'plnPipe',
 })
 export class PlnPipePipe implements PipeTransform {
-  transform(value: unknown, ...args: unknown[]): unknown {
+  transform(value: any, ...args: any[]): string {
     if (!value) {
-      return value + ' PLN';
+      return Math.round(value) + ' PLN';
     }
-    return value + ' PLN';
+    return Math.round(value) + ' PLN';
   }
 }

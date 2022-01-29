@@ -8,7 +8,7 @@ export class GameSettingsService {
 
   loanDefaultInterestRate = 0.1;
   loanDefaultDurationForSmallDeal = 12;
-  loanDefaultDurationForBigDeal = 12;
+  loanDefaultDurationForBigDeal = 5 * 12;
   // loanDefaultInterestRateDeviation = 0.1;
 
   personalExpensesRate = 0; //0.5?

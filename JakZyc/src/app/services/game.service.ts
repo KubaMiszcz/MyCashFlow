@@ -83,6 +83,7 @@ export class GameService {
 
   isPlayerNewlyCreated(): boolean {
     const player = this.player$.value;
+
     return (player.age.month === 0)
       && (player.age.day === 1)
       && (player.assets?.length === 0)
@@ -147,6 +148,7 @@ export class GameService {
     const event = { ...ALL_EVENTS_LIST.filter(e => e.id === -3 || e.id === -4)[_.random(1)], };
     const gift = Math.round((event.value * deviation) / 10) * 10;
     event.value = gift;
+
     return event;
   }
 
@@ -229,15 +231,17 @@ export class GameService {
     if (currentEvent.monthlyProfit) {
       if (currentEvent.monthlyProfit > 0) {
         return this.gameSettingsService.incomeNamePrefix;
-      } else {
-        return this.gameSettingsService.expenseNamePrefix;
       }
+
+      return this.gameSettingsService.expenseNamePrefix;
     }
+
     return '';
   }
 
   private drawEvent(): IEvent {
     const list = this.eventList.filter(e => e.type === this.drawEventType().type);
+
     return list?.[_.random(list.length - 1)];
   }
 

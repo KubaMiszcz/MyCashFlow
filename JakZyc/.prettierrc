@@ -7,7 +7,7 @@
     "info",
     "time",
     "timeEnd",
-    "trace",
-    "log"
+    "trace"
+    // "log"
   ]
 }

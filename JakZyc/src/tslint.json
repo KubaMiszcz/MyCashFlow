@@ -19,7 +19,7 @@
       "severity": "warn"
     },
     "no-console": [
-      true,
+      false,
       "debug",
       "info",
       "time",
@@ -61,10 +61,17 @@
     //   true,
     //   "never"
     // ],
-    // "no-trailing-whitespace": [
-    //   true,
-    //   "always"
-    // ],
+    "space-before-function-paren": [
+      true,
+      {
+        "anonymous": "always",
+        "named": "always",
+        "asyncArrow": "always"
+      }
+    ],
+    "no-trailing-whitespace": [
+      true
+    ],
     "type-literal-delimiter": true,
     "number-literal-format": true,
     "align": [
@@ -127,13 +134,13 @@
     ],
     "return-undefined": true,
     "class-name": true,
-    // "triple-equals": [
-    //   true,
-    //   [
-    //     // "allow-null-check", //xxx
-    //     // "allow-undefined-check"
-    //   ]
-    // ],
+    "triple-equals": [
+      true,
+      [
+        // "allow-null-check", //xxx
+        // "allow-undefined-check"
+      ]
+    ],
     "unnecessary-else": [
       true,
       {
@@ -156,14 +163,14 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "member-access": false,
-    // "member-ordering": [
-    //   true,
-    //   {
-    //     "order": [
-    //       "instance-sandwich"
-    //     ]
-    //   }
-    // ],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "instance-sandwich"
+        ]
+      }
+    ],
     "no-arg": true,
     "no-construct": true,
     "no-debugger": true,

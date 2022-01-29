@@ -58,8 +58,8 @@
       "info",
       "time",
       "timeEnd",
-      "trace",
-      "log"
+      "trace"
+      // "log"
     ],
     //==========================
     // about formatting
@@ -91,12 +91,13 @@
       true,
       "single"
     ],
-    // "space-before-function-paren": [ /////////////////////////////////////////////////////////////
-    //   true,
-    //   "never"
-    // ],
+    "space-before-function-paren": [ // co to robi?///////////////////////////////////////////////////////////
+      true,
+      "never"
+    ],
     "no-trailing-whitespace": [
-      true
+      true,
+      "always"
     ],
     "type-literal-delimiter": true,
     "number-literal-format": true,
@@ -153,11 +154,12 @@
       true,
       "ignore-for-loop"
     ],
-    "prefer-function-over-method": [
-      true,
-      "allow-public"
-      // "allow-protected"
-    ],
+    // "prefer-function-over-method": [
+    //   false,
+    //   "allow-public",
+    //   "allow-protected",
+    //   "allow-private"
+    // ],
     "return-undefined": true,
     "class-name": true,
     "triple-equals": [

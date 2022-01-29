@@ -42,8 +42,8 @@ export class InfoCardModalComponent implements OnInit {
       this.eventInfo = ALL_EVENTS_LIST.find(e => e.id === income.relatedEventId)!;// ?? new Event();
       console.log(this.eventInfo);
 
-      if (income.type === IncomeTypeEnum.Loan) {
-        this.hasEventLoan = true;
+      this.hasEventLoan = income?.type === IncomeTypeEnum.Loan;
+      if (this.hasEventLoan) {
         this.isLoanPayable = this.getIsLoanPayable(income);
         this.payLoanButtonLabel = this.getPayLoanButtonLabel(income);
       }

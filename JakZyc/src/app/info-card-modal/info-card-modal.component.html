@@ -24,7 +24,7 @@
             <p class="mx-4">{{eventInfo.description}}</p>
           </div>
           <div *ngIf="eventInfo?.monthlyProfit" class="col d-flex justify-content-end">
-            <p class="event-description">Miesieczny {{(eventInfo?.monthlyProfit ?? 0) >=0 ? ' dochod' : 'wydatek'}} :
+            <p class="event-description">Miesieczny {{( eventInfo?.monthlyProfit ?? 0) >=0 ? ' dochod' : 'wydatek'}} :
               {{eventInfo?.monthlyProfit | plnPipe}}</p>
           </div>
           <div class="col d-flex justify-content-end">

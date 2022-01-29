@@ -54,7 +54,7 @@ export class GameService {
     }
 
     let event: IEvent;
-    if (player.age.month === 1 && player.age.day === 1) {
+    if (player.age.month === 0 && player.age.day === 1) {
       event = this.getBirthDayEvent();
     } else {
       event = this.drawEvent();
@@ -310,9 +310,9 @@ export class GameService {
     const duration = this.gameSettingsService.loanDefaultDuration;
 
     let loan: IIncome = {
-      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + '(' + duration + 'mcy)',
+      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + ' (' + duration + 'mcy)',
       type: IncomeTypeEnum.Loan,
-      value: installment,
+      value: -1 * installment,
       isNew: true,
       duration: duration,
       relatedEventId: currentEvent.id,

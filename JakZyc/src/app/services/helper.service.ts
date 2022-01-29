@@ -18,10 +18,8 @@ export class HelperService {
     return list.reduce((sum, current) => sum + current[propName], 0);
   }
 
-  sumValuesWithLodash(list: { value: number }[]): number {
-    return _.sumBy(list, function (day) {
-      return day.value;
-    });
+  sumValuesWithLodash_CHECKIFWORKS(list: { value: number }[]): number {
+    return _.sumBy(list, (day) => day.value);
   }
 
   removeFromArrayByProp<T>(array: T[], propName: string, value: any): T[] {

@@ -75,7 +75,7 @@
       20
     ],
     "comment-format": [
-      true,
+      false,
       "check-space"
     ],
     "max-line-length": [
@@ -93,11 +93,14 @@
     ],
     "space-before-function-paren": [ // co to robi?///////////////////////////////////////////////////////////
       true,
-      "never"
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
     ],
     "no-trailing-whitespace": [
-      true,
-      "always"
+      true
     ],
     "type-literal-delimiter": true,
     "number-literal-format": true,

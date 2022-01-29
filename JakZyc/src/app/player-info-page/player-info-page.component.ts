@@ -41,7 +41,7 @@ export class PlayerInfoPageComponent implements OnInit {
     this.player.goal = this.goalList?.find(g => g.id === Number(event.target.value)) ?? new GameGoal();
   }
 
-  savePlayerInfo() {
+  onSavePlayerInfo() {
     this.gameService.updatePlayerInfo(this.player);
     this.router.navigate(['/game']);
   }

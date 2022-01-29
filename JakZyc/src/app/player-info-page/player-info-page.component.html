@@ -153,9 +153,9 @@
     </div>
 
     <div class="mb-3 d-flex justify-content-end">
-      <button type="button" name="" id="" class="col-6 btn btn-success btn-md btn-block" (click)="savePlayerInfo()">
-        <span>Zapisz</span>
-        <span *ngIf="!isEditionDisabled()"> i zacznij nowa gre</span>
+      <button type="button" name="" id="" class="col-6 btn btn-success btn-md btn-block" (click)="onSavePlayerInfo()">
+        <span *ngIf="isEditionDisabled()">Aktualizuj</span>
+        <span *ngIf="!isEditionDisabled()">Zapisz i zacznij nowa gre</span>
       </button>
     </div>
 

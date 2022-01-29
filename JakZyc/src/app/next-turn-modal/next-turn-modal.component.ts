@@ -57,6 +57,11 @@ export class NextTurnModalComponent implements OnInit {
     let cnt = 0;
     let handle = setInterval(() => {
       this.activeTypeName = this.eventTypes[idx].name;
+      if (cnt > this.minHitCount && this.eventTypes[idx].type === this.currentEvent.type) {
+        clearInterval(handle);
+        this.eventPickingFinished = true;
+      }
+
       idx++;
       cnt++;
 
@@ -64,10 +69,6 @@ export class NextTurnModalComponent implements OnInit {
         idx = 0;
       }
 
-      if (cnt > this.minHitCount && this.eventTypes[idx].type === this.currentEvent.type) {
-        clearInterval(handle);
-        this.eventPickingFinished = true;
-      }
     }, this.hitInterval);
   }
 

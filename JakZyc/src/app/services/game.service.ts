@@ -93,6 +93,22 @@ export class GameService {
       && (player.totalCash == player.job.salary);
   }
 
+  showInfoCard(value: IIncome) {
+    //   let  = ALL_EVENTS_LIST.find(e => e.id === value.relatedEventId)!;// ?? new Event();
+    //   this.showInfoCardModal = true;
+    // })
+    this.showInfoCardE$.emit(value);
+  }
+
+  payLoanForEvent(event: IEvent) {
+    const player = this.player$.value;
+    let income = player.expenses.find(e => e.relatedEventId === event.id);
+    player.totalCash -= income?.value! * income?.duration!;
+    player.expenses = this.helperService.removeFromArrayByProp<IIncome>(player.expenses, 'name', income?.name)!
+  }
+
+
+
 
 
 
@@ -290,12 +306,15 @@ export class GameService {
 
   private createNewLoan(currentEvent: IEvent) {
     const loanValue = Math.round(currentEvent.value * (1 + this.gameSettingsService.loanDefaultInterestRate));
+    const installment = Math.round(loanValue / this.gameSettingsService.loanDefaultDuration);
+    const duration = this.gameSettingsService.loanDefaultDuration;
+
     let loan: IIncome = {
-      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + '(' + this.gameSettingsService.loanDefaultDuration + 'mcy)',
+      name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + '(' + duration + 'mcy)',
       type: IncomeTypeEnum.Loan,
-      value: Math.round(-1 * loanValue * this.gameSettingsService.loanDefaultInterestRate),
+      value: installment,
       isNew: true,
-      duration: 12,
+      duration: duration,
       relatedEventId: currentEvent.id,
     }
 

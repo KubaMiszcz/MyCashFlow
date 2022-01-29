@@ -22,6 +22,9 @@ export class GameBoardComponent implements OnInit {
   totalExpenses = 0;
   totalAssets = 0;
 
+  eventInfoCard: IEvent;
+  showInfoCardModal = false;
+
   constructor(
     private gameService: GameService,
   ) {
@@ -37,15 +40,12 @@ export class GameBoardComponent implements OnInit {
   }
 
   onIncomeClick(value: IIncome) {
-    this.gameService.showInfoCardE$.emit(value);
+    this.gameService.showInfoCard(value);
   }
 
-  onPayLoan(event: number) {
+  onPayLoan(event: IEvent) {
     console.log(event);
-
-    // if (event === DialogResultEnum.PayLoan) {
-
-    // }
+    this.gameService.payLoanForEvent(event);
   }
 
 }

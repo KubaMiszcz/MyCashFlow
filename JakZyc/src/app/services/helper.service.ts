@@ -23,4 +23,9 @@ export class HelperService {
       return day.value;
     });
   }
+
+  removeFromArrayByProp<T>(array: T[], propName: string, value: any): T[] {
+    let list = _.reject(array, { [propName]: value }) as T[];
+    return list;
+  }
 }

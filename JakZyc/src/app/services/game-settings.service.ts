@@ -8,6 +8,8 @@ export class GameSettingsService {
 
   loanDefaultInterestRate = 0.1;
   loanDefaultDuration = 12;
+  // loanDefaultInterestRateDeviation = 0.1;
+
   personalExpensesRate = 0; //0.5?
   initialPersonalExpensesRate = 0.5; //0.5?
   turnDurationInDays = 7;

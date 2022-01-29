@@ -32,8 +32,8 @@ export const ALL_EVENTS_LIST: IEvent[] = [
   { id: -2, name: "Wydatki domowe", description: "Zwykle drobne wydatki domowe, jedzonko, bulki, serek, zimjoki...", type: EventTypeEnum.SmallDeal, value: 0, monthlyProfit: 0, },
 
   //VerySpecialEvents
-  { id: -3, name: "Masz urodziny", description: "Kasiurka od znajomych na urodziny;]", type: EventTypeEnum.SmallDeal, value: 500, },
-  { id: -4, name: "Masz Urodziny", description: "Kasiurka od Wujka z Ameryki;]", type: EventTypeEnum.SmallDeal, value: 2000, },
+  { id: -3, name: "Masz urodziny", description: "Kasiurka od znajomych na urodziny;]", type: EventTypeEnum.Event, value: 500, },
+  { id: -4, name: "Masz Urodziny", description: "Kasiurka od Wujka z Ameryki;]", type: EventTypeEnum.Event, value: 2000, },
 
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////

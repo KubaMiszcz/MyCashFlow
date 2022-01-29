@@ -4,7 +4,7 @@
 
     <div class="card-headesr modal-header">
       <h4 class="modal-title" id="modal-basic-title">{{eventInfo?.type}}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.close('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="closeModal('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -37,19 +37,18 @@
 
 
     <div class="card-footer modal-footer p-2">
-      <button *ngIf="hasEventLoan()" type="button" name="" id=""
-              class="col-6 btn btn-md btn-blxock"
+      <button *ngIf="hasEventLoan" type="button" name="" id=""
+              class="col btn btn-md btn-blxock"
               [ngClass]="{ 
-                'btn-outline-secondary' : isLoanPayable(),
-                'btn-outline-success' : !isLoanPayable()
+                'btn-outline-secondary' : !isLoanPayable,
+                'btn-outline-success' : isLoanPayable
                } "
-              (click)="onPayLoan()"
-              disabled="isLoanPayable()">
-        {{getPayLoanButtonLabel()}}
+              (click)="onPayLoan()" [disabled]="!isLoanPayable">
+              {{payLoanButtonLabel}}
       </button>
       <button type="button" name="" id=""
               class="col-4 btn btn-outline-success btn-md btn-blxock"
-              (click)="modal.close('OK')">
+              (click)="closeModal('OK')">
         OK
       </button>
     </div>

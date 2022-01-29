@@ -16,18 +16,25 @@
       <tbody>
         <tr *ngFor="let item of list" (click)="onRowClick(item)">
           <td class="col-8 py-0 px-1">
-            <div class="row d-flex justify-content-between">
-              <span class="col">{{item.name}}</span>
-              <span class="col-auto mr-auto"></span>
-              <span *ngIf="item.isNew" class="col-2 badge rounded-pill bg-primary m-auto">Nowe</span>
+            <div class="income-row  rodw dd-flex jdustify-content-between">
+              <span class="cdol">{{item.name}}</span>
+              <span class="codl-auto mdr-auto"></span>
 
-              <div class="d-flex">
-                <span *ngIf="item.type === icomeTypes.Loan" class="col-1 ml-1 mr-0 p-0">
-                  <i class="fas fa-donate "></i>
-                </span>
-                <span class="col-1 mr-2 p-0">
-                  <i class="fa fa-question-circle" aria-hidden="true"></i>
-                </span>
+
+
+              <div class="d-fdlex income-icons-panel">
+                <div class="d-fdlex income-icons">
+                  <div *ngIf="item.isNew" class="cosl-2 badge rounded-pill bg-primary m-asuto mt-1">Nowe</div>
+                </div>
+
+                <div class="d-fdlex income-icons">
+                  <div class="cosl-1 msr-2 sp-0">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </div>
+                  <div *ngIf="item.type === icomeTypes.Loan" class="cdol-1 dml-1 dmr-0 dp-0">
+                    <i class="fas fa-donate "></i>
+                  </div>
+                </div>
               </div>
 
             </div>

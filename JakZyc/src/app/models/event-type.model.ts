@@ -21,7 +21,7 @@ export const EVENT_TYPES_LIST: IEventType[] = [
   {
     name: "Maly Hajs",
     type: EventTypeEnum.SmallDeal,
-    probabilityRate: 4,
+    probabilityRate: 12,
   },
   {
     name: "Duzy Hajs",

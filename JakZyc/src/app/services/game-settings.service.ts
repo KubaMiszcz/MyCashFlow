@@ -7,7 +7,8 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class GameSettingsService {
 
   loanDefaultInterestRate = 0.1;
-  loanDefaultDuration = 12;
+  loanDefaultDurationForSmallDeal = 12;
+  loanDefaultDurationForBigDeal = 12;
   // loanDefaultInterestRateDeviation = 0.1;
 
   personalExpensesRate = 0; //0.5?

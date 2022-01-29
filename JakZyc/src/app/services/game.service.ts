@@ -306,8 +306,8 @@ export class GameService {
 
   private createNewLoan(currentEvent: IEvent) {
     const loanValue = Math.round(currentEvent.value * (1 + this.gameSettingsService.loanDefaultInterestRate));
-    const installment = Math.round(loanValue / this.gameSettingsService.loanDefaultDuration);
-    const duration = this.gameSettingsService.loanDefaultDuration;
+    const installment = Math.round(loanValue / this.gameSettingsService.loanDefaultDurationForSmallDeal);
+    const duration = this.gameSettingsService.loanDefaultDurationForSmallDeal;
 
     let loan: IIncome = {
       name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + ' (' + duration + 'mcy)',

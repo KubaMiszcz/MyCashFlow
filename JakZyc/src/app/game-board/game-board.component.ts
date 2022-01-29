@@ -37,6 +37,9 @@ export class GameBoardComponent implements OnInit {
     this.gameService.totalIncomes$.subscribe(e => this.totalIncomes = e);
     this.gameService.totalExpenses$.subscribe(e => this.totalExpenses = e);
     this.gameService.totalAssets$.subscribe(e => this.totalAssets = e);
+
+    console.log('sd');
+
   }
 
   onIncomeClick(value: IIncome) {

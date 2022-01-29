@@ -5,7 +5,7 @@ import { GAME_GOALS_LIST } from './../models/goal.model';
 import { HelperService } from './helper.service';
 import { IIncome } from './../models/income.model';
 import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { IPlayer, Player, INITIAL_PLAYER } from '../models/player.model';
 import { IEvent, Event, ALL_EVENTS_LIST } from './../models/event.model';
 import { EventTypeEnum } from '../models/constants/event-type.enum';
@@ -41,6 +41,7 @@ export class GameService {
     this.gameSettingsService.dateYearToPlayerAgeInterval = new Date().getFullYear() - this.player$.value.age.year;
 
     this.currentEvent$.next(this.drawEvent());
+    console.log('asasd');
   }
 
   startNewTurn() {
@@ -53,15 +54,12 @@ export class GameService {
       this.updateLoans(player.expenses);
     }
 
-    let event: IEvent;
-    if (player.age.month === 0 && player.age.day === 1) {
-      event = this.getBirthDayEvent();
-    } else {
-      event = this.drawEvent();
-    }
+    const event = (player.age.month === 0 && player.age.day === 1) ? this.getBirthDayEvent() : this.drawEvent();
 
     this.currentEvent$.next(event);
     this.showNextTurnModalE$.emit(true);
+    console.log(player);
+
   }
 
   finishTurn(result: DialogResultEnum) {
@@ -69,7 +67,7 @@ export class GameService {
     this.cleanIsNewStatuses(player);
 
 
-    let currentEvent = this.currentEvent$.value;
+    const currentEvent = this.currentEvent$.value;
     if (result === DialogResultEnum.Accept) {
       this.handleWithCurrentEvent(player, currentEvent);
     }
@@ -80,17 +78,17 @@ export class GameService {
   }
 
   updatePlayerInfo(player: IPlayer) {
-    this.player$.next(player)
+    this.player$.next(player);
   }
 
   isPlayerNewlyCreated(): boolean {
     const player = this.player$.value;
-    return (player.age.month == 0)
-      && (player.age.day == 1)
-      && (player.assets?.length == 0)
-      && (player.incomes?.length == 1)
-      && (player.expenses?.length == 1)
-      && (player.totalCash == player.job.salary);
+    return (player.age.month === 0)
+      && (player.age.day === 1)
+      && (player.assets?.length === 0)
+      && (player.incomes?.length === 1)
+      && (player.expenses?.length === 1)
+      && (player.totalCash === player.job.salary);
   }
 
   showInfoCard(value: IIncome) {
@@ -102,9 +100,12 @@ export class GameService {
 
   payLoanForEvent(event: IEvent) {
     const player = this.player$.value;
-    let income = player.expenses.find(e => e.relatedEventId === event.id);
-    player.totalCash += income?.value! * income?.duration!;
-    player.expenses = this.helperService.removeFromArrayByProp<IIncome>(player.expenses, 'name', income?.name)!
+    const income = player.expenses.find(e => e.relatedEventId === event.id);
+    if (income?.value && income?.duration) {
+      player.totalCash += income?.value * income?.duration;
+    }
+
+    player.expenses = this.helperService.removeFromArrayByProp<IIncome>(player.expenses, 'name', income?.name);
   }
 
 
@@ -141,18 +142,18 @@ export class GameService {
   }
 
   private getBirthDayEvent() {
-    let rate = this.gameSettingsService.birthDayGiftRate;
-    let deviation = 1 + _.random(-rate, rate);
-    let event = { ...ALL_EVENTS_LIST.filter(e => e.id === -3 || e.id === -4)[_.random(1)] };
-    let gift = Math.round((event.value * deviation) / 10) * 10;
+    const rate = this.gameSettingsService.birthDayGiftRate;
+    const deviation = 1 + _.random(-rate, rate);
+    const event = { ...ALL_EVENTS_LIST.filter(e => e.id === -3 || e.id === -4)[_.random(1)], };
+    const gift = Math.round((event.value * deviation) / 10) * 10;
     event.value = gift;
     return event;
   }
 
   private cleanIsNewStatuses(player: IPlayer) {
-    player.incomes.forEach(i => i.isNew = false)
-    player.expenses.forEach(i => i.isNew = false)
-    player.assets.forEach(i => i.isNew = false)
+    player.incomes.forEach(i => i.isNew = false);
+    player.expenses.forEach(i => i.isNew = false);
+    player.assets.forEach(i => i.isNew = false);
   }
 
   private handleWithCurrentEvent(player: IPlayer, currentEvent: IEvent) {
@@ -189,8 +190,8 @@ export class GameService {
   }
 
   private applyPayday(player: IPlayer) {
-    let totalIncomes = this.helperService.sumValues(player.incomes);
-    let totalExpenses = this.helperService.sumValues(player.expenses);
+    const totalIncomes = this.helperService.sumValues(player.incomes);
+    const totalExpenses = this.helperService.sumValues(player.expenses);
 
     player.totalCash += totalIncomes + totalExpenses;
   }
@@ -232,7 +233,7 @@ export class GameService {
         return this.gameSettingsService.expenseNamePrefix;
       }
     }
-    return ''
+    return '';
   }
 
   private drawEvent(): IEvent {
@@ -241,8 +242,8 @@ export class GameService {
   }
 
   private drawEventType(): IEventType {
-    let probabilitySum = this.helperService.sumProperties(EVENT_TYPES_LIST, 'probabilityRate');
-    let typeHit = _.random(0.001, probabilitySum - 1);
+    const probabilitySum = this.helperService.sumProperties(EVENT_TYPES_LIST, 'probabilityRate');
+    const typeHit = _.random(0.001, probabilitySum - 1);
 
     let drawedType = new EventType();
     let low = 0;
@@ -254,7 +255,7 @@ export class GameService {
         drawedType = t;
       }
       low = high;
-    })
+    });
 
     return drawedType;
   }
@@ -271,7 +272,7 @@ export class GameService {
     player.job.salary = Math.floor(player.job.salary * _.random(0.8, 1.2) / 100) * 100;
     player.totalCash = player.job.salary;
 
-    player.age = { year: _.random(20, 50), month: 0, day: 1 };
+    player.age = { year: _.random(20, 50), month: 0, day: 1, };
 
     player.goal = GAME_GOALS_LIST[_.random(GAME_GOALS_LIST.length - 1)];
 
@@ -309,14 +310,14 @@ export class GameService {
     const installment = Math.round(loanValue / this.gameSettingsService.loanDefaultDurationForSmallDeal);
     const duration = this.gameSettingsService.loanDefaultDurationForSmallDeal;
 
-    let loan: IIncome = {
+    const loan: IIncome = {
       name: 'Kredyt na ' + loanValue + ' za ' + currentEvent.name + ' (' + duration + 'mcy)',
       type: IncomeTypeEnum.Loan,
       value: -1 * installment,
       isNew: true,
       duration: duration,
       relatedEventId: currentEvent.id,
-    }
+    };
 
     return loan;
   }
@@ -333,8 +334,8 @@ export class GameService {
   }
 
   private updateLoanSuffix(loan: IIncome) {
-    let items = loan.name.split('(')
-    let ending = (loan.duration ?? 0) > 4 ? 'mcy'
+    const items = loan.name.split('(');
+    const ending = (loan.duration ?? 0) > 4 ? 'mcy'
       : (loan.duration ?? 0) > 1 ? 'mce' : 'mc';
 
     return items[0] + ' (' + loan.duration + ending + ')';

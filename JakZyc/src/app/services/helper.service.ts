@@ -25,15 +25,17 @@ export class HelperService {
   }
 
   removeFromArrayByProp<T>(array: T[], propName: string, value: any): T[] {
-    let list = _.reject(array, { [propName]: value }) as T[];
+    const list = _.reject(array, { [propName]: value }) as T[];
     return list;
   }
 
   getRandomWithPrecision(min: number, max: number, precision?: number) {
     let res = _.random(min, max);
     if (precision && precision > 0) {
-      res = (Math.round(res * precision * 10)) / 10
+      res = (Math.round(res * precision * 10)) / 10;
     }
+
+    console.log('sdsd');
 
     return res;
   }

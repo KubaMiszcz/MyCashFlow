@@ -1,4 +1,4 @@
-import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,15 +32,15 @@ import { HelpPageComponent } from './help-page/help-page.component';
     InfoCardModalComponent,
     PlayerInfoPageComponent,
     FooterComponent,
-    HelpPageComponent
+    HelpPageComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,],
 })
 export class AppModule { }

@@ -1,4 +1,3 @@
-import { IIncome } from './income.model';
 import { EventTypeEnum } from './constants/event-type.enum';
 
 export interface IEvent {
@@ -139,5 +138,5 @@ export const ALL_EVENTS_LIST: IEvent[] = [
   // { name: 'zmiana pracy na gorsza1', description: 'zmiana pracy na gorsza1', type: EventTypeEnum.SpecialEvent, value: -10, percentable: true, },//%
   // { name: 'zmiana pracy na gorsza2', description: 'zmiana pracy na gorsza2', type: EventTypeEnum.SpecialEvent, value: -20, percentable: true, },//%
   // { name: 'zmiana pracy na gorsza3', description: 'zmiana pracy na gorsza3', type: EventTypeEnum.SpecialEvent, value: -30, percentable: true, },//%
-]
+];
 

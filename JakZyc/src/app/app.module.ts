@@ -16,6 +16,7 @@ import { PlayerInfoPageComponent } from './player-info-page/player-info-page.com
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { InfoCardModalComponent } from './info-card-modal/info-card-modal.component';
+import { HelpPageComponent } from './help-page/help-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { InfoCardModalComponent } from './info-card-modal/info-card-modal.compon
     Top100ScoreBoardComponent,
     InfoCardModalComponent,
     PlayerInfoPageComponent,
-    FooterComponent
+    FooterComponent,
+    HelpPageComponent
   ],
   imports: [
     FormsModule,

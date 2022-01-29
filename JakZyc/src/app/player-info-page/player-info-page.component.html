@@ -15,37 +15,42 @@
 
           <div class="col-7">
             <div class="input-group mb-3">
-              <div class="input-group-prepend input-group-label row">
+              <div class="input-group-prepend input-group-label-name row">
                 <span class="input-group-text " id="basic-addon1">Imie:</span>
               </div>
               <input [(ngModel)]="player.name" [ngModelOptions]="{standalone: true}"
-                     type="text" class="form-control text-align-center" placeholder="Wpisz imie" aria-label="Username"
+                     type="text" class="form-control text-align-center input-group-label-value" placeholder="Wpisz imie" aria-label="Username"
                      aria-describedby="basic-addon1">
             </div>
           </div>
 
+
           <div class="col-5">
             <div class="input-group mb-3">
-              <div class="input-group-prepend input-group-label row">
+              <div class="input-group-prepend input-group-label-name row">
                 <span class="input-group-text " id="basic-addon1">Wiek:</span>
               </div>
               <input [(ngModel)]="player.age.year" [ngModelOptions]="{standalone: true}"
-                     type="number" class="form-control text-align-right" placeholder="Wpisz wiek" aria-label="Username"
+                     type="number" class="form-control text-align-right input-group-label-value" placeholder="Wpisz wiek" aria-label="Username"
                      aria-describedby="basic-addon1"
                      [disabled]="isEditionDisabled()">
             </div>
-
           </div>
+
         </div>
 
+
+
+
+        
         <div class="row">
 
           <div class="col-7">
             <div class="input-group mb-3">
-              <div class="input-group-prepend input-group-label row">
+              <div class="input-group-prepend input-group-label-name row">
                 <label class="input-group-text" for="inputGroupSelect01">Zawod:</label>
               </div>
-              <select class="custom-select text-align-center " id="inputGroupSelect01"
+              <select class="custom-select text-align-center input-group-label-value" id="inputGroupSelect01"
                       (change)="selectJob($event)"
                       [disabled]="isEditionDisabled()">
                 <option *ngFor="let item of jobList" [selected]="item.id===player.job?.id" [value]="item.id" cla>{{item.name}}</option>
@@ -54,9 +59,9 @@
           </div>
 
           <div class="col-5 pl-0">
-            <div class="input-group">
-              <span class="input-group-text col text-align-left col-4" id="basic-addon3">Zarobki:</span>
-              <span class="input-group-text col text-align-right justify-content-end" id="basic-addon3">{{player.job?.salary | plnPipe}}</span>
+            <div class="input-group  ">
+              <span class="input-group-text col input-group-label-name" id="basic-addon3">Zarobki:</span>
+              <span class="input-group-text col justify-content-end input-group-label-value" id="basic-addon3">{{player.goal?.price | plnPipe}}</span>
             </div>
           </div>
 
@@ -129,7 +134,7 @@
         <div class="col-5 pl-0">
           <div class="input-group  ">
             <span class="input-group-text col " id="basic-addon3">Wartosc:</span>
-            <input [(ngModel)]="player.goal!.price" [ngModelOptions]="{standalone: true}" type="text"
+            <input [(ngModel)]="player.goal!.price" [ngModelOptions]="{standalone: true}" type="number"
                    class="form-control text-align-right" placeholder="Wpisz wartosc" aria-label="Username" aria-describedby="basic-addon1">
           </div>
         </div>

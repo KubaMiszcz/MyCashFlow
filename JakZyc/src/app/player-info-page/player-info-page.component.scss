@@ -1,5 +1,16 @@
-.input-group-label {
-  width: 36%;
+.input-group {
+
+  .input-group-label-name {
+    // width: 6em;
+    max-width: 35%;
+    min-width: 35%;
+  }
+
+  .input-group-label-value {
+    // width: 60%;
+    max-width: 65%;
+    max-width: 65%;
+  }
 }
 
 .goal-label {

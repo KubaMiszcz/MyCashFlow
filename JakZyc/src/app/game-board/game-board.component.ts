@@ -43,9 +43,4 @@ export class GameBoardComponent implements OnInit {
     this.gameService.showInfoCard(value);
   }
 
-  onPayLoan(event: IEvent) {
-    console.log(event);
-    this.gameService.payLoanForEvent(event);
-  }
-
 }

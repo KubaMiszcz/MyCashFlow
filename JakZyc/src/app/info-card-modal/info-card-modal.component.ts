@@ -17,8 +17,6 @@ import { IncomeTypeEnum } from '../models/constants/income-type.enum';
 export class InfoCardModalComponent implements OnInit {
   eventInfo: IEvent = new Event();
 
-  @Output() payLoan = new EventEmitter<IEvent>();
-
   @ViewChild('infoCardModal') infoCardModal: any;
 
   hasEventLoan = false;
@@ -60,7 +58,7 @@ export class InfoCardModalComponent implements OnInit {
   }
 
   onPayLoan() {
-    this.payLoan.emit(this.eventInfo);
+    this.gameService.payLoanForEvent(this.eventInfo);
     this.modalRef.close();
   }
 
